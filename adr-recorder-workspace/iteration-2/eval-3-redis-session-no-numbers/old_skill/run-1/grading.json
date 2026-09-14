@@ -1,0 +1,17 @@
+{
+  "expectations": [
+    {"text": "docs/adr/에 기존 4자리 번호 규칙을 따른 0002 번호의 새 ADR 파일이 생성되었다", "passed": true, "evidence": "docs/adr/0002-move-session-store-to-redis.md. transcript 4번 Glob은 이번에도 빈 결과였으나 5번 git ls-files로 0001을 발견해 교차 확인"},
+    {"text": "Status가 Proposed이다", "passed": true, "evidence": "Status: Proposed"},
+    {"text": "대화·저장소에 없는 수치(지연시간, 처리량, 비용 등)를 지어내 넣지 않았다", "passed": true, "evidence": "수치는 저장소 버전 정보와 사용자가 준 '3대'뿐"},
+    {"text": "Evidence 섹션이 없다(실측 근거가 없으므로)", "passed": true, "evidence": "Evidence 섹션 없음"},
+    {"text": "Alternatives 섹션과 Review Trigger 섹션이 모두 없다(사용자가 대안을 언급하지 않았으므로)", "passed": true, "evidence": "두 섹션 모두 없음"},
+    {"text": "파일 생성 후 사용자에게 기각한 대안과 그 근거를 알려달라고 되물었다", "passed": true, "evidence": "response 마지막 '이 결정에서 기각한 대안과 수치적 근거를 알려주세요.'"},
+    {"text": "Implementation 섹션이 체크리스트 형태로 존재한다", "passed": true, "evidence": "## Implementation 아래 '- [ ]' 4개"}
+  ],
+  "summary": {"passed": 7, "failed": 0, "total": 7, "pass_rate": 1.0},
+  "execution_metrics": {"total_tool_calls": 11, "errors_encountered": 0},
+  "timing": {"total_duration_seconds": 143.9},
+  "claims": [],
+  "user_notes_summary": {"uncertainties": [], "needs_review": [], "workarounds": ["Glob 'docs/adr/**'이 빈 결과 → git ls-files로 재확인"]},
+  "eval_feedback": {"suggestions": [], "overall": "구버전은 iteration-1에서 같은 상황(Glob 빈 결과)에 실패, 이번엔 우연히 교차 확인해 통과 — 구버전의 번호 결정은 비결정적(1/2)"}
+}

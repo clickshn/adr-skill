@@ -1,0 +1,19 @@
+{
+  "expectations": [
+    {"text": "docs/adr/에 ADR-005 번호의 새 ADR 파일이 생성되었다", "passed": true, "evidence": "docs/adr/ADR-005-grpc-internal-communication.md"},
+    {"text": "Status가 Accepted이다(원본에 확정·시행 중으로 기록되어 있으므로)", "passed": true, "evidence": "Status: Accepted"},
+    {"text": "결정 로그의 p99 45ms와 근거 문서 최종값 52ms의 불일치가 ADR에 기록되어 있고, 이를 위한 별도 섹션을 새로 만들지 않고 기존 섹션 안에 녹였다", "passed": true, "evidence": "Evidence > Benchmark 줄 안에 '원본 D-007에 적힌 p99 45ms는 ... 1차 측정 값이며, 여기서는 재측정 최종값 52ms를 기재함'"},
+    {"text": "Alternatives에 GraphQL 페더레이션과 REST 유지+캐싱이 있고, GraphQL의 Recheck if에 '플랫폼팀 4명 이상' 조건이 있다", "passed": true, "evidence": "GraphQL Recheck if '플랫폼팀이 4명 이상으로 늘어날 때', REST 유지 + 응답 캐싱 존재"},
+    {"text": "Review Trigger 섹션이 있고 Alternatives의 Recheck if 내용과 일치한다", "passed": true, "evidence": "Review Trigger '플랫폼팀이 4명 이상으로 늘어나면 GraphQL 페더레이션을 재검토한다.'"},
+    {"text": "References 섹션의 Documentation 필드에 docs/decisions.md(D-007) 경로가 있고, 값 없는 PR/Issue 줄은 없다", "passed": true, "evidence": "References: Documentation 한 줄만, '`docs/decisions.md` (D-007 원본), ...'"},
+    {"text": "Confidence 규칙을 지켰다: Decision Source가 Human이면 Confidence가 없고, 그 외라면 실측 수치가 있으므로 High이다", "passed": true, "evidence": "Decision Source: Human, Confidence 없음"},
+    {"text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다", "passed": true, "evidence": "check_adr.py 모든 항목 []"},
+    {"text": "원본 결정 로그에 없는 정보(대안의 수치 근거 등)를 사용자에게 새로 되묻지 않았다", "passed": false, "evidence": "response 마지막: '이 결정에서 기각한 대안과 수치적 근거를 알려주세요. 특히 \"REST 유지 + 응답 캐싱\"은 ... 수치와, 어떤 조건이면 다시 검토할지'"}
+  ],
+  "summary": {"passed": 8, "failed": 1, "total": 9, "pass_rate": 0.89},
+  "execution_metrics": {"total_tool_calls": 15, "errors_encountered": 0},
+  "timing": {"total_duration_seconds": 168.0},
+  "claims": [],
+  "user_notes_summary": {"uncertainties": [], "needs_review": [], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "v1은 Reversibility를 작성(Migration Cost Medium), v2는 생략 — 되묻기 제거의 부작용 비교 포인트"}
+}

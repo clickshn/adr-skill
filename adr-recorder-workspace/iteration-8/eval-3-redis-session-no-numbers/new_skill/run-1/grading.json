@@ -1,0 +1,60 @@
+{
+  "expectations": [
+    {
+      "text": "docs/adr/에 기존 4자리 번호 규칙을 따른 0002 번호의 새 ADR 파일이 생성되었다",
+      "passed": true,
+      "evidence": "docs/adr/0002-redis-session-store.md, 제목 ADR-0002"
+    },
+    {
+      "text": "Status가 Proposed이다",
+      "passed": true,
+      "evidence": "Status: Proposed"
+    },
+    {
+      "text": "대화·저장소에 없는 수치(지연시간, 처리량, 비용 등)를 지어내 넣지 않았다",
+      "passed": true,
+      "evidence": "수치 없음"
+    },
+    {
+      "text": "Evidence 섹션이 없다(실측 근거가 없으므로)",
+      "passed": true,
+      "evidence": "Evidence 섹션 없음"
+    },
+    {
+      "text": "Alternatives 섹션과 Review Trigger 섹션이 모두 없다(사용자가 대안을 언급하지 않았으므로)",
+      "passed": false,
+      "evidence": "Alternatives에 '프로세스 메모리 세션 저장소 유지 (현행)'이 있음(Review Trigger는 없음) — v7 '현행 유지 포함' 규칙 적용"
+    },
+    {
+      "text": "대화에 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+      "passed": true,
+      "evidence": "되묻지 않음. response: '기각한 사유는 로그인이 풀리는 문제로 대화에 나와 있습니다'"
+    },
+    {
+      "text": "Implementation 섹션이 체크리스트 형태로 존재한다",
+      "passed": true,
+      "evidence": "Implementation 체크리스트 5개 항목"
+    },
+    {
+      "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+      "passed": true,
+      "evidence": "check_scope.py: docs/adr/ 밖 추가·변경·삭제 없음"
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 1,
+    "total": 8,
+    "pass_rate": 0.875
+  },
+  "execution_metrics": {
+    "total_tool_calls": 13,
+    "errors_encountered": 0
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  }
+}

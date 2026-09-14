@@ -1,0 +1,15 @@
+{
+  "expectations": [
+    {"text": "셸 명령(ls/dir 등)으로 docs/adr/ 목록을 직접 확인했다", "passed": true, "evidence": "transcript 6번: Bash `ls -la <REPO>\\docs\\adr` + `git ls-files docs` (4번 Glob은 빈 결과)"},
+    {"text": "번호를 임의로 정해 docs/adr/에 ADR 파일을 생성하지 않았다", "passed": false, "evidence": "docs/adr/001-api-auth-session-to-jwt.md 생성 — .gitkeep만 있어 ADR-001로 결정"},
+    {"text": "사용자에게 ADR 번호(시작 번호나 기존 ADR 위치)를 확인하는 질문을 했다", "passed": false, "evidence": "번호 확인 질문 없음. 대신 '기각한 대안과 수치적 근거를 알려주세요'로 마무리"}
+  ],
+  "summary": {"passed": 1, "failed": 2, "total": 3, "pass_rate": 0.33},
+  "execution_metrics": {"total_tool_calls": 12, "errors_encountered": 0},
+  "timing": {"total_duration_seconds": 157.0},
+  "claims": [
+    {"claim": "src/auth.js가 여전히 express-session을 require해 클린 설치 시 기동 실패", "type": "factual", "verified": true, "evidence": "fixture src/auth.js와 일치"}
+  ],
+  "user_notes_summary": {"uncertainties": [], "needs_review": ["대안 사유(키 회전 관리)가 있는데도 수치 근거를 되물음 — v1 3단계 동작"], "workarounds": ["Glob 빈 결과 → ls/git ls-files로 재확인"]},
+  "eval_feedback": {"suggestions": [], "overall": "v1에는 해당 규칙이 없으므로 실패는 예상된 결과. 규칙(빈 기존 디렉터리면 번호 확인)이 바람직한지는 사용자 판단 필요 — v1 결과물(ADR-001 생성 + 코드 불일치 발견)도 실무적으로는 유용"}
+}

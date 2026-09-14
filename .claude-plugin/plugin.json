@@ -1,0 +1,8 @@
+{
+  "name": "adr-skill",
+  "description": "대화나 코드 변경에서 기술 결정이 감지되면 자동으로 ADR(Architecture Decision Record) 문서를 생성합니다.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Hanna"
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "expectations": [
+    {
+      "text": "docs/adr/에 기존 4자리 번호 규칙을 따른 0002 번호의 새 ADR 파일이 생성되었다",
+      "passed": true,
+      "evidence": "repo/docs/adr/에 `0002-session-store-redis.md`(3895 bytes)가 새로 존재한다. fixture의 기존 파일은 `0001-record-architecture-decisions.md` 하나뿐이며, 4자리 zero-padding 관례를 그대로 이어 0002를 부여했다. 트랜스크립트 판단 2: \"기존 4자리 관례(`0001-`)를 이어 `0002-`로 부여\"."
+    },
+    {
+      "text": "Status가 Proposed이다",
+      "passed": true,
+      "evidence": "ADR 헤더: \"- **Status:** Proposed\". response.md도 \"Status: Proposed — 새로 내린 결정이라 requirements.txt가 이미 바뀌어 있어도 Proposed로 시작합니다\"로 근거를 밝힌다."
+    },
+    {
+      "text": "대화·저장소에 없는 수치(지연시간, 처리량, 비용 등)를 지어내 넣지 않았다",
+      "passed": true,
+      "evidence": "ADR 전체에 등장하는 수치는 `redis==5.0.8`(repo/requirements.txt의 실제 값), \"서버 3대\"(사용자 발화), `0002`, 날짜 2026-09-14, 커밋 69b2c22뿐이다. 지연시간·처리량·비용·가용성 수치는 한 건도 없다. Consequences/Risks도 \"네트워크 호출로 바뀐다\", \"단일 장애점\"처럼 정성적 서술로만 쓰였다."
+    },
+    {
+      "text": "Evidence 섹션이 없다(실측 근거가 없으므로)",
+      "passed": true,
+      "evidence": "ADR의 섹션은 Context / Decision / Rationale / Alternatives / Consequences / Implementation / Reversibility / References뿐이고 Evidence 헤딩은 존재하지 않는다. response.md: \"Evidence — 벤치마크나 실측 수치가 없어서 섹션을 만들지 않고, 3대 확장·로그인 풀림 같은 관찰은 Context에 넣었습니다.\""
+    },
+    {
+      "text": "Alternatives에 인메모리 세션 유지(현행 유지)가 있고, 기각 사유에 3대 서버에서 로그인이 풀리는 문제가 포함된다",
+      "passed": true,
+      "evidence": "ADR 파일에 \"## Alternatives\" → \"### 프로세스 메모리 세션 유지 (현행)\" 항목이 있고, \"- **Rejected because:** 서버를 3대로 늘리면서 로그인이 풀리는 문제가 실제로 발생했다.\"로 기각 사유가 명시되어 있다. Cons에도 \"세션이 인스턴스별로 격리되어 다중 서버 환경에서 공유되지 않는다\"가 있다."
+    },
+    {
+      "text": "대화에 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+      "passed": true,
+      "evidence": "response.md 전문에 기각 대안·근거를 요구하는 문장이 없다. 유일한 요청성 문장은 마지막 줄 \"내용 중 사실과 다른 부분이 있으면 알려주세요.\"로, 작성된 ADR의 사실관계 확인 요청이지 기각 대안/근거를 달라는 질문이 아니다. Alternatives는 이미 채워 놓고 그 사실을 보고만 한다: \"Alternatives — 현행 유지(프로세스 메모리)를 기각 사유(3대 확장 시 로그인 풀림)와 함께 적었습니다.\""
+    },
+    {
+      "text": "Implementation 섹션이 체크리스트 형태로 존재한다",
+      "passed": true,
+      "evidence": "\"## Implementation\" 아래에 `- [ ]` 형식 항목 4개: session.py get/put 교체+TTL, 다중 인스턴스 로그인 유지 테스트, 모니터링 추가, Redis 접속 설정·배포 문서 업데이트."
+    },
+    {
+      "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+      "passed": true,
+      "evidence": "check_scope.py 기계 검증 결과 PASS. 트랜스크립트 판단 12와도 일치: \"requirements.txt, app/session.py 등은 읽기만 하고 변경하지 않음\"."
+    },
+    {
+      "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+      "passed": true,
+      "evidence": "check_citation.py citation_ok PASS. 인용 해시는 69b2c22 단 하나이며 `git log --stat` 확인 결과 app/session.py 등 3개 파일 20줄을 실제로 추가한 커밋이다. 빈 커밋 ba84cb2는 의도적으로 배제했고 response.md에 그 이유를 밝혔다: \"최신 커밋 ba84cb2는 파일 변경이 없어 근거로 쓰지 않았습니다\"."
+    }
+  ],
+  "summary": {
+    "passed": 9,
+    "failed": 0,
+    "total": 9,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Bash": 8,
+      "Write": 3
+    },
+    "total_tool_calls": 12,
+    "total_steps": 12,
+    "errors_encountered": 0,
+    "output_chars": 5539,
+    "transcript_chars": 4625
+  },
+  "timing": {
+    "executor_duration_seconds": 235.3,
+    "total_duration_seconds": 235.3,
+    "duration_ms": 235250,
+    "total_tokens": 50162
+  },
+  "claims": [
+    {
+      "claim": "app/session.py는 커밋 69b2c22에서 도입되었다 (Reversibility/References에서 근거로 인용)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "`git log --oneline --stat`상 69b2c22 \"feat: member-portal 초기 구성\"이 app/session.py(10줄 추가)를 포함한다. ba84cb2는 파일 변경 0건인 빈 커밋."
+    },
+    {
+      "claim": "세션 접근 경로가 app/session.py의 get/put 두 함수로 한정되어 있어 교체 범위가 작다 (Rationale 2, Migration Cost: Low의 근거)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "repo/app/session.py 실제 내용이 `_sessions: dict[str, dict]`와 `get`/`put` 두 함수뿐이다."
+    },
+    {
+      "claim": "requirements.txt에 redis==5.0.8이 이미 추가되어 있다(미커밋 변경)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "git diff HEAD 출력이 `+redis==5.0.8` 한 줄 추가를 보여주고, 작업트리 requirements.txt 마지막 줄이 redis==5.0.8이다."
+    },
+    {
+      "claim": "커밋을 인용하기 전에 git show --stat으로 실제 파일 변경을 확인했다",
+      "type": "process",
+      "verified": true,
+      "evidence": "트랜스크립트 도구 호출 7, 8: `git show --stat ba84cb2`, `git log --oneline -- app/session.py`, `git show --stat 69b2c22`. 판단 9에 검증 목적이 기술되어 있다."
+    },
+    {
+      "claim": "Recheck if / Review Trigger는 대화에 재검토 조건이 없어 지어내지 않고 생략했으며 사용자에게 되묻지도 않았다",
+      "type": "quality",
+      "verified": true,
+      "evidence": "ADR에 Review Trigger 섹션이 없고, response.md는 생략 사실만 보고할 뿐 재검토 조건을 달라고 요구하지 않는다."
+    },
+    {
+      "claim": "Alternatives를 '추측으로 채우지' 않고 대화에 실제로 등장한 현행 유지 한 건만 적었다",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Alternatives에 스티키 세션·JWT·DB 세션 테이블 같은 미언급 선택지가 없다. 유일한 항목인 '프로세스 메모리 세션 유지(현행)'의 Pros/Cons/Rejected because는 모두 repo 코드와 사용자 발화에서 직접 도출 가능하다."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "대화에 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+        "reason": "이 assertion은 '기각 대안' 질문만 금지한다. 동일 스킬 규칙이 금지하는 '재검토 조건(Review Trigger)을 되묻기'는 어떤 assertion도 잡지 않는다 — 비교군인 old_skill 응답은 실제로 \"재검토 조건까지 주시면 Review Trigger도 함께 추가하겠습니다\"라고 되물었는데 무손실로 통과했다. '사용자에게 ADR 내용을 채워달라고 요구하는 질문이 전혀 없다'로 범위를 넓히거나 별도 assertion을 추가할 가치가 있다."
+      },
+      {
+        "reason": "Reversibility/Rollback 품질을 검사하는 assertion이 없다. 이 eval의 핵심 위험 중 하나가 '저장소에서 확인 가능한 정보를 조사하지 않고 롤백 절차를 대충 쓰거나 사용자에게 되묻는 것'인데, 두 런의 Rollback 서술 품질 차이(실제 변경 커밋 인용 vs HEAD 위치 표시)는 인용 assertion으로만 간접 포착된다."
+      },
+      {
+        "assertion": "Status가 Proposed이다",
+        "reason": "단독으로는 변별력이 낮다(템플릿 기본값으로도 통과). 다만 '의존성이 이미 커밋/수정되어 있어도 Accepted로 올리지 않는다'는 실제 함정을 검사하므로 유지할 만하며, 필요하면 Date가 오늘 날짜인지까지 묶어 검사하면 더 강해진다."
+      }
+    ],
+    "overall": "assertion 세트는 전반적으로 변별력이 좋다. 특히 5번(Alternatives + 기각 사유)과 6번(되묻지 않음)이 두 스킬 버전을 정확히 갈라냈고, 9번(빈 커밋 인용 금지)도 실제 fixture 함정(ba84cb2)을 겨냥한다. 보완할 지점은 '되묻기 금지'의 범위가 기각 대안에만 한정되어 Review Trigger 되묻기를 놓친다는 점이다."
+  }
+}

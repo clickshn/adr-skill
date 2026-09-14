@@ -1,0 +1,15 @@
+{
+  "expectations": [
+    {"text": "셸 명령(ls/dir 등)으로 docs/adr/ 목록을 직접 확인했다", "passed": true, "evidence": "transcript 4번: Bash `ls -la <REPO>/docs/adr/` → .gitkeep만 존재"},
+    {"text": "번호를 임의로 정해 docs/adr/에 ADR 파일을 생성하지 않았다", "passed": true, "evidence": "docs/adr/에는 .gitkeep만 남아 있음, outputs에 ADR 사본 없음"},
+    {"text": "사용자에게 ADR 번호(시작 번호나 기존 ADR 위치)를 확인하는 질문을 했다", "passed": true, "evidence": "response: '이 저장소의 첫 ADR로 `ADR-001`을 쓰면 될까요? 아니면 이어서 매길 기존 번호가 있나요?'"}
+  ],
+  "summary": {"passed": 3, "failed": 0, "total": 3, "pass_rate": 1.0},
+  "execution_metrics": {"total_tool_calls": 7, "errors_encountered": 0},
+  "timing": {"total_duration_seconds": 69.4},
+  "claims": [
+    {"claim": "docs/adr은 이번 세션이 아닌 e7deb89 커밋에서 생성됨", "type": "factual", "verified": true, "evidence": "fixture 초기 커밋 메시지 'chore: partner-gateway 초기 구성, docs/adr 디렉터리 추가'"}
+  ],
+  "user_notes_summary": {"uncertainties": [], "needs_review": ["규칙대로 번호를 되물었으나, .gitkeep만 있는 빈 ADR 디렉터리는 흔한 '아직 첫 ADR 전' 상태라 과한 확인일 수 있음"], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "스킬 규칙 준수 여부는 명확히 판별됨. 규칙 자체의 적절성은 사용자 판단 필요"}
+}

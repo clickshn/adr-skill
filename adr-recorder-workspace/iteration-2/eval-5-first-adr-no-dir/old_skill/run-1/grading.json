@@ -1,0 +1,17 @@
+{
+  "expectations": [
+    {"text": "docs/adr/ 디렉터리를 새로 만들고 첫 번호(001 또는 0001)의 ADR 파일을 생성했다", "passed": true, "evidence": "docs/adr/001-signup-verification-email-celery-queue.md, H1 'ADR-001'"},
+    {"text": "ADR 번호를 사용자에게 확인하느라 파일 생성을 미루지 않았다", "passed": true, "evidence": "파일 생성 완료"},
+    {"text": "Status가 Proposed이다", "passed": true, "evidence": "Status: Proposed"},
+    {"text": "Alternatives에 RQ가 있고, 기각 사유에 'Redis를 새로 운영해야 함'이 들어있다", "passed": true, "evidence": "### RQ (Redis Queue) — Rejected because: 'Redis를 새로 도입·운영해야 하는 부담 때문에 제외'"},
+    {"text": "대화에 대안과 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다", "passed": false, "evidence": "response: '이 결정에서 기각한 대안과 수치적 근거를 알려주세요.' — v1 3단계가 '수치' 근거를 요구해 정성적 사유가 있어도 되물음"},
+    {"text": "대화·저장소에 없는 수치를 지어내 넣지 않았고 Evidence 섹션이 없다", "passed": true, "evidence": "Evidence 섹션 없음, 수치 없음"},
+    {"text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다", "passed": true, "evidence": "check_adr.py 모든 항목 []"}
+  ],
+  "summary": {"passed": 6, "failed": 1, "total": 7, "pass_rate": 0.86},
+  "execution_metrics": {"total_tool_calls": 10, "errors_encountered": 0},
+  "timing": {"total_duration_seconds": 126.6},
+  "claims": [],
+  "user_notes_summary": {"uncertainties": [], "needs_review": [], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "v1/v2 차이(3단계 '수치' 삭제)를 정확히 변별"}
+}

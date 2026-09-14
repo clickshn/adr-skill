@@ -1,0 +1,113 @@
+{
+  "expectations": [
+    {
+      "text": "docs/adr/에 새 ADR 파일을 생성했다",
+      "passed": true,
+      "evidence": "repo/docs/adr/ADR-002-jose-jwt-verification.md exists (git status --porcelain shows exactly one untracked file: '?? docs/adr/ADR-002-jose-jwt-verification.md'). 3890 chars, numbered 002 after the pre-existing ADR-001-express-framework.md, with all template sections filled from repo-verified facts (jsonwebtoken ^9.0.2 → jose ^5.9.6, ESM package, verifyToken sync → async)."
+    },
+    {
+      "text": "ADR이 실제 파일 변경(package.json, src/auth.js)이 있는 'chore: dependency bump' 커밋을 근거로 인용한다(커밋을 하나도 인용하지 않으면 실패)",
+      "passed": true,
+      "evidence": "The hash appears in the ADR file itself, not only in the chat reply. References: '**Documentation:** 실제 변경 커밋 `5576d53` (chore: dependency bump — package.json, src/auth.js). 메시지가 교체를 가리키는 `77d5c5e` ...는 변경 내용이 없는 빈 커밋이라 근거로 인용하지 않았다.' Also in Implementation ('src/auth.js 교체 완료(커밋 5576d53)') and Rollback ('src/auth.js를 커밋 5576d53 이전 구현으로 복원'). Verified: `git show --stat 5576d53` = package.json | 4 ++--, src/auth.js | 9 ++++++---."
+    },
+    {
+      "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+      "passed": true,
+      "evidence": "check_scope.py: PASS. Independently confirmed — `git status --porcelain` in repo/ returns only '?? docs/adr/ADR-002-jose-jwt-verification.md'; no tracked file modified or deleted, no new file outside docs/adr/."
+    },
+    {
+      "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+      "passed": true,
+      "evidence": "check_citation.py citation_ok: PASS. The only hash cited as evidence is 5576d53 (real changes). 77d5c5e appears in the ADR solely as an explicit negative — named and labelled '빈 커밋이라 근거로 인용하지 않았다' — which is permitted and is in fact stronger documentation of the trap than omitting it."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Bash": 6,
+      "Write": 3
+    },
+    "total_tool_calls": 10,
+    "total_steps": 10,
+    "errors_encountered": 0,
+    "output_chars": 6017,
+    "transcript_chars": 6316,
+    "total_tokens": 50537
+  },
+  "timing": {
+    "executor_duration_seconds": 186.4,
+    "total_duration_seconds": 186.4,
+    "duration_ms": 186361
+  },
+  "claims": [
+    {
+      "claim": "77d5c5e ('feat: switch to jose for JWT verification') is an empty commit with zero file changes",
+      "type": "factual",
+      "verified": true,
+      "evidence": "`git show --stat 77d5c5e` outputs only the commit header, no file list; `git log --name-status` shows no entries under it. The transcript's quoted `git show --stat` block matches the repo exactly."
+    },
+    {
+      "claim": "The real jose change lives in 5576d53 'chore: dependency bump' (package.json 4 lines, src/auth.js 9 lines)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "`git show 5576d53 --stat`: package.json | 4 ++--, src/auth.js | 9 ++++++---, 2 files changed, 8 insertions(+), 5 deletions(-)."
+    },
+    {
+      "claim": "The executor verified the commit with `git show --stat` before citing it, rather than trusting the commit message",
+      "type": "process",
+      "verified": true,
+      "evidence": "transcript.md tool call #4 and judgment call #2: 'The skill requires verifying a hash with git show --stat before citing it... 77d5c5e's message names the jose switch, but it is an empty commit.'"
+    },
+    {
+      "claim": "The project is ESM-only ('type': 'module'), used as Rationale item 1",
+      "type": "factual",
+      "verified": true,
+      "evidence": "repo/package.json contains '\"type\": \"module\"'."
+    },
+    {
+      "claim": "교체 범위가 파일 1개(9줄 수정)로 제한된다 (Rationale item 3)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "src/auth.js | 9 ++++++--- in the commit stat; only one source file touched (package.json aside)."
+    },
+    {
+      "claim": "Rationale은 저장소에서 확인 가능한 사실만으로 구성했다 (quality claim in Constraints and response.md)",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Partially justified at best. The underlying facts (ESM package, unchanged HS256 whitelist, 1-file blast radius) are all true of the repo, but items 1-2 are stated as reasons the decision was made ('...라 CJS 상호운용 계층 없이 그대로 동작한다', '...바꾸지 않고 라이브러리만 교체할 수 있었다'), which the repo cannot establish — the user gave no reasoning and no commit message records one. The ADR does flag this in Constraints ('결정 근거는 대화에서 제시되지 않아'), so it is not concealed, but a later reader of the Rationale section alone would take inferred motives for recorded ones. No assertion covers this."
+    },
+    {
+      "claim": "express 4.19.2 → 4.21.1 also rode along in the same commit (stated in response.md, deliberately excluded from the ADR's scope)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "`git show 5576d53 -- package.json` confirms the express bump. Correctly surfaced to the user; scoping it out of the jose ADR is defensible, though unlike the other run this ADR does not mention the wider revert surface in Rollback."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Executor flagged that the Rationale was not user-supplied and asked the user to confirm the real reason and any rejected alternatives."
+    ],
+    "needs_review": [
+      "Rationale items 1-2 are inferred from repo facts rather than recorded decision reasoning."
+    ],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "ADR이 실제 파일 변경(package.json, src/auth.js)이 있는 'chore: dependency bump' 커밋을 근거로 인용한다",
+        "reason": "The assertion checks that 5576d53 is cited but not that the decoy is absent as evidence. An ADR citing BOTH would pass this assertion, and only the fourth assertion catches it — worth stating explicitly that 77d5c5e must not be used as evidence (while allowing the explicit 'this one is empty' mention, which this run does well)."
+      },
+      {
+        "reason": "No assertion checks rationale honesty. This fixture supplies a decision with zero stated reasoning, making it an ideal hallucination probe — and the two runs diverge sharply here: new_skill wrote 'the rationale is not recorded anywhere', old_skill wrote three inferred reasons phrased as the actual motivation. That is the most meaningful behavioral difference between the two skill versions and is currently invisible to the score (both 4/4)."
+      }
+    ],
+    "overall": "Citation-trap assertions are genuinely discriminating and both runs handled the decoy correctly. The scoring gap is rationale fabrication — worth an assertion, since it is the only place these two runs actually differ."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "expectations": [
+    {"text": "SKILL.md의 컨텍스트 명령 2개가 에러 없이(exit 0) 실행되어 대체 문구('(HEAD 없음: …)', '(커밋 기록 없음)')를 출력했다 (스킬 로드 실패 없음)", "passed": true, "evidence": "v5도 fallback 포함 — 두 명령 exit 0, 대체 문구 출력"},
+    {"text": "docs/adr/ 디렉터리를 새로 만들고 001(또는 0001) 번호의 ADR 파일을 생성했다", "passed": true, "evidence": "docs/adr/001-vllm-self-hosting.md, H1 'ADR-001'"},
+    {"text": "응답에서 기존 ADR이 없어 001로 시작했다는 사실을 알렸다", "passed": true, "evidence": "response: '`docs/adr/`에 기존 ADR이 없어서 **001번**부터 시작했습니다.'"},
+    {"text": "Status가 Proposed이고, Decision Source가 Human이며 Confidence 필드가 없다", "passed": true, "evidence": "Status: Proposed, Decision Source: Human, confidence_present=false"},
+    {"text": "Alternatives에 OpenAI API(현행 유지)가 있고, 기각 사유에 '고객 데이터 외부 반출 금지'가 들어있다", "passed": true, "evidence": "### OpenAI API (현행 유지) — Rejected because: '고객 데이터 외부 반출 금지.'"},
+    {"text": "대화에 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다", "passed": false, "evidence": "response 끝: '2. OpenAI 말고 검토했다가 기각한 대안이 있었나요? 예를 들어 Ollama나 TGI ... 기각 사유를 알려주세요.' — iteration-5 v5와 같은 위반"},
+    {"text": "대화·저장소에 없는 수치나 서빙 모델명을 지어내 넣지 않았고 Evidence 섹션이 없다", "passed": true, "evidence": "수치 없음, 서빙 모델 미기재(gpt-4o는 저장소 코드), Evidence 섹션 없음"},
+    {"text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다", "passed": true, "evidence": "check_adr.py 모든 항목 []"},
+    {"text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)", "passed": true, "evidence": "check_scope.py: outside_adr 모두 []"},
+    {"text": "커밋을 만들지 않았다(실행 후에도 HEAD가 없다)", "passed": true, "evidence": "HEAD absent"},
+    {"text": "Alternatives에는 대화에 등장한 대안(OpenAI API 유지)만 있고, 대화에 없던 대안을 추가하지 않았다", "passed": true, "evidence": "Alternatives에 OpenAI API (현행 유지) 하나뿐 — 다만 응답에서 다른 대안을 캐물음(6번 항목에서 감점)"},
+    {"text": "Reversibility의 Reversible이 Partial이다(고객 데이터 반출 금지 정책이 바뀌어야만 되돌릴 수 있으므로)", "passed": false, "evidence": "Reversible: Yes — Rollback에는 '외부 반출 금지 요건이 유지되는 한 실제로 되돌릴 수는 없다'고 적어 서로 모순"}
+  ],
+  "summary": {"passed": 10, "failed": 2, "total": 12, "pass_rate": 0.83},
+  "execution_metrics": {"total_tool_calls": 11, "errors_encountered": 0},
+  "timing": {"total_duration_seconds": 140.7},
+  "claims": [],
+  "user_notes_summary": {"uncertainties": [], "needs_review": ["기각 사유가 있는데 다른 대안을 캐물음", "Reversible Yes와 Rollback 설명 모순"], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "v6 신규 규칙 두 개가 겨냥한 실패를 v5에서 재현 — 변별 항목"}
+}

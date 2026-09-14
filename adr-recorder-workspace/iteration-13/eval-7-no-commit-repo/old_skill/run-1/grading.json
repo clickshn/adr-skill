@@ -1,0 +1,149 @@
+{
+  "expectations": [
+    {
+      "text": "SKILL.md의 컨텍스트 명령 2개가 에러 없이(exit 0) 실행되어 대체 문구('(HEAD 없음: …)', '(커밋 기록 없음)')를 출력했다 (스킬 로드 실패 없음)",
+      "passed": true,
+      "evidence": "transcript.md §1 records both commands with 'Exact output' '(HEAD 없음: 아직 커밋이 없거나 git 저장소가 아님)' and '(커밋 기록 없음)', each annotated 'Exit code: 0 (the `git diff` itself failed — no HEAD — so the `|| echo` fallback ran and succeeded)'. I re-ran both commands verbatim against a no-commit repo and reproduced exactly those strings with exit code 0. No skill-load failure appears in the transcript."
+    },
+    {
+      "text": "docs/adr/ 디렉터리를 새로 만들고 001(또는 0001) 번호의 ADR 파일을 생성했다",
+      "passed": true,
+      "evidence": "repo file listing shows 'docs/adr/001-vllm-self-hosted-serving.md'; transcript step 7 is 'mkdir -p docs/adr && ls -la docs/adr | Created empty docs/adr/ (shell-confirmed empty)'. The file's first line is '# ADR-001: OpenAI API 대신 vLLM 자체 서빙으로 전환' and it is byte-identical to outputs/001-vllm-self-hosted-serving.md."
+    },
+    {
+      "text": "응답에서 기존 ADR이 없어 001로 시작했다는 사실을 알렸다",
+      "passed": true,
+      "evidence": "response.md line 3: '저장소에 `docs/adr/` 디렉터리 자체가 없어서(기존 ADR 없음) 질문 없이 **001번**으로 시작했습니다.'"
+    },
+    {
+      "text": "Status가 Proposed이고, Decision Source가 Human이며 Confidence 필드가 없다",
+      "passed": true,
+      "evidence": "ADR lines 3 and 7: '- **Status:** Proposed' and '- **Decision Source:** Human'. A grep of all bold field labels in the file returns no '**Confidence:**' line."
+    },
+    {
+      "text": "Alternatives에 OpenAI API(현행 유지)가 있고, 기각 사유에 '고객 데이터 외부 반출 금지'가 들어있다",
+      "passed": true,
+      "evidence": "ADR line 38: '### OpenAI API 유지 (현행)'; line 42: '- **Rejected because:** 고객 데이터 외부 반출 금지 정책에 위배된다.'"
+    },
+    {
+      "text": "대화에 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+      "passed": true,
+      "evidence": "response.md contains no question at all about alternatives or rejection rationale; line 10 states 'Alternatives: 대화에 나온 대안인 \"OpenAI API 유지(현행)\"만 정리하고, 기각 사유는 말씀하신 그대로 고객 데이터 외부 반출 금지로 적었습니다.' The only forward-looking request is line 13, '모델이 확정되면 알려주시면 채워 넣겠습니다', which concerns the serving model, not rejected alternatives."
+    },
+    {
+      "text": "대화·저장소에 없는 수치나 서빙 모델명을 지어내 넣지 않았고 Evidence 섹션이 없다",
+      "passed": true,
+      "evidence": "No '## Evidence' header exists (headers are Context, Decision, Rationale, Alternatives, Consequences, Implementation, Reversibility, References, AI/ML Details). A regex scan for percentages, ms, $ amounts and '배' multipliers returns nothing. The only model named, `gpt-4o`, comes from the repo (app/llm_client.py: 'model=\"gpt-4o\"'), and line 82 keeps the serving model honest: '- **Model:** 미정 — vLLM으로 서빙할 오픈 모델은 아직 확정되지 않음 (현행: `gpt-4o`)'."
+    },
+    {
+      "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+      "passed": true,
+      "evidence": "Every header maps to the template (Context/Problem/Constraints, Decision/Selected, Rationale, Alternatives + one alternative subheading, Consequences/Positive/Negative/Risks, Implementation, Reversibility, References, AI/ML Details). The References section carries only the template's Documentation field ('- **Documentation:** `app/llm_client.py` (현행 OpenAI 호출 지점), `requirements.txt`'), which the SKILL.md rule '값이 없는 필드는 줄 자체를 생략한다' allows. Scans for 'TODO|TBD|placeholder|{Xxx}|XXX|<!--' and for empty '- **Field:**' lines return zero matches. The Implementation checklist items are rewritten rather than reusing the template's four sample labels, but those are bullet content, not headers or fields."
+    },
+    {
+      "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+      "passed": true,
+      "evidence": "Settled mechanically by check_scope.py: PASS. Consistent with what I observed — requirements.txt still reads 'fastapi==0.112.2 / openai==1.40.0' and app/llm_client.py still contains the OpenAI call."
+    },
+    {
+      "text": "커밋을 만들지 않았다(실행 후에도 HEAD가 없다)",
+      "passed": true,
+      "evidence": "Verified directly in run-1/repo: `git rev-parse HEAD` → \"fatal: ambiguous argument 'HEAD': unknown revision or path not in the working tree\" (exit 128); `git log --oneline` → \"fatal: your current branch 'main' does not have any commits yet\". `git status --porcelain` shows everything still untracked ('?? app/', '?? docs/', '?? requirements.txt')."
+    },
+    {
+      "text": "Alternatives에는 대화에 등장한 대안(OpenAI API 유지)만 있고, 대화에 없던 대안을 추가하지 않았다",
+      "passed": true,
+      "evidence": "The Alternatives section contains exactly one subheading: '### OpenAI API 유지 (현행)'. A case-insensitive grep for anthropic|azure|ollama|tgi|text-generation|bedrock|llama|mistral|claude|gemini|sagemaker across the ADR returns no matches."
+    },
+    {
+      "text": "Reversibility의 Reversible이 Partial이다(고객 데이터 반출 금지 정책이 바뀌어야만 되돌릴 수 있으므로)",
+      "passed": true,
+      "evidence": "ADR line 72: '- **Reversible:** Partial', with line 73 giving the matching reason: '실제로 되돌리려면 고객 데이터 외부 반출 금지 정책이 먼저 바뀌어야 한다.'"
+    }
+  ],
+  "summary": {
+    "passed": 12,
+    "failed": 0,
+    "total": 12,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Bash": 7,
+      "Write": 3
+    },
+    "total_tool_calls": 11,
+    "total_steps": 11,
+    "errors_encountered": 0,
+    "output_chars": 11296,
+    "transcript_chars": 5917,
+    "note": "No metrics.json in outputs/; counts derived from the tool-call table in transcript.md §2. Transcript step 4 notes a non-fatal 'exit 2 from the failing `ls docs`' probe, which is expected directory-absence detection, not a run error."
+  },
+  "timing": {
+    "executor_duration_seconds": 214.4,
+    "total_duration_seconds": 214.4,
+    "total_tokens": 49857,
+    "duration_ms": 214361
+  },
+  "claims": [
+    {
+      "claim": "두 컨텍스트 명령이 exit 0으로 대체 문구를 출력했다",
+      "type": "process",
+      "verified": true,
+      "evidence": "Re-ran both commands verbatim against the no-commit fixture repo: both printed the stated fallback strings with exit code 0."
+    },
+    {
+      "claim": "response.md: '`docs/adr/` 밖의 파일(`requirements.txt`, `app/llm_client.py`)은 건드리지 않았고, 커밋도 만들지 않았습니다.'",
+      "type": "process",
+      "verified": true,
+      "evidence": "check_scope.py passes; requirements.txt and app/llm_client.py match the fixture; git rev-parse HEAD fails and git log reports no commits on main."
+    },
+    {
+      "claim": "ADR Rollback: '현재 저장소에는 커밋이 없어 복원 기준이 될 커밋 해시가 없다'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Confirmed — zero commits in the repo, and no commit hash appears anywhere in the ADR."
+    },
+    {
+      "claim": "ADR References Documentation cites `app/llm_client.py` as the '현행 OpenAI 호출 지점'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "app/llm_client.py contains 'from openai import OpenAI' and client.chat.completions.create(model=\"gpt-4o\", ...) summarizing 고객 문의 — the cited path is real and the description is accurate."
+    },
+    {
+      "claim": "transcript §3.16: 'Did not load the `claude-api` skill' because its SKIP rule applies",
+      "type": "process",
+      "verified": true,
+      "evidence": "No claude-api skill invocation appears in the tool-call table; the task subject is OpenAI/vLLM, which matches that skill's documented SKIP condition."
+    },
+    {
+      "claim": "ADR Implementation: 'requirements.txt에서 openai 제거' (as pending work, not done)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "requirements.txt still reads 'fastapi==0.112.2 / openai==1.40.0' — correctly framed as an unchecked checklist item rather than a completed action."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": [],
+    "note": "No user_notes.md present in outputs/."
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "대화에 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+        "reason": "The assertion bans exactly one question, so it cannot distinguish a response that asks nothing (this run) from one that closes with several unprompted follow-up questions (the other configuration asked two). If restraint in follow-up questions is a goal of the skill, an assertion should cover questions generally, not just the alternatives question."
+      },
+      {
+        "reason": "No assertion covers the Review Trigger / Recheck if rule, which is the sharpest trap this scenario sets — inverting '고객 데이터 반출 금지 때문에 기각' into a '금지가 풀리면 재검토' condition is explicitly banned by SKILL.md. Both runs correctly omitted it, but the eval would not catch a run that invented it."
+      },
+      {
+        "assertion": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+        "reason": "The two configurations diverge on the Implementation checklist (this run replaced the template's 구현 작업/테스트/모니터링/문서 labels with six free-form tasks; the other kept them) and on whether a References section is emitted at all. Neither divergence is covered by any assertion, so the eval scores them identically; state explicitly whether the template checklist labels are fixed or illustrative."
+      }
+    ],
+    "overall": "The mechanical assertions (no HEAD, scope containment, Partial reversibility, no invented alternatives, no Evidence section) are discriminating and I verified each directly against the repo and ADR rather than trusting the transcript. The gap is in coverage of assistant follow-up questions and the Recheck if / Review Trigger rule."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "eval_id": 1,
+  "eval_name": "pino-logger-benchmark",
+  "prompt": "로거 winston → pino로 바꾸기로 했어. package.json은 이미 수정해놨고. 우리 API 서버에서 autocannon으로 돌려보니까 winston일 때 p99 38ms, pino로 바꾸니 21ms였고 처리량은 초당 8.2k → 11.5k req 나왔어. bunyan도 후보였는데 마지막 릴리스가 3년 전이라 뺐어. 나중에 bunyan 유지보수 재개되면 다시 볼 수는 있고. ADR 남겨줘.",
+  "assertions": [
+    "docs/adr/에 기존 명명 규칙을 따른 ADR-003 번호의 새 ADR 파일이 생성되었다",
+    "Status가 Proposed이다(새로 내리는 결정이므로)",
+    "Decision Source가 Human이고 Confidence 필드가 없다",
+    "Evidence 섹션에 사용자가 준 수치(p99 38ms→21ms, 초당 8.2k→11.5k req)가 정확히 들어있다",
+    "Alternatives에 winston과 bunyan이 각각 있고, bunyan의 기각 사유에 '마지막 릴리스 3년 전' 근거가 들어있다",
+    "Review Trigger 섹션이 있고, 그 내용이 Alternatives의 Recheck if 항목들로만 구성된다(새 조건 추가 없음)",
+    "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+    "AI/ML Details 섹션이 없다(AI/ML 결정이 아니므로)",
+    "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)"
+  ]
+}

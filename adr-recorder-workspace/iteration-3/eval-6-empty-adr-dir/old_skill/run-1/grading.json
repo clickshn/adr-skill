@@ -1,0 +1,16 @@
+{
+  "expectations": [
+    {"text": "셸 명령(ls/dir 등)으로 docs/adr/ 목록을 직접 확인했다", "passed": true, "evidence": "transcript 4번: `ls -la <REPO>/docs/adr/; git ls-files docs` → .gitkeep만 존재"},
+    {"text": "번호를 사용자에게 묻지 않고 docs/adr/에 001(또는 0001) 번호의 ADR 파일을 생성했다", "passed": false, "evidence": "파일 미생성(docs/adr에는 .gitkeep뿐). v2 규칙('번호를 임의로 정하지 말고 사용자에게 확인')대로 번호를 되물음"},
+    {"text": "응답에서 기존 ADR이 없어 001로 시작했다는 사실을 알렸다", "passed": false, "evidence": "001로 시작하지 않고 '이번 ADR 번호를 몇 번으로 할까요?'라고 질문"},
+    {"text": "Alternatives에 '세션 유지 + 파트너용 API 키 발급'이 있고 기각 사유에 키 회전 관리 부담이 들어있다", "passed": false, "evidence": "ADR 파일이 없음. 응답 요약에만 대안이 있음"},
+    {"text": "대화에 대안과 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다", "passed": true, "evidence": "대안 근거 질문 없음(번호 질문만)"},
+    {"text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다", "passed": false, "evidence": "평가할 ADR 파일이 없음"}
+  ],
+  "summary": {"passed": 2, "failed": 4, "total": 6, "pass_rate": 0.33},
+  "execution_metrics": {"total_tool_calls": 6, "errors_encountered": 0},
+  "timing": {"total_duration_seconds": 58.7},
+  "claims": [],
+  "user_notes_summary": {"uncertainties": [], "needs_review": [], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "v2 규칙을 정확히 따른 결과 — 실패는 v3에서 의도적으로 바꾼 동작 때문(설계 변경)"}
+}

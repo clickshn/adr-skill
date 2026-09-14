@@ -1,0 +1,22 @@
+{
+  "eval_id": 3,
+  "eval_name": "redis-session-no-numbers",
+  "skill_version": "v13 (step 3 rewritten as closed list)",
+  "skill_snapshot": "adr-recorder-workspace/skill-snapshot-v13/SKILL.md",
+  "assertion": "대화에 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+  "runs": 5,
+  "results": [
+    {"run": 1, "asked_back": false, "quote": "대안 되묻기 없음. 되묻는 대상은 Evidence 수치와 Review Trigger 조건뿐."},
+    {"run": 2, "asked_back": true,  "quote": "재검토 조건이나 기각한 다른 대안이 있으면 알려주시면 ADR에 반영하겠습니다."},
+    {"run": 3, "asked_back": false, "quote": "언급되지 않은 다른 대안은 추측해서 넣지 않았습니다. (질문 없음)"},
+    {"run": 4, "asked_back": false, "quote": "기각 사유도 분명해서 추가로 여쭙지 않았습니다. 되묻는 대상은 Review Trigger 조건과 구현 값뿐."},
+    {"run": 5, "asked_back": false, "quote": "대안 되묻기 없음. Recheck if 조건만 언급."}
+  ],
+  "ask_back_rate": 0.2,
+  "history": [
+    {"version": "v11", "ask_back_rate": 0.8},
+    {"version": "v12", "ask_back_rate": 0.8},
+    {"version": "v13", "ask_back_rate": 0.2}
+  ],
+  "note": "n=5. 4/5 → 1/5 변화의 Fisher 정확검정 양측 p=0.206으로 통계적 유의는 아니나, 실패 메커니즘(언급되지 않은 대안 캐묻기)이 규칙 문구와 정확히 대응."
+}

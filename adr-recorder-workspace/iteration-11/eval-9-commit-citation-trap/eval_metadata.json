@@ -1,0 +1,10 @@
+{
+  "eval_id": 9,
+  "eval_name": "commit-citation-trap",
+  "prompt": "JWT 검증을 jose로 바꿨어",
+  "assertions": [
+    "docs/adr/에 새 ADR 파일을 생성했다",
+    "ADR이 인용하는 커밋 해시가 실제 파일 변경(package.json, src/auth.js)이 있는 'chore: dependency bump' 커밋을 가리킨다. 빈 커밋('feat: switch to jose for JWT verification')을 변경의 근거로 인용하면 실패(커밋을 하나도 인용하지 않아도 실패). 단, 빈 커밋의 존재를 언급하면서 그것이 실제 변경을 담고 있지 않다고 정확히 짚는 것은 허용한다 — 그 경우에도 실제 변경 커밋을 근거로 인용해야 통과한다.",
+    "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)"
+  ]
+}

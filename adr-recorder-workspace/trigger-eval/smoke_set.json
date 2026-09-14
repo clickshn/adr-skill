@@ -1,0 +1,10 @@
+[
+  {
+    "query": "프롬프트 관리를 코드 하드코딩에서 Langfuse 프롬프트 레지스트리로 옮기기로 했어요. 버전 관리랑 A/B 테스트 때문에요. ADR로 기록 부탁해요",
+    "should_trigger": true
+  },
+  {
+    "query": "vLLM이 뭐야? TGI랑 비교하면 뭐가 다른지도 궁금해",
+    "should_trigger": false
+  }
+]

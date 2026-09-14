@@ -1,0 +1,400 @@
+{
+  "skill_name": "adr-recorder",
+  "description": "새 의존성 추가, 아키텍처 변경, 외부 API/서비스 선택 시 ADR 문서를 자동 생성. package.json/requirements.txt 변경, DB·통신 프로토콜 변경, \"~쓰기로 했다\"류 결정 발화에 반응.",
+  "model": "claude-opus-5",
+  "runs_per_query": 3,
+  "threshold": 0.5,
+  "summary": {
+    "total": 20,
+    "passed": 20,
+    "accuracy": 1.0,
+    "should_trigger_hit_rate": 1.0,
+    "should_not_false_trigger_rate": 0.0,
+    "precision": 1.0,
+    "raw_positive_trigger_rate": 1.0,
+    "raw_negative_trigger_rate": 0.0,
+    "elapsed_seconds": 208.6
+  },
+  "results": [
+    {
+      "query": "우리 사내 법무 챗봇 백엔드 LLM을 Claude 대신 GPT-5 쓰기로 했어. 계약서 요약 평가셋 200건에서 ROUGE-L이 0.41 vs 0.38로 조금 높았고 토큰 단가도 30% 정도 싸서. 나중에 Claude 가격 내려가면 다시 볼 수도 있고.",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 3,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        "Skill",
+        "Skill",
+        "Skill"
+      ],
+      "first_tool_inputs": [
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder"
+      ],
+      "timeouts": 0
+    },
+    {
+      "query": "RAG 파이프라인 구조 바꾸기로 했음. 지금은 PDF 통째로 512토큰 고정 청크 → pgvector 코사인 검색인데, 이걸 BM25+dense 하이브리드 검색에 bge-reranker-v2-m3 리랭커 붙이는 걸로 가기로. 사내 QA셋 recall@10이 0.62 → 0.81 나왔어",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 3,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        "Skill",
+        "Skill",
+        "Skill"
+      ],
+      "first_tool_inputs": [
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder"
+      ],
+      "timeouts": 0
+    },
+    {
+      "query": "임베딩 모델 벤더 정했어요. OpenAI text-embedding-3-large 말고 Cohere embed-multilingual-v3로 가기로 했습니다. 한국어 사내 검색 벤치에서 nDCG@10이 더 높았고, 데이터 레지던시 때문에 서울 리전 쓸 수 있는 게 결정적이었어요",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 3,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        "Skill",
+        "Skill",
+        "Skill"
+      ],
+      "first_tool_inputs": [
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder"
+      ],
+      "timeouts": 0
+    },
+    {
+      "query": "벡터DB를 Pinecone에서 Qdrant 셀프호스팅으로 옮기기로 결정. 월 $2,400 나오던 게 EC2 r6g.xlarge 두 대면 $600 선이고 payload 필터링도 Qdrant가 더 유연함. 이거 기록 좀 남겨두자",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 3,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        "Skill",
+        "Skill",
+        "Skill"
+      ],
+      "first_tool_inputs": [
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder"
+      ],
+      "timeouts": 0
+    },
+    {
+      "query": "requirements.txt에 langgraph 추가했어. 에이전트 오케스트레이션은 우리가 직접 짠 while 루프 대신 LangGraph로 가기로 팀 회의에서 합의했거든. 상태 체크포인트랑 human-in-the-loop 때문에",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 3,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        "Skill",
+        "Skill",
+        "Skill"
+      ],
+      "first_tool_inputs": [
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder"
+      ],
+      "timeouts": 0
+    },
+    {
+      "query": "LLM 서빙을 OpenAI API 직접 호출에서 사내 A100 서버에 vLLM 올려서 Llama 3.1 70B 서빙하는 걸로 바꾸기로 했다. 고객 데이터 외부 반출 금지 조항 때문에 선택지가 없었음",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 3,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        "Skill",
+        "Skill",
+        "Skill"
+      ],
+      "first_tool_inputs": [
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder"
+      ],
+      "timeouts": 0
+    },
+    {
+      "query": "주문 서비스랑 재고 서비스 사이 통신 REST에서 gRPC로 바꾸기로 했고 proto/inventory.proto 추가해놨어. 이 결정 문서로 남겨줘",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 3,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        "Skill",
+        "Skill",
+        "Skill"
+      ],
+      "first_tool_inputs": [
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder"
+      ],
+      "timeouts": 0
+    },
+    {
+      "query": "결제 PG사 토스페이먼츠에서 포트원(아임포트)으로 갈아타기로 했다. 카드 수수료가 0.3%p 낮고 PG 여러 개 동시 연동되는 게 커서. 다날은 정산 주기가 길어서 뺐고",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 3,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        "Skill",
+        "Skill",
+        "Skill"
+      ],
+      "first_tool_inputs": [
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder"
+      ],
+      "timeouts": 0
+    },
+    {
+      "query": "고객센터 문의 분류 모델은 파인튜닝 안 하고 few-shot 프롬프트 + RAG로 가기로 했어요. 파인튜닝 견적이 라벨링 포함 4천만 원이었는데 few-shot으로도 정확도 91% 나와서요",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 3,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        "Skill",
+        "Skill",
+        "Skill"
+      ],
+      "first_tool_inputs": [
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder"
+      ],
+      "timeouts": 0
+    },
+    {
+      "query": "프롬프트 관리를 코드 하드코딩에서 Langfuse 프롬프트 레지스트리로 옮기기로 했어요. 버전 관리랑 A/B 테스트 때문에요. ADR로 기록 부탁해요",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 3,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        "Skill",
+        "Skill",
+        "Skill"
+      ],
+      "first_tool_inputs": [
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder",
+        "{\"skill\": \"adr-recorder"
+      ],
+      "timeouts": 0
+    },
+    {
+      "query": "이 코드 리뷰해줘. src/rag/retriever.py 인데 청크 나누는 부분이 너무 느린 것 같아서 병목이 어딘지 봐줬으면 해",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        "Grep",
+        "Grep",
+        "Glob"
+      ],
+      "first_tool_inputs": [
+        "",
+        "",
+        ""
+      ],
+      "timeouts": 0
+    },
+    {
+      "query": "vLLM이 뭐야? TGI랑 비교하면 뭐가 다른지도 궁금해",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        "ToolSearch",
+        null,
+        null
+      ],
+      "first_tool_inputs": [
+        "",
+        "",
+        ""
+      ],
+      "timeouts": 0
+    },
+    {
+      "query": "한국어 계약서 요약용으로 Claude랑 GPT 중에 뭐가 나을까? 아직 결정은 안 했고 장단점 비교표만 뽑아줘",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        null,
+        null,
+        null
+      ],
+      "first_tool_inputs": [
+        "",
+        "",
+        ""
+      ],
+      "timeouts": 0
+    },
+    {
+      "query": "pgvector랑 Qdrant 성능 비교하는 벤치마크 스크립트 짜줘. 10만 개 1024차원 벡터로 top-10 검색 p95 레이턴시 재볼 거야",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        "Bash",
+        "Bash",
+        "Bash"
+      ],
+      "first_tool_inputs": [
+        "",
+        "",
+        ""
+      ],
+      "timeouts": 0
+    },
+    {
+      "query": "requirements.txt에서 langchain 0.1.x → 0.2.x로 올렸더니 ImportError 나. from langchain.embeddings import OpenAIEmbeddings 이거 어디로 옮겨졌어?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        null,
+        null,
+        null
+      ],
+      "first_tool_inputs": [
+        "",
+        "",
+        ""
+      ],
+      "timeouts": 0
+    },
+    {
+      "query": "docs/adr/0003-use-postgres.md 오타 좀 고쳐줘. 'Postgress'라고 잘못 써놨더라",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        "Grep",
+        "Grep",
+        "Grep"
+      ],
+      "first_tool_inputs": [
+        "",
+        "",
+        ""
+      ],
+      "timeouts": 0
+    },
+    {
+      "query": "RAG에 cross-encoder 리랭커 붙이면 보통 레이턴시가 얼마나 늘어나? 일반적인 수치 감만 알려줘",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        null,
+        null,
+        null
+      ],
+      "first_tool_inputs": [
+        "",
+        "",
+        ""
+      ],
+      "timeouts": 0
+    },
+    {
+      "query": "우리 팀도 ADR 쓰기 시작하려는데 템플릿 뭐가 좋아? MADR이랑 Nygard 스타일 차이도 설명해줘",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        null,
+        null,
+        null
+      ],
+      "first_tool_inputs": [
+        "",
+        "",
+        ""
+      ],
+      "timeouts": 0
+    },
+    {
+      "query": "OpenAI API 호출 코드에 retry랑 exponential backoff 좀 넣어줘. 요즘 429 에러가 자꾸 나서",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        "Glob",
+        "Bash",
+        "Glob"
+      ],
+      "first_tool_inputs": [
+        "",
+        "",
+        ""
+      ],
+      "timeouts": 0
+    },
+    {
+      "query": "지난달에 GPT-4o에서 Claude로 옮기면서 프롬프트 캐싱 어떻게 설정했는지 코드에서 찾아줘. cache_control 붙인 데가 어디였더라",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 3,
+      "pass": true,
+      "first_tools": [
+        "Grep",
+        "Grep",
+        "Grep"
+      ],
+      "first_tool_inputs": [
+        "",
+        "",
+        ""
+      ],
+      "timeouts": 0
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "expectations": [
+    {"text": "docs/adr/에 기존 4자리 번호 규칙을 따른 0002 번호의 새 ADR 파일이 생성되었다", "passed": true, "evidence": "docs/adr/0002-session-store-redis.md, H1 'ADR-0002'"},
+    {"text": "Status가 Proposed이다", "passed": true, "evidence": "Status: Proposed"},
+    {"text": "대화·저장소에 없는 수치(지연시간, 처리량, 비용 등)를 지어내 넣지 않았다", "passed": true, "evidence": "수치는 '3대'와 redis==5.0.8, 커밋 해시뿐"},
+    {"text": "Evidence 섹션이 없다(실측 근거가 없으므로)", "passed": true, "evidence": "sections: Context, Decision, Rationale, Consequences, Implementation, Reversibility, References"},
+    {"text": "Alternatives 섹션과 Review Trigger 섹션이 모두 없다(사용자가 대안을 언급하지 않았으므로)", "passed": true, "evidence": "두 섹션 모두 없음"},
+    {"text": "파일 생성 후 사용자에게 기각한 대안과 그 근거를 알려달라고 되물었다", "passed": true, "evidence": "response '이 결정에서 기각한 대안과 근거를 알려주세요.'"},
+    {"text": "Implementation 섹션이 체크리스트 형태로 존재한다", "passed": true, "evidence": "'- [ ]' 5개"},
+    {"text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)", "passed": true, "evidence": "check_scope.py: outside_adr 모두 []"}
+  ],
+  "summary": {"passed": 8, "failed": 0, "total": 8, "pass_rate": 1.0},
+  "execution_metrics": {"total_tool_calls": 11, "errors_encountered": 0},
+  "timing": {"total_duration_seconds": 114.8},
+  "claims": [],
+  "user_notes_summary": {"uncertainties": [], "needs_review": [], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "v3도 이번 실행은 Evidence 생략 — iteration-3의 v3 실패는 실행 편차였음을 뒷받침"}
+}

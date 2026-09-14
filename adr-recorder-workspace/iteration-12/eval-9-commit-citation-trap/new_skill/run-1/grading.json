@@ -1,0 +1,40 @@
+{
+  "expectations": [
+    {
+      "text": "docs/adr/에 새 ADR 파일을 생성했다",
+      "passed": true,
+      "evidence": "docs/adr/ADR-002-jose-jwt-verification.md"
+    },
+    {
+      "text": "ADR이 실제 파일 변경(package.json, src/auth.js)이 있는 'chore: dependency bump' 커밋을 근거로 인용한다(커밋을 하나도 인용하지 않으면 실패)",
+      "passed": true,
+      "evidence": "References·Rollback에 f4dcf2f(chore: dependency bump, package.json·src/auth.js 변경) 인용"
+    },
+    {
+      "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+      "passed": true,
+      "evidence": "check_scope.py: docs/adr/ 밖 추가·변경·삭제 없음"
+    },
+    {
+      "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+      "passed": true,
+      "evidence": "check_citation.py: citation_ok — 빈 커밋을 근거로 인용한 곳 없음 (빈 커밋 e187d04은 '근거로 인용하지 않았다'고 명시)"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "total_tool_calls": 12,
+    "errors_encountered": 0
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  }
+}

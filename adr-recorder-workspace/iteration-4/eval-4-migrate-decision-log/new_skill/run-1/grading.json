@@ -1,0 +1,22 @@
+{
+  "expectations": [
+    {"text": "docs/adr/에 ADR-005 번호의 새 ADR 파일이 생성되었다", "passed": true, "evidence": "docs/adr/ADR-005-grpc-internal-communication.md"},
+    {"text": "Status가 Accepted이다(원본에 확정·시행 중으로 기록되어 있으므로)", "passed": true, "evidence": "Status: Accepted"},
+    {"text": "결정 로그의 p99 45ms와 근거 문서 최종값 52ms의 불일치가 ADR에 기록되어 있고, 이를 위한 별도 섹션을 새로 만들지 않고 기존 섹션 안에 녹였다", "passed": true, "evidence": "Evidence > Benchmark 줄 안에 '원본 D-007에 적힌 p99 45ms는 1차 측정(2026-02-11) 값이다 ... 벤치 문서는 52ms를 최종값으로 명시한다'. v4에서 예시 문구('원본 문서와 실측값 불일치')가 삭제됐지만 회귀 없음"},
+    {"text": "Alternatives에 GraphQL 페더레이션과 REST 유지+캐싱이 있고, GraphQL의 Recheck if에 '플랫폼팀 4명 이상' 조건이 있다", "passed": true, "evidence": "GraphQL Recheck if '플랫폼팀이 4명 이상으로 늘어날 때', REST 유지 + 응답 캐싱 존재"},
+    {"text": "Review Trigger 섹션이 있고 Alternatives의 Recheck if 내용과 일치한다", "passed": true, "evidence": "Review Trigger '플랫폼팀이 4명 이상으로 늘어나면 GraphQL 페더레이션을 재검토한다.'"},
+    {"text": "References 섹션의 Documentation 필드에 docs/decisions.md(D-007) 경로가 있고, 값 없는 PR/Issue 줄은 없다", "passed": true, "evidence": "References: Documentation 한 줄만, '`docs/decisions.md` D-007(원본), ...'"},
+    {"text": "Confidence 규칙을 지켰다: Decision Source가 Human이면 Confidence가 없고, 그 외라면 실측 수치가 있으므로 High이다", "passed": true, "evidence": "Decision Source: Human, Confidence 없음"},
+    {"text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다", "passed": true, "evidence": "check_adr.py 모든 항목 []. Context 바로 아래 이관 경위 한 문단은 새 헤더/필드가 아님"},
+    {"text": "원본 결정 로그에 없는 정보(대안의 수치 근거 등)를 사용자에게 새로 되묻지 않았다", "passed": true, "evidence": "질문 2개는 D-007 삭제/이관 표시 여부와 원본 45ms 정정 여부 — 원본에 없는 정보 요청이 아님"},
+    {"text": "Reversibility 섹션이 있고 Rollback 필드에 저장소에서 확인한 롤백 방법이 채워져 있다(원본 로그에 없더라도)", "passed": true, "evidence": "Rollback: 'checkout의 재고 조회 클라이언트를 REST 호출로 되돌린다. 전환된 범위는 ... RPC 1개(GetStock)뿐이다' + 확인 불가 사항 명시"},
+    {"text": "docs/adr/ 밖의 파일(docs/decisions.md 포함)을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)", "passed": true, "evidence": "check_scope.py: outside_adr 모두 []"},
+    {"text": "응답에서 원본 결정 로그의 D-007을 지울지, 이관 표시만 남길지 사용자에게 물었다", "passed": true, "evidence": "response: '1. D-007 항목을 삭제할지, 아니면 \"ADR-005로 이관됨\" 같은 표시만 남길지요?'"}
+  ],
+  "summary": {"passed": 12, "failed": 0, "total": 12, "pass_rate": 1.0},
+  "execution_metrics": {"total_tool_calls": 14, "errors_encountered": 0},
+  "timing": {"total_duration_seconds": 178.0},
+  "claims": [],
+  "user_notes_summary": {"uncertainties": ["inventory REST 엔드포인트 잔존 여부는 저장소로 확인 불가 — ADR에 명시"], "needs_review": [], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "v4 범위 규칙과 이관 후 질문 규칙 준수, 삭제된 예시 문구로 인한 회귀 없음"}
+}

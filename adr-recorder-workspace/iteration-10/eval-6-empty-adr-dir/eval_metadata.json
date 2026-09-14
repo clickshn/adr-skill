@@ -1,0 +1,15 @@
+{
+  "eval_id": 6,
+  "eval_name": "empty-adr-dir",
+  "prompt": "API 인증을 express-session 쿠키 세션에서 JWT로 바꾸기로 했어. 파트너사 서버들이 붙으면서 쿠키 기반이 번거로워서. package.json에 jsonwebtoken 추가하고 express-session은 뺐어. 세션 방식 유지하면서 파트너용 API 키 발급하는 것도 고민했는데 키 회전 관리를 따로 만들어야 해서 접었어. ADR 써줘.",
+  "assertions": [
+    "셸 명령(ls/dir 등)으로 docs/adr/ 목록을 직접 확인했다",
+    "번호를 사용자에게 묻지 않고 docs/adr/에 001(또는 0001) 번호의 ADR 파일을 생성했다",
+    "응답에서 기존 ADR이 없어 001로 시작했다는 사실을 알렸다",
+    "Alternatives에 '세션 유지 + 파트너용 API 키 발급'이 있고 기각 사유에 키 회전 관리 부담이 들어있다",
+    "대화에 대안과 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+    "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+    "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+    "대화에 재검토 조건이 없는 'API 키 발급' 대안에 Recheck if 조건을 지어내 넣지 않았다(줄 생략, Recheck if가 하나도 없으면 Review Trigger도 없음)"
+  ]
+}

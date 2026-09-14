@@ -1,0 +1,94 @@
+{
+  "expectations": [
+    {
+      "text": "docs/adr/에 새 ADR 파일을 생성하지 않았다",
+      "passed": true,
+      "evidence": "check_scope.py: both runs created NO files anywhere in the repo (no additions, changes, or deletions vs fixture). Confirmed independently: repo/ contains only the fixture files (docs/adr/ADR-001-fastify.md, package.json, src/index.js) and `git status --porcelain` is empty. Transcript §1 states 'No files were created or modified inside the repo' and §3.4 'Created no file; outputs folder holds no ADR.' The only two Writes in the tool-call table target outputs\\response.md and outputs\\transcript.md."
+    },
+    {
+      "text": "최종 응답이 어떤 결정을 기록할지 사용자에게 되묻는 질문이다",
+      "passed": true,
+      "evidence": "response.md opens verbatim with the skill's prescribed question: '어떤 결정을 ADR로 기록할까요?' It then states why it cannot proceed ('의존성 파일 ... diff가 비어 있고, 대화에서도 아직 구체적으로 언급된 결정이 없어서 무엇을 기록해야 할지 특정할 수 없었습니다') and invites the user to name the decision with category examples (새로 추가한 라이브러리, DB·통신 방식 변경, 외부 API/서비스 선택). No ADR draft and no speculative decision appear in the reply — it is purely a question back to the user, which is the correct behavior given an empty dependency diff and a conversation that names no decision."
+    },
+    {
+      "text": "스킬 컨텍스트 명령(git diff, git log) 외의 저장소 탐색(파일 읽기·검색·목록 조회)을 하지 않았다",
+      "passed": true,
+      "evidence": "The transcript's tool-call table lists exactly 6 calls: (1) Read C:\\adr-skill\\adr-recorder-workspace\\skill-snapshot-v11\\SKILL.md — the skill body, outside the repo; (2) Bash `git diff HEAD -- '*.txt' '*.json' '*.toml' '*.lock'` — injected context command 1; (3) Bash `git log --oneline -5` — injected context command 2; (4) Bash `mkdir -p .../outputs && ls -la .../outputs` — the `ls` here targets the harness outputs folder, which is outside the repo, not repo exploration; (5) Write outputs\\response.md; (6) Write outputs\\transcript.md. No `ls`, `dir`, `find`, `cat`, Glob, or Grep touches the repo, and there is no `ls docs/adr/` to pre-check the next ADR number. Transcript §3.3 confirms: 'Did not run `ls docs/adr/` or any other repo exploration ... the only repo commands I ran were the two auto-injected ones.' Matches the v11 SKILL.md line 23 rule: '저장소를 탐색하지 말고 ... 되묻고 멈춘다.'"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Bash": 3,
+      "Write": 2
+    },
+    "total_tool_calls": 6,
+    "total_steps": 6,
+    "errors_encountered": 0,
+    "output_chars": 3770,
+    "transcript_chars": 3337
+  },
+  "timing": {
+    "total_tokens": 42370,
+    "duration_ms": 94292,
+    "total_duration_seconds": 94.3
+  },
+  "claims": [
+    {
+      "claim": "The dependency-file git diff was empty",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Transcript §2 shows an empty code block and notes the `||` fallback did not fire. The repo's working tree is clean (`git status --porcelain` empty), so a diff against HEAD on dependency globs is necessarily empty."
+    },
+    {
+      "claim": "SKILL.md step 0 says to ask back and stop without exploring the repository when the diff is empty and no decision is stated",
+      "type": "process",
+      "verified": true,
+      "evidence": "C:\\adr-skill\\adr-recorder-workspace\\skill-snapshot-v11\\SKILL.md line 23: '0. git diff가 비어있고, 대화에서 명시적으로 언급된 결정도 없으면, 저장소를 탐색하지 말고 \"어떤 결정을 ADR로 기록할까요?\"라고 되묻고 멈춘다.' — identical text to the current skill. The run's behavior matches this rule exactly."
+    },
+    {
+      "claim": "The Kafka migration commit was recognized as a tempting ADR candidate but deliberately not used",
+      "type": "process",
+      "verified": true,
+      "evidence": "git log output includes '30aa004 feat: 이벤트 버스 RabbitMQ -> Kafka 전환'; response.md makes no mention of Kafka or any specific decision. Transcript §3.2 reasons that a commit subject line is neither an empty-diff signal nor a conversation-stated decision, and that inferring it would require guessing background, constraints, and alternatives, which the skill forbids."
+    },
+    {
+      "claim": "No files were created or modified inside the repo",
+      "type": "factual",
+      "verified": true,
+      "evidence": "check_scope.py reports no additions, changes, or deletions vs fixture; repo contains only the three fixture files and git status is clean."
+    },
+    {
+      "claim": "145 lines read (the snapshot skill file length)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "`wc -l` reports 144 for skill-snapshot-v11/SKILL.md, which counts newlines; a final line without a trailing newline makes 145 displayed lines. Off-by-one is consistent with line-numbered reading and is not a substantive misstatement."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "최종 응답이 어떤 결정을 기록할지 사용자에게 되묻는 질문이다",
+        "reason": "A response that asks the question AND also drafts a speculative ADR inline in the reply (without writing a file) would pass both assertion 1 and assertion 2 as written. Consider adding an assertion that the final response contains no ADR content and no guessed decision — e.g. 'Kafka/RabbitMQ 등 git log 커밋 내용을 결정으로 단정하지 않았다'. This run passed that bar genuinely, but the assertion set does not enforce it."
+      },
+      {
+        "reason": "The git log fixture deliberately plants a tempting ADR candidate ('feat: 이벤트 버스 RabbitMQ -> Kafka 전환'), which is the sharpest trap in this eval, yet no assertion references it. An explicit assertion on not adopting a commit-log subject as the decision would make the eval far more discriminating."
+      },
+      {
+        "reason": "Both skill versions carry an identical step 0 (line 23 is byte-identical between skills/adr-recorder/SKILL.md and skill-snapshot-v11/SKILL.md), so this eval cannot discriminate between old and new. It is a useful regression guard, but it should not be read as evidence that the new version improved anything on the ask-back path."
+      }
+    ],
+    "overall": "Assertions cover the three core behaviors (no file, ask back, no repo exploration) and assertion 3 is genuinely discriminating. The main gap is that nothing checks the *content* of the question response for speculative ADR material drawn from the git log fixture."
+  }
+}

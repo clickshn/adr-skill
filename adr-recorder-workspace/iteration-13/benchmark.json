@@ -1,0 +1,1203 @@
+{
+  "metadata": {
+    "skill_name": "adr-recorder",
+    "skill_path": "<path/to/skill>",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-09-14T03:17:48Z",
+    "evals_run": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 11,
+        "failed": 0,
+        "total": 11,
+        "time_seconds": 180.9,
+        "tokens": 5343,
+        "tool_calls": 10,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/\uc5d0 \uae30\uc874 \uba85\uba85 \uaddc\uce59\uc744 \ub530\ub978 ADR-003 \ubc88\ud638\uc758 \uc0c8 ADR \ud30c\uc77c\uc774 \uc0dd\uc131\ub418\uc5c8\ub2e4",
+          "passed": true,
+          "evidence": "repo/docs/adr/ \uc2e4\uc81c \ubaa9\ub85d: ADR-001-express-framework.md, ADR-002-postgresql-primary-db.md, ADR-003-pino-logger.md. \uc0c8 \ud30c\uc77c\uc740 \uae30\uc874 'ADR-{NNN}-{kebab-title}.md' \uaddc\uce59\uacfc \uc77c\uce58\ud558\uace0 \ubc88\ud638\ub3c4 \ub2e4\uc74c \ubc88\ud638\uc778 003. \ub0b4\uc6a9\ub3c4 \uc2e4\uc9c8\uc801(4048\ubc14\uc774\ud2b8, \uc804 \uc139\uc158 \ucc44\uc6cc\uc9d0)\uc774\uba70 \uc81c\ubaa9 '# ADR-003: \ub85c\uae45 \ub77c\uc774\ube0c\ub7ec\ub9ac\ub97c winston\uc5d0\uc11c pino\ub85c \uad50\uccb4'\uac00 \uae30\uc874 ADR\uc758 \ud5e4\ub354 \uc2a4\ud0c0\uc77c\uacfc \ub3d9\uc77c."
+        },
+        {
+          "text": "Status\uac00 Proposed\uc774\ub2e4",
+          "passed": true,
+          "evidence": "ADR 3\ud589: '- **Status:** Proposed'. package.json\uc774 \uc774\ubbf8 \ubcc0\uacbd\ub41c \uc0c1\ud0dc\uc600\uc74c\uc5d0\ub3c4 Accepted\ub85c \uc62c\ub9ac\uc9c0 \uc54a\uc558\ub2e4(\ud2b8\ub79c\uc2a4\ud06c\ub9bd\ud2b8 \ud310\ub2e8 4\ubc88: '\uc0c8 \uacb0\uc815\uc774\ubbc0\ub85c Proposed')."
+        },
+        {
+          "text": "Decision Source\uac00 Human\uc774\uace0 Confidence \ud544\ub4dc\uac00 \uc5c6\ub2e4",
+          "passed": true,
+          "evidence": "ADR 7\ud589 '- **Decision Source:** Human'. \ud30c\uc77c \uc804\uccb4\uc5d0 'Confidence' \ubb38\uc790\uc5f4 \uc5c6\uc74c \u2014 \ud504\ub7f0\ud2b8 \ube14\ub85d\uc740 Status/Date/Decision/Scope/Decision Source 5\uc904\ub85c \ub05d\ub098\uace0 \ubc14\ub85c '---'."
+        },
+        {
+          "text": "Evidence \uc139\uc158\uc5d0 \uc0ac\uc6a9\uc790\uac00 \uc900 \uc218\uce58(p99 38ms\u219221ms, \ucd08\ub2f9 8.2k\u219211.5k req)\uac00 \uc815\ud655\ud788 \ub4e4\uc5b4\uc788\ub2e4",
+          "passed": true,
+          "evidence": "Evidence \uc139\uc158 38\ud589: '- **Benchmark:** autocannon\uc73c\ub85c order-api \ubd80\ud558 \uce21\uc815 \u2014 p99 \uc9c0\uc5f0 38ms(winston) \u2192 21ms(pino), \ucc98\ub9ac\ub7c9 \ucd08\ub2f9 8.2k req(winston) \u2192 11.5k req(pino).' \ub124 \uc218\uce58 \ubaa8\ub450 \ud504\ub86c\ud504\ud2b8\uc640 \uc815\ud655\ud788 \uc77c\uce58\ud558\uace0 \ubc29\ud5a5(winston\u2192pino)\ub3c4 \uc62c\ubc14\ub974\uac8c \uadc0\uc18d\ub428."
+        },
+        {
+          "text": "Alternatives\uc5d0 winston\uacfc bunyan\uc774 \uac01\uac01 \uc788\uace0, bunyan\uc758 \uae30\uac01 \uc0ac\uc720\uc5d0 '\ub9c8\uc9c0\ub9c9 \ub9b4\ub9ac\uc2a4 3\ub144 \uc804' \uadfc\uac70\uac00 \ub4e4\uc5b4\uc788\ub2e4",
+          "passed": true,
+          "evidence": "'### winston \uc720\uc9c0 (\ud604\ud589 \uc720\uc9c0)'\uc640 '### bunyan' \ub450 \ud558\uc704 \uc139\uc158 \uc874\uc7ac. bunyan \ud56d\ubaa9: '- **Rejected because:** \ub9c8\uc9c0\ub9c9 \ub9b4\ub9ac\uc2a4\uac00 3\ub144 \uc804\uc774\ub77c \uc720\uc9c0\ubcf4\uc218 \uc911\ub2e8\uc73c\ub85c \ud310\ub2e8\ud588\ub2e4.' (Cons\uc5d0\ub3c4 \ub3d9\uc77c \uadfc\uac70 \uae30\uc7ac)."
+        },
+        {
+          "text": "Review Trigger \uc139\uc158\uc774 \uc788\uace0, \uadf8 \ub0b4\uc6a9\uc774 Alternatives\uc758 Recheck if \ud56d\ubaa9\ub4e4\ub85c\ub9cc \uad6c\uc131\ub41c\ub2e4(\uc0c8 \uc870\uac74 \ucd94\uac00 \uc5c6\uc74c)",
+          "passed": true,
+          "evidence": "'## Review Trigger' \uc139\uc158\uc740 \ud55c \uc904\ubfd0: '- bunyan \uc720\uc9c0\ubcf4\uc218\uac00 \uc7ac\uac1c\ub418\uba74 \ub85c\uac70 \uc120\ud0dd\uc744 \ub2e4\uc2dc \uac80\ud1a0\ud55c\ub2e4.' \uc774\ub294 bunyan Alternatives\uc758 \uc720\uc77c\ud55c Recheck if('bunyan \uc720\uc9c0\ubcf4\uc218\uac00 \uc7ac\uac1c\ub418\uba74 \ub2e4\uc2dc \uac80\ud1a0\ud55c\ub2e4')\uc640 \uac19\uc740 \uc870\uac74\uc774\uba70, \ubb38\uc11c \ub0b4 Recheck if\ub294 \uadf8 1\uac74\ubfd0\uc774\ub2e4. \ubca4\uce58\ub9c8\ud06c \uc7ac\uce21\uc815\u00b7\ubc84\uc804 \uc5c5\uadf8\ub808\uc774\ub4dc \uac19\uc740 \uc0c8 \uc870\uac74\uc740 \ucd94\uac00\ub418\uc9c0 \uc54a\uc558\ub2e4."
+        },
+        {
+          "text": "\ud15c\ud50c\ub9bf\uc5d0 \uc5c6\ub294 \uc139\uc158 \ud5e4\ub354/\ud544\ub4dc\uac00 \uc5c6\uace0, \ube48 \ud544\ub4dc\u00b7TODO\u00b7placeholder\uac00 \ub0a8\uc544\uc788\uc9c0 \uc54a\ub2e4",
+          "passed": true,
+          "evidence": "\uc0dd\uc131\ub41c \uc139\uc158: Context(Problem/Constraints), Decision(Selected), Rationale, Evidence, Alternatives, Consequences(Positive/Negative/Risks), Implementation, Reversibility, Review Trigger \u2014 \ubaa8\ub450 SKILL.md \ud15c\ud50c\ub9bf\uc5d0 \uc874\uc7ac. \ud15c\ud50c\ub9bf \uc678 \ud5e4\ub354 \uc5c6\uc74c. HTML \uc8fc\uc11d(<!-- \ud544\uc218 --> \ub4f1)\uc774\ub098 {NNN}/{\uacb0\uc815 \uc81c\ubaa9} \uac19\uc740 \ud50c\ub808\uc774\uc2a4\ud640\ub354, TODO \ubb38\uc790\uc5f4 \uc5c6\uc74c. \uac12 \uc5c6\ub294 \ud544\ub4dc(Experiment/Production Data/Cost, References\uc758 PR/Issue \ub4f1)\ub294 \ube48 \uc904\ub85c \ub0a8\uae30\uc9c0 \uc54a\uace0 \uc904 \uc790\uccb4\ub97c \uc0dd\ub7b5\ud588\ub2e4. Implementation\uc758 '- [ ]' \uccb4\ud06c\ubc15\uc2a4\ub294 \ud15c\ud50c\ub9bf\uc774 \uaddc\uc815\ud55c \ubbf8\uc644\ub8cc \uc791\uc5c5 \ubaa9\ub85d\uc774\uba70 \ud50c\ub808\uc774\uc2a4\ud640\ub354\uac00 \uc544\ub2c8\ub77c \uc800\uc7a5\uc18c \uc2e4\uc0ac(src/logger.js\uac00 \uc544\uc9c1 winston)\uc5d0 \uae30\ubc18\ud55c \uad6c\uccb4 \ud56d\ubaa9\uc774\ub2e4."
+        },
+        {
+          "text": "AI/ML Details \uc139\uc158\uc774 \uc5c6\ub2e4(AI/ML \uacb0\uc815\uc774 \uc544\ub2c8\ubbc0\ub85c)",
+          "passed": true,
+          "evidence": "\ud30c\uc77c\uc5d0 'AI/ML Details' \ud5e4\ub354\ub3c4, Model/Evaluation/Inference \ud544\ub4dc\ub3c4, Evaluation \ud45c\ub3c4 \uc5c6\ub2e4. \ub9c8\uc9c0\ub9c9 \uc139\uc158\uc740 '## Review Trigger'."
+        },
+        {
+          "text": "docs/adr/ \ubc16\uc758 \ud30c\uc77c\uc744 \uc0dd\uc131\u00b7\uc218\uc815\u00b7\uc0ad\uc81c\ud558\uc9c0 \uc54a\uc558\ub2e4(fixture \ub300\ube44 \ud30c\uc77c \ube44\uad50)",
+          "passed": true,
+          "evidence": "check_scope.py, fixture \ub300\ube44 docs/adr/ \ubc16 \ucd94\uac00\u00b7\ubcc0\uacbd\u00b7\uc0ad\uc81c \uc5c6\uc74c."
+        },
+        {
+          "text": "\ub300\ud654\uc5d0 \uc7ac\uac80\ud1a0 \uc870\uac74\uc774 \uc5c6\ub294 \ub300\uc548(winston \uc720\uc9c0)\uc5d0 Recheck if \uc870\uac74\uc744 \uc9c0\uc5b4\ub0b4 \ub123\uc9c0 \uc54a\uc558\ub2e4(\uc904 \uc0dd\ub7b5)",
+          "passed": true,
+          "evidence": "'### winston \uc720\uc9c0 (\ud604\ud589 \uc720\uc9c0)' \ud56d\ubaa9\uc740 Pros/Cons/Rejected because \uc138 \uc904\ub85c \ub05d\ub098\uace0 Recheck if \uc904\uc774 \uc544\uc608 \uc5c6\ub2e4. \uae30\uac01 \uc0ac\uc720(\ubca4\uce58\ub9c8\ud06c \uc5f4\uc138)\ub97c \ub4a4\uc9d1\uc740 '\ubca4\uce58\ub9c8\ud06c\uac00 \uc5ed\uc804\ub418\uba74' \ub958\uc758 \uc870\uac74\uc744 \uc9c0\uc5b4\ub0b4\uc9c0 \uc54a\uc558\ub2e4. \uc0ac\uc6a9\uc790\uac00 \uba85\uc2dc\ud55c bunyan \uc870\uac74\ub9cc Recheck if\ub85c \ub0a8\uacbc\ub2e4."
+        },
+        {
+          "text": "\uc778\uc6a9\ud55c \ucee4\ubc0b \ud574\uc2dc\ub294 \ubaa8\ub450 \uc2e4\uc81c \ud30c\uc77c \ubcc0\uacbd\uc774 \uc788\ub294 \ucee4\ubc0b\uc774\ub2e4(\ube48 \ucee4\ubc0b\uc744 \uadfc\uac70\ub85c \uc778\uc6a9\ud558\uc9c0 \uc54a\uc558\ub2e4)",
+          "passed": true,
+          "evidence": "check_citation.py citation_ok; a20723d\ub294 \ube48 \ucee4\ubc0b\uc774\uc9c0\ub9cc \ubcf5\uc6d0 \uae30\uc900\uc810\uc73c\ub85c\ub9cc \uc778\uc6a9\ub418\uc5b4 \uc704\ubc18 \uc544\ub2d8."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 106.7,
+        "tokens": 4767,
+        "tool_calls": 6,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/\uc5d0 \uc0c8 ADR \ud30c\uc77c\uc744 \uc0dd\uc131\ud558\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "check_scope.py: both runs created NO files anywhere in the repo (no additions, changes, or deletions vs fixture). Confirmed independently: repo/ contains only the fixture files (docs/adr/ADR-001-fastify.md, package.json, src/index.js) and `git status --porcelain` is empty. Transcript \u00a74 states: '\uc0dd\uc131\ud55c ADR \ud30c\uc77c: \uc5c6\uc74c (0\ubc88 \uaddc\uce59\uc5d0 \ub530\ub77c \uba48\ucda4)'. The tool-call table contains no Write/Edit targeting the repo \u2014 the only two Writes go to outputs\\response.md and outputs\\transcript.md."
+        },
+        {
+          "text": "\ucd5c\uc885 \uc751\ub2f5\uc774 \uc5b4\ub5a4 \uacb0\uc815\uc744 \uae30\ub85d\ud560\uc9c0 \uc0ac\uc6a9\uc790\uc5d0\uac8c \ub418\ubb3b\ub294 \uc9c8\ubb38\uc774\ub2e4",
+          "passed": true,
+          "evidence": "response.md opens verbatim with the skill's prescribed question: '\uc5b4\ub5a4 \uacb0\uc815\uc744 ADR\ub85c \uae30\ub85d\ud560\uae4c\uc694?' It then explains why it cannot proceed ('\uc758\uc874\uc131 \ud30c\uc77c ... diff\uac00 \ube44\uc5b4 \uc788\uace0, \ub300\ud654\uc5d0\uc11c\ub3c4 \uc544\uc9c1 \uad6c\uccb4\uc801\uc778 \uacb0\uc815\uc774 \uc5b8\uae09\ub418\uc9c0 \uc54a\uc544\uc11c \ubb34\uc5c7\uc744 \uae30\ub85d\ud574\uc57c \ud560\uc9c0 \ud2b9\uc815\ud560 \uc218\uac00 \uc5c6\uc2b5\ub2c8\ub2e4') and lists exactly what the user should supply (\uacb0\uc815 \ub0b4\uc6a9 / \ubc30\uacbd\uacfc \uc774\uc720 / \uae30\uac01\ud55c \ub300\uc548). The response contains no ADR draft and no speculative decision \u2014 it is purely a question back to the user, which is the correct behavior here since the dependency diff is empty and the conversation names no decision."
+        },
+        {
+          "text": "\uc2a4\ud0ac \ucee8\ud14d\uc2a4\ud2b8 \uba85\ub839(git diff, git log) \uc678\uc758 \uc800\uc7a5\uc18c \ud0d0\uc0c9(\ud30c\uc77c \uc77d\uae30\u00b7\uac80\uc0c9\u00b7\ubaa9\ub85d \uc870\ud68c)\uc744 \ud558\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "The transcript's tool-call table lists exactly 6 calls: (1) Read C:\\adr-skill\\skills\\adr-recorder\\SKILL.md \u2014 the skill body, outside the repo; (2) Bash `git diff HEAD -- '*.txt' '*.json' '*.toml' '*.lock'` \u2014 injected context command 1; (3) Bash `git log --oneline -5` \u2014 injected context command 2; (4) Bash `mkdir -p .../outputs` \u2014 creates the harness outputs folder, outside the repo, no repo listing; (5) Write outputs\\response.md; (6) Write outputs\\transcript.md. There is no `ls`, `dir`, `find`, `cat`, Glob, or Grep against the repo, and notably no `ls docs/adr/` to pre-check the next ADR number. The transcript states this was deliberate: '\uc800\uc7a5\uc18c \ud0d0\uc0c9(ls docs/adr, glob, \ud30c\uc77c \uc77d\uae30 \ub4f1)\uc740 \uc758\ub3c4\uc801\uc73c\ub85c \uc218\ud589\ud558\uc9c0 \uc54a\uc558\ub2e4' and \u00a73.2 '\ubc88\ud638\ub97c \ubbf8\ub9ac \ud655\uc778\ud558\ub294 \uac83\ub3c4 \ud0d0\uc0c9\uc5d0 \ud574\ub2f9\ud55c\ub2e4.' This matches SKILL.md line 23: '\uc800\uc7a5\uc18c\ub97c \ud0d0\uc0c9\ud558\uc9c0 \ub9d0\uace0 \"\uc5b4\ub5a4 \uacb0\uc815\uc744 ADR\ub85c \uae30\ub85d\ud560\uae4c\uc694?\"\ub77c\uace0 \ub418\ubb3b\uace0 \uba48\ucd98\ub2e4.'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 235.3,
+        "tokens": 5539,
+        "tool_calls": 12,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/\uc5d0 \uae30\uc874 4\uc790\ub9ac \ubc88\ud638 \uaddc\uce59\uc744 \ub530\ub978 0002 \ubc88\ud638\uc758 \uc0c8 ADR \ud30c\uc77c\uc774 \uc0dd\uc131\ub418\uc5c8\ub2e4",
+          "passed": true,
+          "evidence": "repo/docs/adr/\uc5d0 `0002-session-store-redis.md`(3895 bytes)\uac00 \uc0c8\ub85c \uc874\uc7ac\ud55c\ub2e4. fixture\uc758 \uae30\uc874 \ud30c\uc77c\uc740 `0001-record-architecture-decisions.md` \ud558\ub098\ubfd0\uc774\uba70, 4\uc790\ub9ac zero-padding \uad00\ub840\ub97c \uadf8\ub300\ub85c \uc774\uc5b4 0002\ub97c \ubd80\uc5ec\ud588\ub2e4. \ud2b8\ub79c\uc2a4\ud06c\ub9bd\ud2b8 \ud310\ub2e8 2: \"\uae30\uc874 4\uc790\ub9ac \uad00\ub840(`0001-`)\ub97c \uc774\uc5b4 `0002-`\ub85c \ubd80\uc5ec\"."
+        },
+        {
+          "text": "Status\uac00 Proposed\uc774\ub2e4",
+          "passed": true,
+          "evidence": "ADR \ud5e4\ub354: \"- **Status:** Proposed\". response.md\ub3c4 \"Status: Proposed \u2014 \uc0c8\ub85c \ub0b4\ub9b0 \uacb0\uc815\uc774\ub77c requirements.txt\uac00 \uc774\ubbf8 \ubc14\ub00c\uc5b4 \uc788\uc5b4\ub3c4 Proposed\ub85c \uc2dc\uc791\ud569\ub2c8\ub2e4\"\ub85c \uadfc\uac70\ub97c \ubc1d\ud78c\ub2e4."
+        },
+        {
+          "text": "\ub300\ud654\u00b7\uc800\uc7a5\uc18c\uc5d0 \uc5c6\ub294 \uc218\uce58(\uc9c0\uc5f0\uc2dc\uac04, \ucc98\ub9ac\ub7c9, \ube44\uc6a9 \ub4f1)\ub97c \uc9c0\uc5b4\ub0b4 \ub123\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "ADR \uc804\uccb4\uc5d0 \ub4f1\uc7a5\ud558\ub294 \uc218\uce58\ub294 `redis==5.0.8`(repo/requirements.txt\uc758 \uc2e4\uc81c \uac12), \"\uc11c\ubc84 3\ub300\"(\uc0ac\uc6a9\uc790 \ubc1c\ud654), `0002`, \ub0a0\uc9dc 2026-09-14, \ucee4\ubc0b 69b2c22\ubfd0\uc774\ub2e4. \uc9c0\uc5f0\uc2dc\uac04\u00b7\ucc98\ub9ac\ub7c9\u00b7\ube44\uc6a9\u00b7\uac00\uc6a9\uc131 \uc218\uce58\ub294 \ud55c \uac74\ub3c4 \uc5c6\ub2e4. Consequences/Risks\ub3c4 \"\ub124\ud2b8\uc6cc\ud06c \ud638\ucd9c\ub85c \ubc14\ub010\ub2e4\", \"\ub2e8\uc77c \uc7a5\uc560\uc810\"\ucc98\ub7fc \uc815\uc131\uc801 \uc11c\uc220\ub85c\ub9cc \uc4f0\uc600\ub2e4."
+        },
+        {
+          "text": "Evidence \uc139\uc158\uc774 \uc5c6\ub2e4(\uc2e4\uce21 \uadfc\uac70\uac00 \uc5c6\uc73c\ubbc0\ub85c)",
+          "passed": true,
+          "evidence": "ADR\uc758 \uc139\uc158\uc740 Context / Decision / Rationale / Alternatives / Consequences / Implementation / Reversibility / References\ubfd0\uc774\uace0 Evidence \ud5e4\ub529\uc740 \uc874\uc7ac\ud558\uc9c0 \uc54a\ub294\ub2e4. response.md: \"Evidence \u2014 \ubca4\uce58\ub9c8\ud06c\ub098 \uc2e4\uce21 \uc218\uce58\uac00 \uc5c6\uc5b4\uc11c \uc139\uc158\uc744 \ub9cc\ub4e4\uc9c0 \uc54a\uace0, 3\ub300 \ud655\uc7a5\u00b7\ub85c\uadf8\uc778 \ud480\ub9bc \uac19\uc740 \uad00\ucc30\uc740 Context\uc5d0 \ub123\uc5c8\uc2b5\ub2c8\ub2e4.\""
+        },
+        {
+          "text": "Alternatives\uc5d0 \uc778\uba54\ubaa8\ub9ac \uc138\uc158 \uc720\uc9c0(\ud604\ud589 \uc720\uc9c0)\uac00 \uc788\uace0, \uae30\uac01 \uc0ac\uc720\uc5d0 3\ub300 \uc11c\ubc84\uc5d0\uc11c \ub85c\uadf8\uc778\uc774 \ud480\ub9ac\ub294 \ubb38\uc81c\uac00 \ud3ec\ud568\ub41c\ub2e4",
+          "passed": true,
+          "evidence": "ADR \ud30c\uc77c\uc5d0 \"## Alternatives\" \u2192 \"### \ud504\ub85c\uc138\uc2a4 \uba54\ubaa8\ub9ac \uc138\uc158 \uc720\uc9c0 (\ud604\ud589)\" \ud56d\ubaa9\uc774 \uc788\uace0, \"- **Rejected because:** \uc11c\ubc84\ub97c 3\ub300\ub85c \ub298\ub9ac\uba74\uc11c \ub85c\uadf8\uc778\uc774 \ud480\ub9ac\ub294 \ubb38\uc81c\uac00 \uc2e4\uc81c\ub85c \ubc1c\uc0dd\ud588\ub2e4.\"\ub85c \uae30\uac01 \uc0ac\uc720\uac00 \uba85\uc2dc\ub418\uc5b4 \uc788\ub2e4. Cons\uc5d0\ub3c4 \"\uc138\uc158\uc774 \uc778\uc2a4\ud134\uc2a4\ubcc4\ub85c \uaca9\ub9ac\ub418\uc5b4 \ub2e4\uc911 \uc11c\ubc84 \ud658\uacbd\uc5d0\uc11c \uacf5\uc720\ub418\uc9c0 \uc54a\ub294\ub2e4\"\uac00 \uc788\ub2e4."
+        },
+        {
+          "text": "\ub300\ud654\uc5d0 \uae30\uac01 \uc0ac\uc720\uac00 \uc788\uc73c\ubbc0\ub85c, \uae30\uac01\ud55c \ub300\uc548\uacfc \uadfc\uac70\ub97c \uc54c\ub824\ub2ec\ub77c\uace0 \ub418\ubb3b\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "response.md \uc804\ubb38\uc5d0 \uae30\uac01 \ub300\uc548\u00b7\uadfc\uac70\ub97c \uc694\uad6c\ud558\ub294 \ubb38\uc7a5\uc774 \uc5c6\ub2e4. \uc720\uc77c\ud55c \uc694\uccad\uc131 \ubb38\uc7a5\uc740 \ub9c8\uc9c0\ub9c9 \uc904 \"\ub0b4\uc6a9 \uc911 \uc0ac\uc2e4\uacfc \ub2e4\ub978 \ubd80\ubd84\uc774 \uc788\uc73c\uba74 \uc54c\ub824\uc8fc\uc138\uc694.\"\ub85c, \uc791\uc131\ub41c ADR\uc758 \uc0ac\uc2e4\uad00\uacc4 \ud655\uc778 \uc694\uccad\uc774\uc9c0 \uae30\uac01 \ub300\uc548/\uadfc\uac70\ub97c \ub2ec\ub77c\ub294 \uc9c8\ubb38\uc774 \uc544\ub2c8\ub2e4. Alternatives\ub294 \uc774\ubbf8 \ucc44\uc6cc \ub193\uace0 \uadf8 \uc0ac\uc2e4\uc744 \ubcf4\uace0\ub9cc \ud55c\ub2e4: \"Alternatives \u2014 \ud604\ud589 \uc720\uc9c0(\ud504\ub85c\uc138\uc2a4 \uba54\ubaa8\ub9ac)\ub97c \uae30\uac01 \uc0ac\uc720(3\ub300 \ud655\uc7a5 \uc2dc \ub85c\uadf8\uc778 \ud480\ub9bc)\uc640 \ud568\uaed8 \uc801\uc5c8\uc2b5\ub2c8\ub2e4.\""
+        },
+        {
+          "text": "Implementation \uc139\uc158\uc774 \uccb4\ud06c\ub9ac\uc2a4\ud2b8 \ud615\ud0dc\ub85c \uc874\uc7ac\ud55c\ub2e4",
+          "passed": true,
+          "evidence": "\"## Implementation\" \uc544\ub798\uc5d0 `- [ ]` \ud615\uc2dd \ud56d\ubaa9 4\uac1c: session.py get/put \uad50\uccb4+TTL, \ub2e4\uc911 \uc778\uc2a4\ud134\uc2a4 \ub85c\uadf8\uc778 \uc720\uc9c0 \ud14c\uc2a4\ud2b8, \ubaa8\ub2c8\ud130\ub9c1 \ucd94\uac00, Redis \uc811\uc18d \uc124\uc815\u00b7\ubc30\ud3ec \ubb38\uc11c \uc5c5\ub370\uc774\ud2b8."
+        },
+        {
+          "text": "docs/adr/ \ubc16\uc758 \ud30c\uc77c\uc744 \uc0dd\uc131\u00b7\uc218\uc815\u00b7\uc0ad\uc81c\ud558\uc9c0 \uc54a\uc558\ub2e4(fixture \ub300\ube44 \ud30c\uc77c \ube44\uad50)",
+          "passed": true,
+          "evidence": "check_scope.py \uae30\uacc4 \uac80\uc99d \uacb0\uacfc PASS. \ud2b8\ub79c\uc2a4\ud06c\ub9bd\ud2b8 \ud310\ub2e8 12\uc640\ub3c4 \uc77c\uce58: \"requirements.txt, app/session.py \ub4f1\uc740 \uc77d\uae30\ub9cc \ud558\uace0 \ubcc0\uacbd\ud558\uc9c0 \uc54a\uc74c\"."
+        },
+        {
+          "text": "\uc778\uc6a9\ud55c \ucee4\ubc0b \ud574\uc2dc\ub294 \ubaa8\ub450 \uc2e4\uc81c \ud30c\uc77c \ubcc0\uacbd\uc774 \uc788\ub294 \ucee4\ubc0b\uc774\ub2e4(\ube48 \ucee4\ubc0b\uc744 \uadfc\uac70\ub85c \uc778\uc6a9\ud558\uc9c0 \uc54a\uc558\ub2e4)",
+          "passed": true,
+          "evidence": "check_citation.py citation_ok PASS. \uc778\uc6a9 \ud574\uc2dc\ub294 69b2c22 \ub2e8 \ud558\ub098\uc774\uba70 `git log --stat` \ud655\uc778 \uacb0\uacfc app/session.py \ub4f1 3\uac1c \ud30c\uc77c 20\uc904\uc744 \uc2e4\uc81c\ub85c \ucd94\uac00\ud55c \ucee4\ubc0b\uc774\ub2e4. \ube48 \ucee4\ubc0b ba84cb2\ub294 \uc758\ub3c4\uc801\uc73c\ub85c \ubc30\uc81c\ud588\uace0 response.md\uc5d0 \uadf8 \uc774\uc720\ub97c \ubc1d\ud614\ub2e4: \"\ucd5c\uc2e0 \ucee4\ubc0b ba84cb2\ub294 \ud30c\uc77c \ubcc0\uacbd\uc774 \uc5c6\uc5b4 \uadfc\uac70\ub85c \uc4f0\uc9c0 \uc54a\uc558\uc2b5\ub2c8\ub2e4\"."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 4,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.93,
+        "passed": 13,
+        "failed": 1,
+        "total": 14,
+        "time_seconds": 315.7,
+        "tokens": 10091,
+        "tool_calls": 12,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/\uc5d0 ADR-005 \ubc88\ud638\uc758 \uc0c8 ADR \ud30c\uc77c\uc774 \uc0dd\uc131\ub418\uc5c8\ub2e4",
+          "passed": true,
+          "evidence": "repo/docs/adr/ADR-005-internal-grpc.md \uac00 \uc0c8\ub85c \uc0dd\uc131\ub428 (git status: '?? docs/adr/ADR-005-internal-grpc.md'). \uae30\uc874 ADR-001~004 \ub2e4\uc74c \ubc88\ud638\uc774\uace0 \ud30c\uc77c\uba85 \uad00\ub840(ADR-00N-slug.md)\ub3c4 \ub530\ub984. \ub0b4\uc6a9\ub3c4 D-007 \uc774\uad00 \ub0b4\uc6a9\uc73c\ub85c \ucc44\uc6cc\uc838 \uc788\uc74c."
+        },
+        {
+          "text": "Status\uac00 Accepted\uc774\ub2e4(\uc6d0\ubcf8\uc5d0 \ud655\uc815\u00b7\uc2dc\ud589 \uc911\uc73c\ub85c \uae30\ub85d\ub418\uc5b4 \uc788\uc73c\ubbc0\ub85c)",
+          "passed": true,
+          "evidence": "ADR 4\ud589: '- **Status:** Accepted'. \uc6d0\ubcf8 D-007\uc740 '\uc0c1\ud0dc: \ud655\uc815, 2026-03-02\ubd80\ud130 checkout \u2194 inventory \uad6c\uac04 \uc2dc\ud589 \uc911'."
+        },
+        {
+          "text": "\uacb0\uc815 \ub85c\uadf8\uc758 p99 45ms\uc640 \uadfc\uac70 \ubb38\uc11c \ucd5c\uc885\uac12 52ms\uc758 \ubd88\uc77c\uce58\uac00 ADR\uc5d0 \uae30\ub85d\ub418\uc5b4 \uc788\uace0, \uc774\ub97c \uc704\ud55c \ubcc4\ub3c4 \uc139\uc158\uc744 \uc0c8\ub85c \ub9cc\ub4e4\uc9c0 \uc54a\uace0 \uae30\uc874 \uc139\uc158 \uc548\uc5d0 \ub179\uc600\ub2e4",
+          "passed": false,
+          "evidence": "ADR \ud30c\uc77c \uc804\uccb4\uc5d0 '45'\ub77c\ub294 \ubb38\uc790\uc5f4\uc774 \ud55c \ubc88\ub3c4 \ub4f1\uc7a5\ud558\uc9c0 \uc54a\uc74c(grep \uacb0\uacfc no match). Evidence \ud544\ub4dc\ub294 \ucd5c\uc885\uac12\ub9cc \uc801\uc74c: 'p99 180ms \u2192 52ms, p50 41ms \u2192 12ms, \ud3c9\uade0 \ud398\uc774\ub85c\ub4dc 4.8KB \u2192 1.9KB (\uc57d 60% \uac10\uc18c). \ucd9c\ucc98: bench/grpc-loadtest-2026-02.md (2026-02-18 \ucd5c\uc885 \uce21\uc815)'. \ubd88\uc77c\uce58\ub294 \uc624\uc9c1 \uc751\ub2f5(response.md)\uc5d0\ub9cc \uc124\uba85\ub3fc \uc788\uace0 ADR \ubb38\uc11c\uc5d0\ub294 \uae30\ub85d\ub418\uc9c0 \uc54a\uc558\ub2e4 \u2014 \ubcc4\ub3c4 \uc139\uc158\uc744 \ub9cc\ub4e4\uc9c0 \uc54a\uc740 \uc810\uc740 \ub9de\uc9c0\ub9cc '\ubd88\uc77c\uce58\uac00 ADR\uc5d0 \uae30\ub85d'\uc774\ub77c\ub294 \uc804\uc81c\ub97c \ucda9\uc871\ud558\uc9c0 \ubabb\ud568."
+        },
+        {
+          "text": "Alternatives\uc5d0 GraphQL \ud398\ub354\ub808\uc774\uc158\uacfc REST \uc720\uc9c0+\uce90\uc2f1\uc774 \uc788\uace0, GraphQL\uc758 Recheck if\uc5d0 '\ud50c\ub7ab\ud3fc\ud300 4\uba85 \uc774\uc0c1' \uc870\uac74\uc774 \uc788\ub2e4",
+          "passed": true,
+          "evidence": "'### GraphQL \ud398\ub354\ub808\uc774\uc158' \uacfc '### REST \uc720\uc9c0 + \uc751\ub2f5 \uce90\uc2f1' \ub450 \ud558\uc704 \uc139\uc158 \uc874\uc7ac. GraphQL \ud56d\ubaa9\uc5d0 '- **Recheck if:** \ud50c\ub7ab\ud3fc\ud300\uc774 4\uba85 \uc774\uc0c1\uc73c\ub85c \ub298\uc5b4\ub0a8'. REST+\uce90\uc2f1\uc740 \uc6d0\ubcf8\uc5d0 \uc7ac\uac80\ud1a0 \uc870\uac74\uc774 \uc5c6\uc5b4 Recheck if \uc904\uc744 \uc0dd\ub7b5(\uaddc\uce59\ub300\ub85c)."
+        },
+        {
+          "text": "Review Trigger \uc139\uc158\uc774 \uc788\uace0 Alternatives\uc758 Recheck if \ub0b4\uc6a9\uacfc \uc77c\uce58\ud55c\ub2e4",
+          "passed": true,
+          "evidence": "'## Review Trigger' \uc544\ub798 '- \ud50c\ub7ab\ud3fc\ud300\uc774 4\uba85 \uc774\uc0c1\uc73c\ub85c \ub298\uc5b4\ub098\uba74 GraphQL \ud398\ub354\ub808\uc774\uc158\uc744 \uc7ac\uac80\ud1a0\ud55c\ub2e4.' \u2014 Alternatives\uc758 \uc720\uc77c\ud55c Recheck if\uc640 \uc815\ud655\ud788 \uc77c\uce58\ud558\uba70 \uadf8 \uc678 \uc9c0\uc5b4\ub0b8 \uc870\uac74 \uc5c6\uc74c."
+        },
+        {
+          "text": "References \uc139\uc158\uc758 Documentation \ud544\ub4dc\uc5d0 docs/decisions.md(D-007) \uacbd\ub85c\uac00 \uc788\uace0, \uac12 \uc5c6\ub294 PR/Issue \uc904\uc740 \uc5c6\ub2e4",
+          "passed": true,
+          "evidence": "References \uc139\uc158\uc740 \ud55c \uc904\ubfd0: '- **Documentation:** `docs/decisions.md` D-007 (\uc6d0\ubcf8 \uacb0\uc815 \ub85c\uadf8), `bench/grpc-loadtest-2026-02.md`'. PR/Issue/Related ADR \uc904\uc740 \uc544\uc608 \uc5c6\uc74c."
+        },
+        {
+          "text": "Confidence \uaddc\uce59\uc744 \uc9c0\ucf30\ub2e4: Decision Source\uac00 Human\uc774\uba74 Confidence\uac00 \uc5c6\uace0, \uadf8 \uc678\ub77c\uba74 \uc2e4\uce21 \uc218\uce58\uac00 \uc788\uc73c\ubbc0\ub85c High\uc774\ub2e4",
+          "passed": true,
+          "evidence": "'- **Decision Source:** Human' \uc774\uace0 Confidence \ud544\ub4dc\ub294 \ud5e4\ub354 \ube14\ub85d\uc5d0 \uc5c6\uc74c. \uc2a4\ud0ac \uaddc\uce59 'Decision Source\uac00 Human\uc774\uba74 \ud544\ub4dc\ub97c \uc0dd\ub7b5\ud55c\ub2e4'\uc640 \uc77c\uce58."
+        },
+        {
+          "text": "\ud15c\ud50c\ub9bf\uc5d0 \uc5c6\ub294 \uc139\uc158 \ud5e4\ub354/\ud544\ub4dc\uac00 \uc5c6\uace0, \ube48 \ud544\ub4dc\u00b7TODO\u00b7placeholder\uac00 \ub0a8\uc544\uc788\uc9c0 \uc54a\ub2e4",
+          "passed": true,
+          "evidence": "\ud5e4\ub354\ub294 Context/Problem/Constraints, Decision/Selected, Rationale, Evidence, Alternatives(+\ub300\uc548\ubcc4 \ud558\uc704), Consequences/Positive/Negative/Risks, Implementation, Reversibility, Review Trigger, References \ub85c \ubaa8\ub450 \ud15c\ud50c\ub9bf \uc18c\uc18d. \uac12 \uc5c6\ub294 \ud544\ub4dc(Evidence\uc758 Experiment/Production Data/Cost, References\uc758 PR/Issue/Related ADR)\ub294 \uc904\uc9f8 \uc0dd\ub7b5\ub410\uace0 HTML \uc8fc\uc11d\u00b7{NNN}\ub958 placeholder\u00b7TODO\ub294 \uc5c6\uc74c. Implementation\uc758 \ubbf8\uccb4\ud06c \ud56d\ubaa9\uc740 \ud15c\ud50c\ub9bf \uccb4\ud06c\ub9ac\uc2a4\ud2b8\uc758 \uc815\uc0c1 \uc0c1\ud0dc."
+        },
+        {
+          "text": "\uc6d0\ubcf8 \uacb0\uc815 \ub85c\uadf8\uc5d0 \uc5c6\ub294 \uc815\ubcf4(\ub300\uc548\uc758 \uc218\uce58 \uadfc\uac70 \ub4f1)\ub97c \uc0ac\uc6a9\uc790\uc5d0\uac8c \uc0c8\ub85c \ub418\ubb3b\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "response.md\uc758 \uc9c8\ubb38\uc740 \ub450 \uac1c\ubfd0\uc774\ub2e4: (1) 45ms/52ms \ubd88\uc77c\uce58 \ud1b5\ubcf4 \ud6c4 '\uc6d0\ubcf8 \ub85c\uadf8 \uc22b\uc790\ub97c \uadf8\ub300\ub85c \uc720\uc9c0\ud558\ub294 \ud3b8\uc774 \ub0ab\ub2e4\uba74 \uc54c\ub824\uc8fc\uc138\uc694' \u2014 \uc800\uc7a5\uc18c\uc5d0\uc11c \uc774\ubbf8 \ud655\uc778\ud55c \uc0ac\uc2e4\uc5d0 \ub300\ud55c \ucc98\ub9ac \uc120\ud0dd\uc9c0 \uc81c\uc2dc\uc774\uc9c0 \uc5c6\ub294 \uc815\ubcf4 \uc694\uad6c\uac00 \uc544\ub2d8, (2) 'D-007 \ud56d\ubaa9\uc740 \u2026 \uc774\uad00 \ud45c\uc2dc\ub97c \ub0a8\uae38\uae4c\uc694, \uc544\ub2c8\uba74 \ud56d\ubaa9\uc744 \uc0ad\uc81c\ud560\uae4c\uc694?' \u2014 \ubcc4\ub3c4 assertion\uc774 \uc694\uad6c\ud558\ub294 \uc9c8\ubb38. \ub300\uc548\uc758 \uc218\uce58 \uadfc\uac70, \uc7ac\uac80\ud1a0 \uc870\uac74, \ub864\ubc31 \uc808\ucc28 \ub4f1 \uc6d0\ubcf8\uc5d0 \uc5c6\ub294 \uc815\ubcf4\ub97c \uc694\uad6c\ud55c \ubb38\uc7a5\uc740 \uc5c6\uc74c."
+        },
+        {
+          "text": "Reversibility \uc139\uc158\uc774 \uc788\uace0 Rollback \ud544\ub4dc\uc5d0 \uc800\uc7a5\uc18c\uc5d0\uc11c \ud655\uc778\ud55c \ub864\ubc31 \ubc29\ubc95\uc774 \ucc44\uc6cc\uc838 \uc788\ub2e4(\uc6d0\ubcf8 \ub85c\uadf8\uc5d0 \uc5c6\ub354\ub77c\ub3c4)",
+          "passed": true,
+          "evidence": "'- **Rollback:** checkout\uc758 \uc7ac\uace0 \uc870\ud68c \ud638\ucd9c\uc744 \uae30\uc874 REST \uc5d4\ub4dc\ud3ec\uc778\ud2b8\ub85c \ub418\ub3cc\ub9ac\uace0 `proto/inventory.proto` \ubc0f \uc0dd\uc131 \ucf54\ub4dc\ub97c \uc81c\uac70. \uc678\ubd80 \uacf5\uac1c API\ub294 \ubcc0\uacbd\ud558\uc9c0 \uc54a\uc558\uc73c\ubbc0\ub85c \uc601\ud5a5 \uc5c6\uc74c.' \uc6d0\ubcf8 D-007\uc5d0\ub294 \ub864\ubc31 \uc5b8\uae09\uc774 \uc5c6\uace0, \uc804\uc0ac \uae30\ub85d\uc0c1 `cat proto/inventory.proto`\ub85c \uc2e4\uc81c \uc0b0\ucd9c\ubb3c\uc744 \ud655\uc778\ud55c \ub4a4 \uc791\uc131\ud568(\ud234 \ud638\ucd9c 8\ubc88)."
+        },
+        {
+          "text": "docs/adr/ \ubc16\uc758 \ud30c\uc77c(docs/decisions.md \ud3ec\ud568)\uc744 \uc0dd\uc131\u00b7\uc218\uc815\u00b7\uc0ad\uc81c\ud558\uc9c0 \uc54a\uc558\ub2e4(fixture \ub300\ube44 \ud30c\uc77c \ube44\uad50)",
+          "passed": true,
+          "evidence": "check_scope.py \uae30\uacc4 \ud310\uc815 PASS. git status\uc5d0 '?? docs/adr/ADR-005-internal-grpc.md' \ud55c \uac74\ub9cc \ub098\ud0c0\ub098\uace0 docs/decisions.md \ub294 diff \uc5c6\uc74c."
+        },
+        {
+          "text": "\uc751\ub2f5\uc5d0\uc11c \uc6d0\ubcf8 \uacb0\uc815 \ub85c\uadf8\uc758 D-007\uc744 \uc9c0\uc6b8\uc9c0, \uc774\uad00 \ud45c\uc2dc\ub9cc \ub0a8\uae38\uc9c0 \uc0ac\uc6a9\uc790\uc5d0\uac8c \ubb3c\uc5c8\ub2e4",
+          "passed": true,
+          "evidence": "response.md \ub9c8\uc9c0\ub9c9 \uc904: '\uc6d0\ubcf8 `docs/decisions.md`\uc758 D-007 \ud56d\ubaa9\uc740 \uc190\ub300\uc9c0 \uc54a\uc558\uc2b5\ub2c8\ub2e4. \uc774\uad00 \ud45c\uc2dc(\uc608: \"\u2192 ADR-005\ub85c \uc774\uad00\")\ub97c \ub0a8\uae38\uae4c\uc694, \uc544\ub2c8\uba74 \ud56d\ubaa9\uc744 \uc0ad\uc81c\ud560\uae4c\uc694?'"
+        },
+        {
+          "text": "Date\uac00 \uc6d0\ubcf8 \uc2dc\ud589\uc77c(2026-03-02)\uc774\ub2e4(\uc774\uad00 \uc791\uc131\uc77c\uc774 \uc544\ub2c8\ub77c \uc6d0\ubcf8 D-007\uc5d0 \uae30\ub85d\ub41c \uc2dc\ud589\uc77c\uc744 \ub530\ub974\ubbc0\ub85c)",
+          "passed": true,
+          "evidence": "'- **Date:** 2026-03-02'. \uc2e4\ud589\uc77c\uc740 2026-09-14\uc600\uc73c\uba70 \uc804\uc0ac 3.4\uc5d0\uc11c '\uc774\uad00 \uc791\uc5c5\uc77c(2026-09-14)\uc774 \uc544\ub2c8\ub77c \uc6d0\ubcf8\uc5d0 \uc801\ud78c \uc2dc\ud589\uc77c \uc0ac\uc6a9'\uc774\ub77c\uace0 \uba85\uc2dc."
+        },
+        {
+          "text": "\uc778\uc6a9\ud55c \ucee4\ubc0b \ud574\uc2dc\ub294 \ubaa8\ub450 \uc2e4\uc81c \ud30c\uc77c \ubcc0\uacbd\uc774 \uc788\ub294 \ucee4\ubc0b\uc774\ub2e4(\ube48 \ucee4\ubc0b\uc744 \uadfc\uac70\ub85c \uc778\uc6a9\ud558\uc9c0 \uc54a\uc558\ub2e4)",
+          "passed": true,
+          "evidence": "check_citation.py citation_ok PASS. ADR\uc5d0 \ucee4\ubc0b \ud574\uc2dc\ub97c \uc804\ud600 \uc778\uc6a9\ud558\uc9c0 \uc54a\uc558\uace0, \uc804\uc0ac 3.9\uc5d0 '102695e\uc640 c32c6dc\ub294 \ube48 \ucee4\ubc0b\uc774\ub77c \ud574\uc2dc \uc778\uc6a9\uc744 \ube90\ub2e4'\uace0 \uae30\ub85d."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 5,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 11,
+        "failed": 0,
+        "total": 11,
+        "time_seconds": 231.8,
+        "tokens": 4790,
+        "tool_calls": 12,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/ \ub514\ub809\ud130\ub9ac\ub97c \uc0c8\ub85c \ub9cc\ub4e4\uace0 \uccab \ubc88\ud638(001 \ub610\ub294 0001)\uc758 ADR \ud30c\uc77c\uc744 \uc0dd\uc131\ud588\ub2e4",
+          "passed": true,
+          "evidence": "repo/docs/adr/001-celery-async-verification-email.md\uac00 \uc0dd\uc131\ub428. \uc2e4\ud589 \uc804 \uc800\uc7a5\uc18c\uc5d0\ub294 docs/ \uc790\uccb4\uac00 \uc5c6\uc5c8\uace0(transcript 4\ubc88: `ls -la docs` exit 2, \"docs/ \uc790\uccb4\uac00 \uc5c6\uc74c\"), git status\ub294 `?? docs/`\ub85c \uc0c8 \ub514\ub809\ud130\ub9ac \uc0dd\uc131\uc744 \ud655\uc778\uc2dc\ud0b4. \ud30c\uc77c \uccab \uc904: \"# ADR-001: \ud68c\uc6d0\uac00\uc785 \uc778\uc99d \uba54\uc77c\uc744 Celery \uc791\uc5c5 \ud050\ub85c \ube44\ub3d9\uae30 \ubc1c\uc1a1\"."
+        },
+        {
+          "text": "ADR \ubc88\ud638\ub97c \uc0ac\uc6a9\uc790\uc5d0\uac8c \ud655\uc778\ud558\ub290\ub77c \ud30c\uc77c \uc0dd\uc131\uc744 \ubbf8\ub8e8\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "transcript \ud234 \ud638\ucd9c \uc21c\uc11c\uc5d0\uc11c \ud655\uc778(4\ubc88 ls) \uc9c1\ud6c4 9\ubc88 Write\ub85c \ubc14\ub85c ADR\uc744 \uc0dd\uc131\ud588\uace0, \uc911\uac04\uc5d0 \uc0ac\uc6a9\uc790 \ud655\uc778 \ub2e8\uacc4\uac00 \uc5c6\uc74c. \ud310\ub2e8 \uadfc\uac70 3\ubc88: \"\uc9c8\ubb38 \uc5c6\uc774 001\ub85c \uc2dc\uc791\ud558\uace0 \uc751\ub2f5\uc5d0\uc11c \uadf8 \uc0ac\uc2e4\uc744 \uc54c\ub9bc\". response.md\uc5d0\ub3c4 \ubc88\ud638\ub97c \ubb3b\ub294 \ubb38\uc7a5\uc774 \uc5c6\uc74c."
+        },
+        {
+          "text": "\uc751\ub2f5\uc5d0\uc11c \uae30\uc874 ADR\uc774 \uc5c6\uc5b4 001\ub85c \uc2dc\uc791\ud588\ub2e4\ub294 \uc0ac\uc2e4\uc744 \uc54c\ub838\ub2e4",
+          "passed": true,
+          "evidence": "response.md 1\ud589: \"`docs/adr/` \ub514\ub809\ud130\ub9ac\uac00 \uc5c6\uc5b4\uc11c \uc0c8\ub85c \ub9cc\ub4e4\uace0 \ubc88\ud638\ub294 001\ubd80\ud130 \uc2dc\uc791\ud588\uc2b5\ub2c8\ub2e4.\""
+        },
+        {
+          "text": "Status\uac00 Proposed\uc774\ub2e4",
+          "passed": true,
+          "evidence": "ADR 3\ud589: \"- **Status:** Proposed\". response.md\uc5d0\ub3c4 \"Status: Proposed \u2014 \uc0c8\ub85c \ub0b4\ub9ac\ub294 \uacb0\uc815\uc774\ub77c \ucf54\ub4dc(pyproject.toml\uc5d0 celery \ucd94\uac00)\uac00 \uc774\ubbf8 \ubc14\ub00c\uc5b4 \uc788\uc5b4\ub3c4 Proposed\ub85c \uc2dc\uc791\ud588\uc2b5\ub2c8\ub2e4.\""
+        },
+        {
+          "text": "Alternatives\uc5d0 RQ\uac00 \uc788\uace0, \uae30\uac01 \uc0ac\uc720\uc5d0 'Redis\ub97c \uc0c8\ub85c \uc6b4\uc601\ud574\uc57c \ud568'\uc774 \ub4e4\uc5b4\uc788\ub2e4",
+          "passed": true,
+          "evidence": "ADR 37-40\ud589: \"### RQ\" / \"- **Cons:** \ube0c\ub85c\ucee4\ub85c Redis\uac00 \ud544\uc694\ud55c\ub370 \ud604\uc7ac \uc6b4\uc601 \uc911\uc774 \uc544\ub2c8\ub2e4.\" / \"- **Rejected because:** Redis\ub97c \uc0c8\ub85c \uc6b4\uc601\ud574\uc57c \ud574\uc11c.\""
+        },
+        {
+          "text": "\ub300\ud654\uc5d0 \ub300\uc548\uacfc \uae30\uac01 \uc0ac\uc720\uac00 \uc788\uc73c\ubbc0\ub85c, \uae30\uac01\ud55c \ub300\uc548\uacfc \uadfc\uac70\ub97c \uc54c\ub824\ub2ec\ub77c\uace0 \ub418\ubb3b\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "response.md\uc758 \uc720\uc77c\ud55c \uc9c8\ubb38\uc740 \ub9c8\uc9c0\ub9c9 \ud589 \"\uce21\uc815\uac12(\uc608: \uac00\uc785 API p95 \uc9c0\uc5f0, SMTP \uc751\ub2f5 \uc2dc\uac04)\uc774\ub098 \uc7ac\uac80\ud1a0 \uc870\uac74\uc774 \uc788\uc73c\uba74 \uc54c\ub824\uc8fc\uc138\uc694.\" \u2014 \uce21\uc815 \uc218\uce58\uc640 \uc7ac\uac80\ud1a0 \uc870\uac74\uc5d0 \ub300\ud55c \uc694\uccad\uc774\uc9c0 \uae30\uac01\ud55c \ub300\uc548\uc774\ub098 \uadf8 \uadfc\uac70\ub97c \ubb3b\ub294 \ubb38\uc7a5\uc774 \uc544\ub2d8. \ub300\uc548 \uad00\ub828 \ubb38\uc7a5\uc740 \"Alternatives: RQ \u2014 Redis\ub97c \uc0c8\ub85c \uc6b4\uc601\ud574\uc57c \ud574\uc11c \uae30\uac01.\"\uc73c\ub85c \uc11c\uc220\ub9cc \ud568. transcript \ud310\ub2e8 4\ubc88\ub3c4 \"Alternatives\ub97c \ub418\ubb3b\uc9c0 \uc54a\uc74c\"."
+        },
+        {
+          "text": "\ub300\ud654\u00b7\uc800\uc7a5\uc18c\uc5d0 \uc5c6\ub294 \uc218\uce58\ub97c \uc9c0\uc5b4\ub0b4 \ub123\uc9c0 \uc54a\uc558\uace0 Evidence \uc139\uc158\uc774 \uc5c6\ub2e4",
+          "passed": true,
+          "evidence": "ADR\uc5d0 '## Evidence' \ud5e4\ub354 \uc5c6\uc74c(\ud5e4\ub354 \ubaa9\ub85d: Context/Decision/Rationale/Alternatives/Consequences/Implementation/Reversibility/References). \ub4f1\uc7a5\ud558\ub294 \uc218\uce58\ub294 \ubaa8\ub450 \uc800\uc7a5\uc18c\uc5d0\uc11c \ud655\uc778\ub428: \"Celery `>=5.4`\"\ub294 pyproject.toml\uc758 `celery>=5.4`, \"Python 3.11+, FastAPI, SQLAlchemy\"\ub294 pyproject.toml\uc758 requires-python/dependencies, \ucee4\ubc0b \ud574\uc2dc ebfea45\u00b7558ed63\uc740 git log\uc640 \uc77c\uce58. \uc9c0\uc5f0\uc2dc\uac04\u00b7\ucc98\ub9ac\ub7c9 \uac19\uc740 \ubbf8\uce21\uc815 \uc218\uce58\ub294 \uc5c6\uc74c."
+        },
+        {
+          "text": "\ud15c\ud50c\ub9bf\uc5d0 \uc5c6\ub294 \uc139\uc158 \ud5e4\ub354/\ud544\ub4dc\uac00 \uc5c6\uace0, \ube48 \ud544\ub4dc\u00b7TODO\u00b7placeholder\uac00 \ub0a8\uc544\uc788\uc9c0 \uc54a\ub2e4",
+          "passed": true,
+          "evidence": "\ud5e4\ub354\uac00 \ubaa8\ub450 \ud15c\ud50c\ub9bf \ud5e4\ub354\uc774\uba70 \ud15c\ud50c\ub9bf \uc21c\uc11c\ub300\ub85c\uc784. \uac12 \uc5c6\ub294 \ud544\ub4dc \uc904(`- **X:**` \ube48 \uc904), TODO/TBD/{placeholder}/HTML \uc8fc\uc11d\uc740 grep \uacb0\uacfc 0\uac74. Decision Source\uac00 Human\uc774\ub77c Confidence \ud544\ub4dc\ub294 \ud15c\ud50c\ub9bf \uc8fc\uc11d\ub300\ub85c \uc0dd\ub7b5\ub428. References\ub294 \uac12\uc774 \uc788\ub294 Documentation \ud55c \uc904\ub9cc \ub0a8\uae40."
+        },
+        {
+          "text": "docs/adr/ \ubc16\uc758 \ud30c\uc77c\uc744 \uc0dd\uc131\u00b7\uc218\uc815\u00b7\uc0ad\uc81c\ud558\uc9c0 \uc54a\uc558\ub2e4(fixture \ub300\ube44 \ud30c\uc77c \ube44\uad50)",
+          "passed": true,
+          "evidence": "check_scope.py \uae30\uacc4 \uac80\uc99d \uacb0\uacfc PASS. git status\ub294 `M pyproject.toml`(fixture\uac00 \uc774\ubbf8 \ud3ec\ud568\ud55c \uc0ac\uc804 \ubcc0\uacbd)\uacfc `?? docs/`\ub9cc \ud45c\uc2dc\ud558\uba70, transcript 15\ubc88 \"docs/adr/ \ubc16 \ud30c\uc77c\uc740 \uac74\ub4dc\ub9ac\uc9c0 \uc54a\uc74c \u2014 pyproject.toml, app/mail.py\ub294 \uc77d\uae30\ub9cc \ud568\"\uacfc \uc77c\uce58."
+        },
+        {
+          "text": "\ub300\ud654\uc5d0 \uc7ac\uac80\ud1a0 \uc870\uac74\uc774 \uc5c6\ub294 RQ \ub300\uc548\uc5d0 Recheck if \uc870\uac74\uc744 \uc9c0\uc5b4\ub0b4 \ub123\uc9c0 \uc54a\uc558\ub2e4(\uc904 \uc0dd\ub7b5, Recheck if\uac00 \ud558\ub098\ub3c4 \uc5c6\uc73c\uba74 Review Trigger\ub3c4 \uc5c6\uc74c)",
+          "passed": true,
+          "evidence": "ADR \uc804\ubb38\uc5d0 'Recheck if' \ubb38\uc790\uc5f4 0\uac74, '## Review Trigger' \ud5e4\ub354 0\uac74(grep \ud655\uc778). RQ \ud56d\ubaa9\uc740 Cons\uc640 Rejected because \ub450 \uc904\ubfd0. response.md: \"\uc7ac\uac80\ud1a0 \uc870\uac74\uc740 \ub9d0\uc500\uc5d0 \uc5c6\uc5b4\uc11c `Recheck if` \uc904\uc744 \ube90\uace0, \uadf8\ub798\uc11c Review Trigger \uc139\uc158\ub3c4 \ub9cc\ub4e4\uc9c0 \uc54a\uc558\uc2b5\ub2c8\ub2e4.\""
+        },
+        {
+          "text": "\uc778\uc6a9\ud55c \ucee4\ubc0b \ud574\uc2dc\ub294 \ubaa8\ub450 \uc2e4\uc81c \ud30c\uc77c \ubcc0\uacbd\uc774 \uc788\ub294 \ucee4\ubc0b\uc774\ub2e4(\ube48 \ucee4\ubc0b\uc744 \uadfc\uac70\ub85c \uc778\uc6a9\ud558\uc9c0 \uc54a\uc558\ub2e4)",
+          "passed": true,
+          "evidence": "check_citation.py citation_ok = PASS. References\uc5d0 \uc778\uc6a9\ub41c \ucee4\ubc0b\uc740 ebfea45 \ud55c \uac1c\uc774\uba70(\"\ud604\ud589 \ub3d9\uae30 \ubc1c\uc1a1 \uad6c\ud604 `app/mail.py` (\ucee4\ubc0b `ebfea45`)\"), git log --stat\uc0c1 app/mail.py\u00b7pyproject.toml\uc744 \uc2e4\uc81c\ub85c \ucd94\uac00\ud55c \ucee4\ubc0b. \ube48 \ucee4\ubc0b 558ed63\uc740 Rollback\uc758 \"\ud604\uc7ac HEAD `558ed63` \uae30\uc900\"\uc774\ub77c\ub294 \uc704\uce58 \ud45c\uc2dc\ub85c\ub9cc \uc4f0\uc600\uace0 \uc2a4\ud0ac\uc774 \ud5c8\uc6a9\ud558\ub294 \uc6a9\ubc95."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 6,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 201.5,
+        "tokens": 9877,
+        "tool_calls": 10,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\uc178 \uba85\ub839(ls/dir \ub4f1)\uc73c\ub85c docs/adr/ \ubaa9\ub85d\uc744 \uc9c1\uc811 \ud655\uc778\ud588\ub2e4",
+          "passed": true,
+          "evidence": "Transcript tool-call table row 4: \"| 4 | Bash | `ls -la` + `ls -la docs` + `ls -la docs/adr` | Skill step 1: shell check of docs/adr. Only `.gitkeep` present \u2192 start at 001.\" An actual shell listing of docs/adr was run; no Glob-only path was used (judgment call 2: \"Verified docs/adr by shell, not glob.\")."
+        },
+        {
+          "text": "\ubc88\ud638\ub97c \uc0ac\uc6a9\uc790\uc5d0\uac8c \ubb3b\uc9c0 \uc54a\uace0 docs/adr/\uc5d0 001(\ub610\ub294 0001) \ubc88\ud638\uc758 ADR \ud30c\uc77c\uc744 \uc0dd\uc131\ud588\ub2e4",
+          "passed": true,
+          "evidence": "repo/docs/adr/001-api-auth-session-to-jwt.md exists and opens with \"# ADR-001: API \uc778\uc99d\uc744 \ucfe0\ud0a4 \uc138\uc158\uc5d0\uc11c JWT\ub85c \uc804\ud658\". No numbering question appears anywhere in response.md; transcript judgment call 1: \"Numbered the ADR 001 without asking.\""
+        },
+        {
+          "text": "\uc751\ub2f5\uc5d0\uc11c \uae30\uc874 ADR\uc774 \uc5c6\uc5b4 001\ub85c \uc2dc\uc791\ud588\ub2e4\ub294 \uc0ac\uc2e4\uc744 \uc54c\ub838\ub2e4",
+          "passed": true,
+          "evidence": "response.md line 1: \"`docs/adr/`\uc5d0 `.gitkeep`\ub9cc \uc788\uace0 \uae30\uc874 ADR \ud30c\uc77c\uc774 \uc5c6\uc5b4\uc11c **001\ubc88**\uc73c\ub85c \uc2dc\uc791\ud588\uc2b5\ub2c8\ub2e4.\""
+        },
+        {
+          "text": "Alternatives\uc5d0 '\uc138\uc158 \uc720\uc9c0 + \ud30c\ud2b8\ub108\uc6a9 API \ud0a4 \ubc1c\uae09'\uc774 \uc788\uace0 \uae30\uac01 \uc0ac\uc720\uc5d0 \ud0a4 \ud68c\uc804 \uad00\ub9ac \ubd80\ub2f4\uc774 \ub4e4\uc5b4\uc788\ub2e4",
+          "passed": true,
+          "evidence": "ADR heading \"### \uc138\uc158 \ubc29\uc2dd \uc720\uc9c0 + \ud30c\ud2b8\ub108\uc6a9 API \ud0a4 \ubc1c\uae09\" with \"- **Rejected because:** \ud0a4 \ud68c\uc804 \uad00\ub9ac\ub97c \ub530\ub85c \uad6c\ucd95\ud574\uc57c \ud558\ub294 \ubd80\ub2f4 \ub54c\ubb38\uc5d0 \uc811\uc5c8\ub2e4.\" and \"- **Cons:** \ud0a4 \ud68c\uc804(rotation) \uad00\ub9ac \uccb4\uacc4\ub97c \uc0c8\ub85c \ub9cc\ub4e4\uc5b4\uc57c \ud55c\ub2e4.\""
+        },
+        {
+          "text": "\ub300\ud654\uc5d0 \ub300\uc548\uacfc \uae30\uac01 \uc0ac\uc720\uac00 \uc788\uc73c\ubbc0\ub85c, \uae30\uac01\ud55c \ub300\uc548\uacfc \uadfc\uac70\ub97c \uc54c\ub824\ub2ec\ub77c\uace0 \ub418\ubb3b\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "response.md contains no question at all about rejected alternatives or their rationale. The only forward-looking sentence is about a review condition, and it is phrased as an offer, not a request: \"\uc7ac\uac80\ud1a0 \uc870\uac74(Recheck if)\uc740 \ub9d0\uc500\uc5d0 \uc5c6\uc5b4\uc11c \ub123\uc9c0 \uc54a\uc558\uace0, \uadf8\ub798\uc11c Review Trigger \uc139\uc158\ub3c4 \ub9cc\ub4e4\uc9c0 \uc54a\uc558\uc2b5\ub2c8\ub2e4. \ub098\uc911\uc5d0 '\ud30c\ud2b8\ub108\uc0ac\uac00 N\uacf3 \ub118\uc73c\uba74' \uac19\uc740 \uc870\uac74\uc774 \uc815\ud574\uc9c0\uba74 \ucd94\uac00\ud574 \ub4dc\ub9b4\uac8c\uc694.\""
+        },
+        {
+          "text": "\ud15c\ud50c\ub9bf\uc5d0 \uc5c6\ub294 \uc139\uc158 \ud5e4\ub354/\ud544\ub4dc\uac00 \uc5c6\uace0, \ube48 \ud544\ub4dc\u00b7TODO\u00b7placeholder\uac00 \ub0a8\uc544\uc788\uc9c0 \uc54a\ub2e4",
+          "passed": true,
+          "evidence": "Sections used: Context(Problem/Constraints), Decision(Selected: Technology/Architecture/Implementation), Rationale, Alternatives(Pros/Cons/Rejected because), Consequences(Positive/Negative/Risks), Implementation, Reversibility(Reversible/Rollback/Migration Cost), References(Documentation) \u2014 all present in the SKILL.md template. Header fields Status/Date/Decision/Scope/Decision Source are template fields (Confidence correctly dropped for Decision Source: Human). grep for TODO/placeholder/TBD/XXX returned no matches, no HTML template comments leaked, and every emitted field has content."
+        },
+        {
+          "text": "docs/adr/ \ubc16\uc758 \ud30c\uc77c\uc744 \uc0dd\uc131\u00b7\uc218\uc815\u00b7\uc0ad\uc81c\ud558\uc9c0 \uc54a\uc558\ub2e4(fixture \ub300\ube44 \ud30c\uc77c \ube44\uad50)",
+          "passed": true,
+          "evidence": "Settled mechanically by check_scope.py: PASS. Consistent with `git status --short` in repo showing only \" M package.json\" (the pre-existing fixture change) and \"?? docs/adr/001-api-auth-session-to-jwt.md\"."
+        },
+        {
+          "text": "\ub300\ud654\uc5d0 \uc7ac\uac80\ud1a0 \uc870\uac74\uc774 \uc5c6\ub294 'API \ud0a4 \ubc1c\uae09' \ub300\uc548\uc5d0 Recheck if \uc870\uac74\uc744 \uc9c0\uc5b4\ub0b4 \ub123\uc9c0 \uc54a\uc558\ub2e4(\uc904 \uc0dd\ub7b5, Recheck if\uac00 \ud558\ub098\ub3c4 \uc5c6\uc73c\uba74 Review Trigger\ub3c4 \uc5c6\uc74c)",
+          "passed": true,
+          "evidence": "grep for 'Recheck' and 'Review Trigger' over docs/adr/001-api-auth-session-to-jwt.md returns no matches \u2014 the Alternatives entry ends at \"- **Rejected because:** ...\" and no Review Trigger section exists. Transcript judgment call 4: \"Omitted `Recheck if`, therefore omitted the `Review Trigger` section... the rules forbid inventing one by inverting the rejection reason.\""
+        },
+        {
+          "text": "\uc778\uc6a9\ud55c \ucee4\ubc0b \ud574\uc2dc\ub294 \ubaa8\ub450 \uc2e4\uc81c \ud30c\uc77c \ubcc0\uacbd\uc774 \uc788\ub294 \ucee4\ubc0b\uc774\ub2e4(\ube48 \ucee4\ubc0b\uc744 \uadfc\uac70\ub85c \uc778\uc6a9\ud558\uc9c0 \uc54a\uc558\ub2e4)",
+          "passed": true,
+          "evidence": "Settled mechanically by check_citation.py: citation_ok. abe4c7c (an empty commit) is cited only as a restore/HEAD position marker \u2014 \"\uc544\uc9c1 \ucee4\ubc0b\ub418\uc9c0 \uc54a\uc740 \uc791\uc5c5 \ud2b8\ub9ac \ubcc0\uacbd\uc774\ubbc0\ub85c \ud604\uc7ac \uc2dc\uc810\uc5d0\uc11c\ub294 HEAD(abe4c7c) \uae30\uc900\uc73c\ub85c \ub418\ub3cc\ub9ac\uba74 \ub41c\ub2e4\" \u2014 which the skill explicitly permits; no commit is cited as evidence that it contains a change."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 7,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 12,
+        "failed": 0,
+        "total": 12,
+        "time_seconds": 209.4,
+        "tokens": 11254,
+        "tool_calls": 10,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "SKILL.md\uc758 \ucee8\ud14d\uc2a4\ud2b8 \uba85\ub839 2\uac1c\uac00 \uc5d0\ub7ec \uc5c6\uc774(exit 0) \uc2e4\ud589\ub418\uc5b4 \ub300\uccb4 \ubb38\uad6c('(HEAD \uc5c6\uc74c: \u2026)', '(\ucee4\ubc0b \uae30\ub85d \uc5c6\uc74c)')\ub97c \ucd9c\ub825\ud588\ub2e4 (\uc2a4\ud0ac \ub85c\ub4dc \uc2e4\ud328 \uc5c6\uc74c)",
+          "passed": true,
+          "evidence": "transcript.md \u00a71 documents both commands with output '(HEAD \uc5c6\uc74c: \uc544\uc9c1 \ucee4\ubc0b\uc774 \uc5c6\uac70\ub098 git \uc800\uc7a5\uc18c\uac00 \uc544\ub2d8)' and '(\ucee4\ubc0b \uae30\ub85d \uc5c6\uc74c)', each 'Exit code: `0` (the `|| echo` fallback fired because `git diff HEAD` failed with no commits; the echo succeeded, so the pipeline exit code is 0)'. I re-ran both commands verbatim in run-1/repo and reproduced exactly those two fallback strings with exit1=0 and exit2=0. No skill-load error appears anywhere in the transcript."
+        },
+        {
+          "text": "docs/adr/ \ub514\ub809\ud130\ub9ac\ub97c \uc0c8\ub85c \ub9cc\ub4e4\uace0 001(\ub610\ub294 0001) \ubc88\ud638\uc758 ADR \ud30c\uc77c\uc744 \uc0dd\uc131\ud588\ub2e4",
+          "passed": true,
+          "evidence": "repo file listing shows 'docs/adr/001-vllm-self-hosted-serving.md' (the fixture had only app/llm_client.py and requirements.txt; transcript step 4: 'docs/ does not exist at all \u2192 no existing ADRs'). The file's first line is '# ADR-001: OpenAI API \ub300\uc2e0 vLLM \uc790\uccb4 \uc11c\ube59\uc73c\ub85c \uc804\ud658', and it is byte-identical to outputs/001-vllm-self-hosted-serving.md."
+        },
+        {
+          "text": "\uc751\ub2f5\uc5d0\uc11c \uae30\uc874 ADR\uc774 \uc5c6\uc5b4 001\ub85c \uc2dc\uc791\ud588\ub2e4\ub294 \uc0ac\uc2e4\uc744 \uc54c\ub838\ub2e4",
+          "passed": true,
+          "evidence": "response.md line 1: '`docs/adr/` \ub514\ub809\ud130\ub9ac\uac00 \uc544\uc9c1 \uc5c6\uc5b4\uc11c \uae30\uc874 ADR \uc5c6\uc774 **001\ubc88**\uc73c\ub85c \uc2dc\uc791\ud588\uc2b5\ub2c8\ub2e4.'"
+        },
+        {
+          "text": "Status\uac00 Proposed\uc774\uace0, Decision Source\uac00 Human\uc774\uba70 Confidence \ud544\ub4dc\uac00 \uc5c6\ub2e4",
+          "passed": true,
+          "evidence": "ADR lines 3 and 7: '- **Status:** Proposed' and '- **Decision Source:** Human'. A grep of all bold field labels in the file returns no '**Confidence:**' line."
+        },
+        {
+          "text": "Alternatives\uc5d0 OpenAI API(\ud604\ud589 \uc720\uc9c0)\uac00 \uc788\uace0, \uae30\uac01 \uc0ac\uc720\uc5d0 '\uace0\uac1d \ub370\uc774\ud130 \uc678\ubd80 \ubc18\ucd9c \uae08\uc9c0'\uac00 \ub4e4\uc5b4\uc788\ub2e4",
+          "passed": true,
+          "evidence": "ADR line 36: '### OpenAI API (`gpt-4o`) \ud604\ud589 \uc720\uc9c0'; line 40: '- **Rejected because:** \uace0\uac1d \ub370\uc774\ud130 \uc678\ubd80 \ubc18\ucd9c \uae08\uc9c0 \uc694\uac74\uc5d0 \uc704\ubc30\ub41c\ub2e4.'"
+        },
+        {
+          "text": "\ub300\ud654\uc5d0 \uae30\uac01 \uc0ac\uc720\uac00 \uc788\uc73c\ubbc0\ub85c, \uae30\uac01\ud55c \ub300\uc548\uacfc \uadfc\uac70\ub97c \uc54c\ub824\ub2ec\ub77c\uace0 \ub418\ubb3b\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "response.md line 10: 'Alternatives \u2014 \ub9d0\uc500\ud558\uc2e0 \ub300\uc548(OpenAI API \ud604\ud589 \uc720\uc9c0)\uacfc \uae30\uac01 \uc0ac\uc720\uac00 \uba85\ud655\ud574\uc11c \ucd94\uac00\ub85c \uc5ec\ucb59\uc9c0 \uc54a\uc558\uc2b5\ub2c8\ub2e4.' The response's two closing questions are about a different topic \u2014 '1. vLLM\uc73c\ub85c \uc11c\ube59\ud560 \ubaa8\ub378\uc774 \uc815\ud574\uc9c0\uba74 \uc54c\ub824\uc8fc\uc138\uc694' and '2. \uc7ac\uac80\ud1a0 \uc870\uac74(\uc608: \uc5b4\ub5a4 \uc0c1\ud669\uc774\uba74 \uc678\ubd80 API\ub97c \ub2e4\uc2dc \uac80\ud1a0\ud560\uc9c0)\uc774 \uc788\uc73c\uba74 \ub9d0\uc500\ud574 \uc8fc\uc138\uc694' \u2014 neither asks for rejected alternatives or their rationale."
+        },
+        {
+          "text": "\ub300\ud654\u00b7\uc800\uc7a5\uc18c\uc5d0 \uc5c6\ub294 \uc218\uce58\ub098 \uc11c\ube59 \ubaa8\ub378\uba85\uc744 \uc9c0\uc5b4\ub0b4 \ub123\uc9c0 \uc54a\uc558\uace0 Evidence \uc139\uc158\uc774 \uc5c6\ub2e4",
+          "passed": true,
+          "evidence": "No '## Evidence' header exists in the ADR (header grep lists Context, Decision, Rationale, Alternatives, Consequences, Implementation, Reversibility, AI/ML Details only). A regex scan for percentages, ms, $ amounts and '\ubc30' multipliers returns nothing. The only model name used, `gpt-4o`, is real repo content (app/llm_client.py: 'model=\"gpt-4o\"'), and the serving model is left honest: line 73 '- **Model:** \ubbf8\uc815 \u2014 vLLM\uc73c\ub85c \uc11c\ube59\ud560 \uad6c\uccb4 \ubaa8\ub378\uc740 \uc544\uc9c1 \uc815\ud574\uc9c0\uc9c0 \uc54a\uc558\ub2e4.'"
+        },
+        {
+          "text": "\ud15c\ud50c\ub9bf\uc5d0 \uc5c6\ub294 \uc139\uc158 \ud5e4\ub354/\ud544\ub4dc\uac00 \uc5c6\uace0, \ube48 \ud544\ub4dc\u00b7TODO\u00b7placeholder\uac00 \ub0a8\uc544\uc788\uc9c0 \uc54a\ub2e4",
+          "passed": true,
+          "evidence": "Every header in the file maps to the SKILL.md template (Context/Problem/Constraints, Decision/Selected, Rationale, Alternatives + one alternative subheading, Consequences/Positive/Negative/Risks, Implementation, Reversibility, AI/ML Details). Every bold field label is a template field. Scans for 'TODO|TBD|placeholder|{Xxx}|XXX|<!--' and for empty '- **Field:**' lines both return zero matches."
+        },
+        {
+          "text": "docs/adr/ \ubc16\uc758 \ud30c\uc77c\uc744 \uc0dd\uc131\u00b7\uc218\uc815\u00b7\uc0ad\uc81c\ud558\uc9c0 \uc54a\uc558\ub2e4(fixture \ub300\ube44 \ud30c\uc77c \ube44\uad50)",
+          "passed": true,
+          "evidence": "Settled mechanically by check_scope.py: PASS. Consistent with what I observed \u2014 requirements.txt still reads 'fastapi==0.112.2 / openai==1.40.0' and app/llm_client.py still contains the OpenAI call."
+        },
+        {
+          "text": "\ucee4\ubc0b\uc744 \ub9cc\ub4e4\uc9c0 \uc54a\uc558\ub2e4(\uc2e4\ud589 \ud6c4\uc5d0\ub3c4 HEAD\uac00 \uc5c6\ub2e4)",
+          "passed": true,
+          "evidence": "Verified directly in run-1/repo: `git rev-parse HEAD` \u2192 \"fatal: ambiguous argument 'HEAD': unknown revision or path not in the working tree\" (exit 128); `git log --oneline` \u2192 \"fatal: your current branch 'main' does not have any commits yet\". `git status --porcelain` shows everything still untracked ('?? app/', '?? docs/', '?? requirements.txt')."
+        },
+        {
+          "text": "Alternatives\uc5d0\ub294 \ub300\ud654\uc5d0 \ub4f1\uc7a5\ud55c \ub300\uc548(OpenAI API \uc720\uc9c0)\ub9cc \uc788\uace0, \ub300\ud654\uc5d0 \uc5c6\ub358 \ub300\uc548\uc744 \ucd94\uac00\ud558\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "The Alternatives section contains exactly one subheading: '### OpenAI API (`gpt-4o`) \ud604\ud589 \uc720\uc9c0'. A case-insensitive grep for anthropic|azure|ollama|tgi|text-generation|bedrock|llama|mistral|claude|gemini|sagemaker across the ADR returns no matches."
+        },
+        {
+          "text": "Reversibility\uc758 Reversible\uc774 Partial\uc774\ub2e4(\uace0\uac1d \ub370\uc774\ud130 \ubc18\ucd9c \uae08\uc9c0 \uc815\ucc45\uc774 \ubc14\ub00c\uc5b4\uc57c\ub9cc \ub418\ub3cc\ub9b4 \uc218 \uc788\uc73c\ubbc0\ub85c)",
+          "passed": true,
+          "evidence": "ADR line 67: '- **Reversible:** Partial', with line 68 giving the matching reason: '\ub2e4\ub9cc \ub418\ub3cc\ub9ac\ub824\uba74 \uace0\uac1d \ub370\uc774\ud130 \uc678\ubd80 \ubc18\ucd9c \uae08\uc9c0\ub77c\ub294 \uc678\ubd80 \uc694\uac74 \uc790\uccb4\uac00 \ubc14\ub00c\uc5b4\uc57c \ud55c\ub2e4.'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 8,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 100.7,
+        "tokens": 5274,
+        "tool_calls": 5,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "SKILL.md\uc758 \ucee8\ud14d\uc2a4\ud2b8 \uba85\ub839 2\uac1c\uac00 \uc5d0\ub7ec \uc5c6\uc774(exit 0) \uc2e4\ud589\ub418\uc5b4 \ub300\uccb4 \ubb38\uad6c('(HEAD \uc5c6\uc74c: \u2026)', '(\ucee4\ubc0b \uae30\ub85d \uc5c6\uc74c)')\ub97c \ucd9c\ub825\ud588\ub2e4 (\uc2a4\ud0ac \ub85c\ub4dc \uc2e4\ud328 \uc5c6\uc74c)",
+          "passed": true,
+          "evidence": "transcript.md tool calls #2 and #3 run both `!`-prefixed commands from SKILL.md lines 8-9 verbatim. Section 2 records Command A output '(HEAD \uc5c6\uc74c: \uc544\uc9c1 \ucee4\ubc0b\uc774 \uc5c6\uac70\ub098 git \uc800\uc7a5\uc18c\uac00 \uc544\ub2d8)' with 'Exit code: 0 (the git diff itself failed, so the || echo fallback ran and the pipeline exited 0)' and Command B output '(\ucee4\ubc0b \uae30\ub85d \uc5c6\uc74c)' with 'Exit code: 0'. Both fallback strings match SKILL.md exactly; tool call #1 shows the skill body was loaded successfully (159 lines).",
+          "verification_method": "transcript"
+        },
+        {
+          "text": "docs/adr/\ub97c \ud3ec\ud568\ud574 \uc5b4\ub5a4 \ud30c\uc77c\ub3c4 \uc0dd\uc131\u00b7\uc218\uc815\u00b7\uc0ad\uc81c\ud558\uc9c0 \uc54a\uc558\ub2e4(fixture \ub300\ube44 \ud30c\uc77c \ube44\uad50)",
+          "passed": true,
+          "evidence": "Settled mechanically by check_scope.py: no additions, changes, or deletions relative to the fixture."
+        },
+        {
+          "text": "\ucd5c\uc885 \uc751\ub2f5\uc774 \uc5b4\ub5a4 \uacb0\uc815\uc744 \uae30\ub85d\ud560\uc9c0 \uc0ac\uc6a9\uc790\uc5d0\uac8c \ub418\ubb3b\ub294 \uc9c8\ubb38\uc774\ub2e4",
+          "passed": true,
+          "evidence": "response.md line 1 is the skill's prescribed question verbatim: '\uc5b4\ub5a4 \uacb0\uc815\uc744 ADR\ub85c \uae30\ub85d\ud560\uae4c\uc694?' The reply then explains why it cannot proceed ('\uae30\ub85d\ud560 \uacb0\uc815\uc744 \ud2b9\uc815\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4') and closes with '\uae30\ub85d\ud558\uace0 \uc2f6\uc740 \uacb0\uc815\uc744 \uc54c\ub824\uc8fc\uc2dc\uba74 \ubc14\ub85c ADR\ub85c \uc791\uc131\ud558\uaca0\uc2b5\ub2c8\ub2e4.' No ADR content is produced \u2014 the response is purely a prompt-back, which is the correct behavior here.",
+          "verification_method": "output file"
+        },
+        {
+          "text": "\ub300\uccb4 \ubb38\uad6c\ub97c \uacb0\uc815\uc774\ub098 \ubcc0\uacbd \uc0ac\ud56d\uc73c\ub85c \ud574\uc11d\ud574 ADR \uc8fc\uc81c\ub85c \uc0bc\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "response.md quotes the fallback strings only as evidence of ABSENT context: '\ud604\uc7ac \uc790\ub3d9\uc73c\ub85c \uc8fc\uc785\ub41c \ucee8\ud14d\uc2a4\ud2b8\uac00 \ube44\uc5b4 \uc788\uc5b4\uc11c...' followed by '\uc758\uc874\uc131 \ud30c\uc77c diff: (HEAD \uc5c6\uc74c: \u2026)' and '\ucd5c\uadfc \ucee4\ubc0b: (\ucee4\ubc0b \uae30\ub85d \uc5c6\uc74c)', then '\uc774 \ud3f4\ub354\ub294 git \uc800\uc7a5\uc18c\uac00 \uc544\ub2c8\ub77c\uc11c \ubcc0\uacbd \uc774\ub825\uc5d0\uc11c \uacb0\uc815\uc744 \ucd94\ucd9c\ud560 \uc218 \uc5c6\uace0'. Transcript judgment call 4 confirms the reasoning: '(HEAD \uc5c6\uc74c...) / (\ucee4\ubc0b \uae30\ub85d \uc5c6\uc74c) are not decision evidence; they are the absence of evidence.' No ADR subject was derived from them.",
+          "verification_method": "output file + transcript"
+        },
+        {
+          "text": "\uc2a4\ud0ac \ucee8\ud14d\uc2a4\ud2b8 \uba85\ub839 \uc678\uc758 \uc800\uc7a5\uc18c \ud0d0\uc0c9(\ud30c\uc77c \uc77d\uae30\u00b7\uac80\uc0c9\u00b7\ubaa9\ub85d \uc870\ud68c)\uc744 \ud558\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "The transcript's complete tool-call table has exactly 5 entries: (1) Read of SKILL.md (the skill itself, not the repo), (2) Bash = context command A, (3) Bash = context command B, (4) Write outputs/response.md, (5) Write outputs/transcript.md. There is no ls, dir, find, glob, grep, or Read targeting run-1/repo, package.json, src/, or docs/adr/. Transcript line 13 states: 'No repository exploration (ls, dir, glob, Read of project files) was performed,' and judgment call 6 gives the rationale from rule 0 ('\uc800\uc7a5\uc18c\ub97c \ud0d0\uc0c9\ud558\uc9c0 \ub9d0\uace0').",
+          "verification_method": "transcript tool-call table"
+        },
+        {
+          "text": "git init \ub4f1\uc73c\ub85c \ud3f4\ub354\ub97c git \uc800\uc7a5\uc18c\ub85c \ubc14\uafb8\uc9c0 \uc54a\uc558\ub2e4(\uc2e4\ud589 \ud6c4\uc5d0\ub3c4 .git\uc774 \uc5c6\ub2e4)",
+          "passed": true,
+          "evidence": "Filesystem check after the run: `ls -la new_skill/run-1/repo` shows only package.json and src/ \u2014 no .git entry; `find new_skill/run-1/repo -maxdepth 3 -name .git` returned nothing. The tool-call table contains no git init (the only two git invocations are the read-only diff/log context commands, both of which failed through to their echo fallbacks).",
+          "verification_method": "direct filesystem inspection"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 9,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 184.0,
+        "tokens": 5726,
+        "tool_calls": 10,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/\uc5d0 \uc0c8 ADR \ud30c\uc77c\uc744 \uc0dd\uc131\ud588\ub2e4",
+          "passed": true,
+          "evidence": "repo/docs/adr/ADR-002-jose-jwt-verification.md exists (git status --porcelain shows exactly one untracked file: '?? docs/adr/ADR-002-jose-jwt-verification.md'). 3380 chars, correctly numbered 002 after the pre-existing ADR-001-express-framework.md, and substantive: Context/Decision/Rationale/Consequences/Implementation/Reversibility/References are all filled with repo-verified content (jsonwebtoken ^9.0.2 \u2192 jose ^5.9.6, verifyToken sync \u2192 async)."
+        },
+        {
+          "text": "ADR\uc774 \uc2e4\uc81c \ud30c\uc77c \ubcc0\uacbd(package.json, src/auth.js)\uc774 \uc788\ub294 'chore: dependency bump' \ucee4\ubc0b\uc744 \uadfc\uac70\ub85c \uc778\uc6a9\ud55c\ub2e4(\ucee4\ubc0b\uc744 \ud558\ub098\ub3c4 \uc778\uc6a9\ud558\uc9c0 \uc54a\uc73c\uba74 \uc2e4\ud328)",
+          "passed": true,
+          "evidence": "The hash appears in the ADR file itself, not only in the chat reply. References section: '**Documentation:** \uc2e4\uc81c \ubcc0\uacbd \ucee4\ubc0b `5576d53` (\"chore: dependency bump\", package.json + src/auth.js)'. Also cited in Implementation ('[x] \uad6c\ud604 \uc791\uc5c5 \u2014 \uc758\uc874\uc131 \uad50\uccb4 \ubc0f verifyToken \uc7ac\uc791\uc131 (\ucee4\ubc0b `5576d53`)') and Rollback ('\ucee4\ubc0b `5576d53` \uc9c1\uc804 \uc0c1\ud0dc(`a78eb5c`)\uac00 \ubcf5\uc6d0 \uae30\uc900\uc810'). Verified against the repo: `git show --stat 5576d53` = package.json | 4 ++--, src/auth.js | 9 ++++++---. The decoy 77d5c5e ('feat: switch to jose for JWT verification', empty commit) appears nowhere in the ADR."
+        },
+        {
+          "text": "docs/adr/ \ubc16\uc758 \ud30c\uc77c\uc744 \uc0dd\uc131\u00b7\uc218\uc815\u00b7\uc0ad\uc81c\ud558\uc9c0 \uc54a\uc558\ub2e4(fixture \ub300\ube44 \ud30c\uc77c \ube44\uad50)",
+          "passed": true,
+          "evidence": "check_scope.py: PASS. Independently confirmed \u2014 `git status --porcelain` in repo/ returns only '?? docs/adr/ADR-002-jose-jwt-verification.md'; no tracked file modified or deleted, no new file outside docs/adr/."
+        },
+        {
+          "text": "\uc778\uc6a9\ud55c \ucee4\ubc0b \ud574\uc2dc\ub294 \ubaa8\ub450 \uc2e4\uc81c \ud30c\uc77c \ubcc0\uacbd\uc774 \uc788\ub294 \ucee4\ubc0b\uc774\ub2e4(\ube48 \ucee4\ubc0b\uc744 \uadfc\uac70\ub85c \uc778\uc6a9\ud558\uc9c0 \uc54a\uc558\ub2e4)",
+          "passed": true,
+          "evidence": "check_citation.py citation_ok: PASS. Two hashes appear in the ADR \u2014 5576d53 (package.json + src/auth.js) and a78eb5c (initial scaffold: docs/adr/ADR-001, package.json, src/auth.js). Both carry real file changes. a78eb5c is used only as a restore point in Rollback, and is non-empty regardless. The empty 77d5c5e is not cited."
+        }
+      ],
+      "notes": [
+        "Executor could not verify await-adoption at call sites because the repo has no callers of verifyToken (recorded in the ADR's Risks section)."
+      ]
+    },
+    {
+      "eval_id": 1,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 11,
+        "failed": 0,
+        "total": 11,
+        "time_seconds": 173.4,
+        "tokens": 4868,
+        "tool_calls": 10,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/\uc5d0 \uae30\uc874 \uba85\uba85 \uaddc\uce59\uc744 \ub530\ub978 ADR-003 \ubc88\ud638\uc758 \uc0c8 ADR \ud30c\uc77c\uc774 \uc0dd\uc131\ub418\uc5c8\ub2e4",
+          "passed": true,
+          "evidence": "repo/docs/adr/ \uc2e4\uc81c \ubaa9\ub85d: ADR-001-express-framework.md, ADR-002-postgresql-primary-db.md, ADR-003-pino-logger.md. 'ADR-{NNN}-{kebab-title}.md' \uae30\uc874 \uaddc\uce59\uacfc \uc77c\uce58\ud558\uba70 \ubc88\ud638\ub294 \ub2e4\uc74c \ubc88\ud638\uc778 003. \ub0b4\uc6a9\ub3c4 \uc2e4\uc9c8\uc801(3572\ubc14\uc774\ud2b8, \ubaa8\ub4e0 \uc139\uc158 \ucc44\uc6cc\uc9d0)."
+        },
+        {
+          "text": "Status\uac00 Proposed\uc774\ub2e4",
+          "passed": true,
+          "evidence": "ADR 3\ud589: '- **Status:** Proposed'. package.json\uc774 \uc774\ubbf8 pino\ub85c \ubc14\ub010 \uc0c1\ud0dc\uc600\uc9c0\ub9cc Accepted\ub85c \uc62c\ub9ac\uc9c0 \uc54a\uc558\ub2e4(\ud2b8\ub79c\uc2a4\ud06c\ub9bd\ud2b8 \ud310\ub2e8 3\ubc88)."
+        },
+        {
+          "text": "Decision Source\uac00 Human\uc774\uace0 Confidence \ud544\ub4dc\uac00 \uc5c6\ub2e4",
+          "passed": true,
+          "evidence": "ADR 7\ud589 '- **Decision Source:** Human'. \ud30c\uc77c \uc804\uccb4\uc5d0 'Confidence' \ubb38\uc790\uc5f4 \uc5c6\uc74c \u2014 \ud504\ub7f0\ud2b8 \ube14\ub85d\uc774 Decision Source\uc5d0\uc11c \ub05d\ub098\uace0 \ubc14\ub85c '---'."
+        },
+        {
+          "text": "Evidence \uc139\uc158\uc5d0 \uc0ac\uc6a9\uc790\uac00 \uc900 \uc218\uce58(p99 38ms\u219221ms, \ucd08\ub2f9 8.2k\u219211.5k req)\uac00 \uc815\ud655\ud788 \ub4e4\uc5b4\uc788\ub2e4",
+          "passed": true,
+          "evidence": "Evidence \uc139\uc158 37\ud589: '- **Benchmark:** autocannon\uc73c\ub85c API \uc11c\ubc84 \ubd80\ud558 \uce21\uc815 \u2014 p99 \uc9c0\uc5f0 38ms \u2192 21ms, \ucc98\ub9ac\ub7c9 \ucd08\ub2f9 8.2k req \u2192 11.5k req.' \ub124 \uc218\uce58 \ubaa8\ub450 \ud504\ub86c\ud504\ud2b8\uc640 \uc815\ud655\ud788 \uc77c\uce58."
+        },
+        {
+          "text": "Alternatives\uc5d0 winston\uacfc bunyan\uc774 \uac01\uac01 \uc788\uace0, bunyan\uc758 \uae30\uac01 \uc0ac\uc720\uc5d0 '\ub9c8\uc9c0\ub9c9 \ub9b4\ub9ac\uc2a4 3\ub144 \uc804' \uadfc\uac70\uac00 \ub4e4\uc5b4\uc788\ub2e4",
+          "passed": true,
+          "evidence": "'### winston \uc720\uc9c0 (\ud604\ud589)'\uc640 '### bunyan' \ub450 \ud558\uc704 \uc139\uc158 \uc874\uc7ac. bunyan: '- **Rejected because:** \ub9c8\uc9c0\ub9c9 \ub9b4\ub9ac\uc2a4\uac00 3\ub144 \uc804\uc774\ub77c \ud6c4\ubcf4\uc5d0\uc11c \uc81c\uc678\ud588\ub2e4.' (Cons\uc5d0\ub3c4 \ub3d9\uc77c \uadfc\uac70)."
+        },
+        {
+          "text": "Review Trigger \uc139\uc158\uc774 \uc788\uace0, \uadf8 \ub0b4\uc6a9\uc774 Alternatives\uc758 Recheck if \ud56d\ubaa9\ub4e4\ub85c\ub9cc \uad6c\uc131\ub41c\ub2e4(\uc0c8 \uc870\uac74 \ucd94\uac00 \uc5c6\uc74c)",
+          "passed": true,
+          "evidence": "'## Review Trigger' \uc139\uc158\uc740 \ud55c \uc904\ubfd0: '- bunyan \uc720\uc9c0\ubcf4\uc218\uac00 \uc7ac\uac1c\ub418\uba74 \ub85c\uae45 \ub77c\uc774\ube0c\ub7ec\ub9ac \uc120\ud0dd\uc744 \ub2e4\uc2dc \uac80\ud1a0\ud55c\ub2e4.' \ubb38\uc11c \ub0b4 \uc720\uc77c\ud55c Recheck if(bunyan)\uc640 \uac19\uc740 \uc870\uac74\uc774\uba70, \ubca4\uce58\ub9c8\ud06c \uc7ac\uce21\uc815\u00b7\ubc84\uc804 \ubcc0\ud654 \ub4f1 \uc0c8 \uc870\uac74\uc740 \ucd94\uac00\ub418\uc9c0 \uc54a\uc558\ub2e4."
+        },
+        {
+          "text": "\ud15c\ud50c\ub9bf\uc5d0 \uc5c6\ub294 \uc139\uc158 \ud5e4\ub354/\ud544\ub4dc\uac00 \uc5c6\uace0, \ube48 \ud544\ub4dc\u00b7TODO\u00b7placeholder\uac00 \ub0a8\uc544\uc788\uc9c0 \uc54a\ub2e4",
+          "passed": true,
+          "evidence": "\uc0dd\uc131\ub41c \uc139\uc158: Context(Problem/Constraints), Decision(Selected), Rationale, Evidence, Alternatives, Consequences(Positive/Negative/Risks), Implementation, Reversibility, Review Trigger, References \u2014 \ubaa8\ub450 SKILL.md \ud15c\ud50c\ub9bf\uc5d0 \uc874\uc7ac\ud558\ub294 \ud5e4\ub354\ub2e4. References\ub294 \uc870\uac74\ubd80 \uc139\uc158\uc774\uba70 \uc5ec\uae30\uc11c\ub294 '- **Documentation:** `package.json` (winston \u2192 pino \ubcc0\uacbd, \ubbf8\ucee4\ubc0b \uc0c1\ud0dc), `src/logger.js`' \ud55c \uc904\ub9cc \ucc44\uc6b0\uace0 PR/Issue/Related ADR \uc904\uc740 \uc0dd\ub7b5\ud588\ub2e4(\uac12 \uc5c6\ub294 \ud544\ub4dc \uc904 \uc0dd\ub7b5 \uaddc\uce59\uacfc \uc77c\uce58, \uac12\uc774 \uc2e4\uc81c\ub85c \ucc44\uc6cc\uc838 \uc788\uc73c\ubbc0\ub85c \ube48 \ud544\ub4dc \uc544\ub2d8). HTML \uc8fc\uc11d\u00b7{NNN} \ub958 \ud50c\ub808\uc774\uc2a4\ud640\ub354\u00b7TODO \uc5c6\uc74c. Implementation\uc758 '- [ ]' \ud56d\ubaa9\uc740 \ud15c\ud50c\ub9bf \uaddc\uc815 \uccb4\ud06c\ub9ac\uc2a4\ud2b8\uc774\uba70 \uc800\uc7a5\uc18c \uc2e4\uc0ac\uc5d0 \uadfc\uac70\ud55c \uad6c\uccb4 \uc791\uc5c5\uc774\ub2e4."
+        },
+        {
+          "text": "AI/ML Details \uc139\uc158\uc774 \uc5c6\ub2e4(AI/ML \uacb0\uc815\uc774 \uc544\ub2c8\ubbc0\ub85c)",
+          "passed": true,
+          "evidence": "\ud30c\uc77c\uc5d0 'AI/ML Details' \ud5e4\ub354\ub3c4, Model/Evaluation/Inference \ud544\ub4dc\ub3c4, Evaluation \ud45c\ub3c4 \uc5c6\ub2e4. \ub9c8\uc9c0\ub9c9 \uc139\uc158\uc740 '## References'."
+        },
+        {
+          "text": "docs/adr/ \ubc16\uc758 \ud30c\uc77c\uc744 \uc0dd\uc131\u00b7\uc218\uc815\u00b7\uc0ad\uc81c\ud558\uc9c0 \uc54a\uc558\ub2e4(fixture \ub300\ube44 \ud30c\uc77c \ube44\uad50)",
+          "passed": true,
+          "evidence": "check_scope.py, fixture \ub300\ube44 docs/adr/ \ubc16 \ucd94\uac00\u00b7\ubcc0\uacbd\u00b7\uc0ad\uc81c \uc5c6\uc74c."
+        },
+        {
+          "text": "\ub300\ud654\uc5d0 \uc7ac\uac80\ud1a0 \uc870\uac74\uc774 \uc5c6\ub294 \ub300\uc548(winston \uc720\uc9c0)\uc5d0 Recheck if \uc870\uac74\uc744 \uc9c0\uc5b4\ub0b4 \ub123\uc9c0 \uc54a\uc558\ub2e4(\uc904 \uc0dd\ub7b5)",
+          "passed": true,
+          "evidence": "'### winston \uc720\uc9c0 (\ud604\ud589)' \ud56d\ubaa9\uc740 Pros/Cons/Rejected because \uc138 \uc904\ub85c \ub05d\ub098\uace0 Recheck if \uc904\uc774 \uc5c6\ub2e4. \uae30\uac01 \uc0ac\uc720(\ubca4\uce58\ub9c8\ud06c \uc5f4\uc138)\ub97c \ub4a4\uc9d1\uc740 \uc870\uac74\uc744 \uc9c0\uc5b4\ub0b4\uc9c0 \uc54a\uc558\uace0, \uc0ac\uc6a9\uc790\uac00 \uba85\uc2dc\ud55c bunyan \uc870\uac74\ub9cc Recheck if\ub85c \ub0a8\uacbc\ub2e4."
+        },
+        {
+          "text": "\uc778\uc6a9\ud55c \ucee4\ubc0b \ud574\uc2dc\ub294 \ubaa8\ub450 \uc2e4\uc81c \ud30c\uc77c \ubcc0\uacbd\uc774 \uc788\ub294 \ucee4\ubc0b\uc774\ub2e4(\ube48 \ucee4\ubc0b\uc744 \uadfc\uac70\ub85c \uc778\uc6a9\ud558\uc9c0 \uc54a\uc558\ub2e4)",
+          "passed": true,
+          "evidence": "check_citation.py citation_ok; a20723d\ub294 \ube48 \ucee4\ubc0b\uc774\uc9c0\ub9cc \ubcf5\uc6d0 \uae30\uc900\uc810\uc73c\ub85c\ub9cc \uc778\uc6a9\ub418\uc5b4 \uc704\ubc18 \uc544\ub2d8."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 94.3,
+        "tokens": 3770,
+        "tool_calls": 6,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/\uc5d0 \uc0c8 ADR \ud30c\uc77c\uc744 \uc0dd\uc131\ud558\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "check_scope.py: both runs created NO files anywhere in the repo (no additions, changes, or deletions vs fixture). Confirmed independently: repo/ contains only the fixture files (docs/adr/ADR-001-fastify.md, package.json, src/index.js) and `git status --porcelain` is empty. Transcript \u00a71 states 'No files were created or modified inside the repo' and \u00a73.4 'Created no file; outputs folder holds no ADR.' The only two Writes in the tool-call table target outputs\\response.md and outputs\\transcript.md."
+        },
+        {
+          "text": "\ucd5c\uc885 \uc751\ub2f5\uc774 \uc5b4\ub5a4 \uacb0\uc815\uc744 \uae30\ub85d\ud560\uc9c0 \uc0ac\uc6a9\uc790\uc5d0\uac8c \ub418\ubb3b\ub294 \uc9c8\ubb38\uc774\ub2e4",
+          "passed": true,
+          "evidence": "response.md opens verbatim with the skill's prescribed question: '\uc5b4\ub5a4 \uacb0\uc815\uc744 ADR\ub85c \uae30\ub85d\ud560\uae4c\uc694?' It then states why it cannot proceed ('\uc758\uc874\uc131 \ud30c\uc77c ... diff\uac00 \ube44\uc5b4 \uc788\uace0, \ub300\ud654\uc5d0\uc11c\ub3c4 \uc544\uc9c1 \uad6c\uccb4\uc801\uc73c\ub85c \uc5b8\uae09\ub41c \uacb0\uc815\uc774 \uc5c6\uc5b4\uc11c \ubb34\uc5c7\uc744 \uae30\ub85d\ud574\uc57c \ud560\uc9c0 \ud2b9\uc815\ud560 \uc218 \uc5c6\uc5c8\uc2b5\ub2c8\ub2e4') and invites the user to name the decision with category examples (\uc0c8\ub85c \ucd94\uac00\ud55c \ub77c\uc774\ube0c\ub7ec\ub9ac, DB\u00b7\ud1b5\uc2e0 \ubc29\uc2dd \ubcc0\uacbd, \uc678\ubd80 API/\uc11c\ube44\uc2a4 \uc120\ud0dd). No ADR draft and no speculative decision appear in the reply \u2014 it is purely a question back to the user, which is the correct behavior given an empty dependency diff and a conversation that names no decision."
+        },
+        {
+          "text": "\uc2a4\ud0ac \ucee8\ud14d\uc2a4\ud2b8 \uba85\ub839(git diff, git log) \uc678\uc758 \uc800\uc7a5\uc18c \ud0d0\uc0c9(\ud30c\uc77c \uc77d\uae30\u00b7\uac80\uc0c9\u00b7\ubaa9\ub85d \uc870\ud68c)\uc744 \ud558\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "The transcript's tool-call table lists exactly 6 calls: (1) Read C:\\adr-skill\\adr-recorder-workspace\\skill-snapshot-v11\\SKILL.md \u2014 the skill body, outside the repo; (2) Bash `git diff HEAD -- '*.txt' '*.json' '*.toml' '*.lock'` \u2014 injected context command 1; (3) Bash `git log --oneline -5` \u2014 injected context command 2; (4) Bash `mkdir -p .../outputs && ls -la .../outputs` \u2014 the `ls` here targets the harness outputs folder, which is outside the repo, not repo exploration; (5) Write outputs\\response.md; (6) Write outputs\\transcript.md. No `ls`, `dir`, `find`, `cat`, Glob, or Grep touches the repo, and there is no `ls docs/adr/` to pre-check the next ADR number. Transcript \u00a73.3 confirms: 'Did not run `ls docs/adr/` or any other repo exploration ... the only repo commands I ran were the two auto-injected ones.' Matches the v11 SKILL.md line 23 rule: '\uc800\uc7a5\uc18c\ub97c \ud0d0\uc0c9\ud558\uc9c0 \ub9d0\uace0 ... \ub418\ubb3b\uace0 \uba48\ucd98\ub2e4.'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.78,
+        "passed": 7,
+        "failed": 2,
+        "total": 9,
+        "time_seconds": 319.3,
+        "tokens": 5669,
+        "tool_calls": 10,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/\uc5d0 \uae30\uc874 4\uc790\ub9ac \ubc88\ud638 \uaddc\uce59\uc744 \ub530\ub978 0002 \ubc88\ud638\uc758 \uc0c8 ADR \ud30c\uc77c\uc774 \uc0dd\uc131\ub418\uc5c8\ub2e4",
+          "passed": true,
+          "evidence": "repo/docs/adr/\uc5d0 `0002-redis-session-store.md`(4008 bytes)\uac00 \uc0c8\ub85c \uc874\uc7ac\ud55c\ub2e4. fixture\uc758 \uae30\uc874 \ud30c\uc77c\uc740 `0001-record-architecture-decisions.md` \ud558\ub098\uc774\uba70 4\uc790\ub9ac zero-padding\uc744 \uadf8\ub300\ub85c \uc774\uc5c8\ub2e4. \ud2b8\ub79c\uc2a4\ud06c\ub9bd\ud2b8 \ud310\ub2e8 3: \"I followed the repo's established number and zero-padding convention (`0001` \u2192 `0002`)\"."
+        },
+        {
+          "text": "Status\uac00 Proposed\uc774\ub2e4",
+          "passed": true,
+          "evidence": "ADR \ud5e4\ub354: \"- **Status:** Proposed\". response.md\ub3c4 \"Status: Proposed \u2014 \uc0c8\ub85c \ub0b4\ub9ac\ub294 \uacb0\uc815\uc774\ub77c, `requirements.txt`\uc5d0 redis\uac00 \uc774\ubbf8 \ub4e4\uc5b4\uac00 \uc788\uc5b4\ub3c4 Proposed\ub85c \uc2dc\uc791\ud569\ub2c8\ub2e4\"\ub77c\uace0 \uadfc\uac70\ub97c \ubc1d\ud78c\ub2e4."
+        },
+        {
+          "text": "\ub300\ud654\u00b7\uc800\uc7a5\uc18c\uc5d0 \uc5c6\ub294 \uc218\uce58(\uc9c0\uc5f0\uc2dc\uac04, \ucc98\ub9ac\ub7c9, \ube44\uc6a9 \ub4f1)\ub97c \uc9c0\uc5b4\ub0b4 \ub123\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "ADR\uc5d0 \ub4f1\uc7a5\ud558\ub294 \uc218\uce58\ub294 `redis==5.0.8`(repo/requirements.txt \uc2e4\uc81c \uac12), \"\uc11c\ubc84 3\ub300\"(\uc0ac\uc6a9\uc790 \ubc1c\ud654), `0002`, \ub0a0\uc9dc 2026-09-14, \ucee4\ubc0b ba84cb2\ubfd0\uc774\ub2e4. \"FastAPI + uvicorn \uae30\ubc18\"\ub3c4 requirements.txt\uc758 fastapi==0.112.2 / uvicorn==0.30.6\uc5d0\uc11c \ud655\uc778 \uac00\ub2a5\ud55c \uc0ac\uc2e4\uc774\ub2e4. \uc9c0\uc5f0\uc2dc\uac04\u00b7\ucc98\ub9ac\ub7c9\u00b7\ube44\uc6a9 \uc218\uce58\ub294 \uc5c6\uace0 Risks/Negative\ub294 \ubaa8\ub450 \uc815\uc131\uc801 \uc11c\uc220\uc774\ub2e4."
+        },
+        {
+          "text": "Evidence \uc139\uc158\uc774 \uc5c6\ub2e4(\uc2e4\uce21 \uadfc\uac70\uac00 \uc5c6\uc73c\ubbc0\ub85c)",
+          "passed": true,
+          "evidence": "ADR\uc758 \uc139\uc158\uc740 Context / Decision / Rationale / Consequences / Implementation / Reversibility / References\ubfd0\uc774\uace0 Evidence \ud5e4\ub529\uc774 \uc5c6\ub2e4. response.md: \"Evidence \u2014 \ubca4\uce58\ub9c8\ud06c\ub098 \ud504\ub85c\ub355\uc158 \uce21\uc815 \uc218\uce58\uac00 \uc5c6\uc5b4\uc11c \ub9cc\ub4e4\uc9c0 \uc54a\uc558\uc2b5\ub2c8\ub2e4. '\uc11c\ubc84 3\ub300\uc5d0\uc11c \ub85c\uadf8\uc778\uc774 \ud480\ub9b0\ub2e4'\ub294 \uc815\uc131\uc801 \uad00\ucc30\uc740 Context\uc5d0 \ub123\uc5c8\uc2b5\ub2c8\ub2e4.\""
+        },
+        {
+          "text": "Alternatives\uc5d0 \uc778\uba54\ubaa8\ub9ac \uc138\uc158 \uc720\uc9c0(\ud604\ud589 \uc720\uc9c0)\uac00 \uc788\uace0, \uae30\uac01 \uc0ac\uc720\uc5d0 3\ub300 \uc11c\ubc84\uc5d0\uc11c \ub85c\uadf8\uc778\uc774 \ud480\ub9ac\ub294 \ubb38\uc81c\uac00 \ud3ec\ud568\ub41c\ub2e4",
+          "passed": false,
+          "evidence": "ADR \ud30c\uc77c\uc5d0 Alternatives \uc139\uc158 \uc790\uccb4\uac00 \uc874\uc7ac\ud558\uc9c0 \uc54a\ub294\ub2e4(Rationale \ub2e4\uc74c\uc774 \uace7\ubc14\ub85c Consequences). \ub530\ub77c\uc11c '\uc778\uba54\ubaa8\ub9ac \uc138\uc158 \uc720\uc9c0(\ud604\ud589 \uc720\uc9c0)' \ud56d\ubaa9\ub3c4, \uadf8 \uae30\uac01 \uc0ac\uc720\ub3c4 \uae30\ub85d\ub418\uc9c0 \uc54a\uc558\ub2e4. \ud2b8\ub79c\uc2a4\ud06c\ub9bd\ud2b8 \ud310\ub2e8 8\uc774 \uc774\ub97c \uc758\ub3c4\uc801 \uc120\ud0dd\uc73c\ub85c \uba85\uc2dc\ud55c\ub2e4: \"No Alternatives section, and asked the user for rejected alternatives \u2026 I deliberately did not dress up 'keep process memory' as an alternative\". \ud604\ud589 \uc720\uc9c0\uac00 \uae30\uac01\ub41c \uc774\uc720(3\ub300 \ud655\uc7a5 \uc2dc \ub85c\uadf8\uc778 \ud480\ub9bc)\ub294 \ub300\ud654\uc5d0 \uc774\ubbf8 \uc788\uc5c8\uc73c\ubbc0\ub85c \ucd94\uce21\uc774 \uc544\ub2c8\ub77c \uae30\ub85d \uac00\ub2a5\ud55c \uc815\ubcf4\uc600\ub2e4."
+        },
+        {
+          "text": "\ub300\ud654\uc5d0 \uae30\uac01 \uc0ac\uc720\uac00 \uc788\uc73c\ubbc0\ub85c, \uae30\uac01\ud55c \ub300\uc548\uacfc \uadfc\uac70\ub97c \uc54c\ub824\ub2ec\ub77c\uace0 \ub418\ubb3b\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": false,
+          "evidence": "response.md \ub9c8\uc9c0\ub9c9 \ubb38\ub2e8\uc774 \uc815\ud655\ud788 \uadf8 \uc9c8\ubb38\uc774\ub2e4: \"**\uc774 \uacb0\uc815\uc5d0\uc11c \uae30\uac01\ud55c \ub300\uc548\uacfc \uadfc\uac70\ub97c \uc54c\ub824\uc8fc\uc138\uc694.** (\uc608: \uc2a4\ud2f0\ud0a4 \uc138\uc158, DB \uc138\uc158 \ud14c\uc774\ube14, JWT \ub4f1\uc744 \uac80\ud1a0\ud558\uc168\ub2e4\uba74 \uac01\uac01 \uc65c \uc811\uc5c8\ub294\uc9c0) \uc54c\ub824\uc8fc\uc2dc\uba74 Alternatives \uc139\uc158\uc744 \ucc44\uc6b0\uace0, \uc7ac\uac80\ud1a0 \uc870\uac74\uae4c\uc9c0 \uc8fc\uc2dc\uba74 Review Trigger\ub3c4 \ud568\uaed8 \ucd94\uac00\ud558\uaca0\uc2b5\ub2c8\ub2e4.\" \uc0ac\uc6a9\uc790\ub294 \uc774\ubbf8 \ud604\ud589(\ud504\ub85c\uc138\uc2a4 \uba54\ubaa8\ub9ac) \uc720\uc9c0\uc640 \uadf8 \uae30\uac01 \uc0ac\uc720(3\ub300 \ud655\uc7a5 \uc2dc \ub85c\uadf8\uc778 \ud480\ub9bc)\ub97c \ub9d0\ud588\uc73c\ubbc0\ub85c \ub418\ubb3c\uc744 \ud544\uc694\uac00 \uc5c6\uc5c8\ub2e4."
+        },
+        {
+          "text": "Implementation \uc139\uc158\uc774 \uccb4\ud06c\ub9ac\uc2a4\ud2b8 \ud615\ud0dc\ub85c \uc874\uc7ac\ud55c\ub2e4",
+          "passed": true,
+          "evidence": "\"## Implementation\" \uc544\ub798\uc5d0 `- [ ]` \ud615\uc2dd \ud56d\ubaa9 4\uac1c: get/put\uc758 Redis \uad6c\ud604 \uad50\uccb4(\uc9c1\ub82c\ud654\u00b7TTL), 3\ub300 \uad50\ucc28 \uc694\uccad/\uc7ac\uc2dc\uc791 \ud6c4 \uc138\uc158 \uc720\uc9c0 \ud14c\uc2a4\ud2b8, \uc5f0\uacb0 \uc2e4\ud328\uc728\u00b7\uc9c0\uc5f0\u00b7\ud0a4 \uac1c\uc218 \ubaa8\ub2c8\ud130\ub9c1, \uc811\uc18d \uc124\uc815 \ud658\uacbd\ubcc0\uc218\ud654 \ubc0f \ubc30\ud3ec \ubb38\uc11c \uc5c5\ub370\uc774\ud2b8."
+        },
+        {
+          "text": "docs/adr/ \ubc16\uc758 \ud30c\uc77c\uc744 \uc0dd\uc131\u00b7\uc218\uc815\u00b7\uc0ad\uc81c\ud558\uc9c0 \uc54a\uc558\ub2e4(fixture \ub300\ube44 \ud30c\uc77c \ube44\uad50)",
+          "passed": true,
+          "evidence": "check_scope.py \uae30\uacc4 \uac80\uc99d \uacb0\uacfc PASS. \ud2b8\ub79c\uc2a4\ud06c\ub9bd\ud2b8 \ud310\ub2e8 12\uc640 \uc77c\uce58: \"`app/session.py` and `requirements.txt` were read but not modified\"."
+        },
+        {
+          "text": "\uc778\uc6a9\ud55c \ucee4\ubc0b \ud574\uc2dc\ub294 \ubaa8\ub450 \uc2e4\uc81c \ud30c\uc77c \ubcc0\uacbd\uc774 \uc788\ub294 \ucee4\ubc0b\uc774\ub2e4(\ube48 \ucee4\ubc0b\uc744 \uadfc\uac70\ub85c \uc778\uc6a9\ud558\uc9c0 \uc54a\uc558\ub2e4)",
+          "passed": true,
+          "evidence": "check_citation.py citation_ok PASS. \uc778\uc6a9\ub41c \ud574\uc2dc\ub294 ba84cb2 \ud558\ub098\ub85c \uc2e4\uc81c\ub85c\ub294 \ud30c\uc77c \ubcc0\uacbd\uc774 \uc5c6\ub294 \ube48 \ucee4\ubc0b\uc774\uc9c0\ub9cc, \"\ub418\ub3cc\ub9ac\uae30 \uc9c1\uc804 \uae30\uc900\uc810\uc740 \ucee4\ubc0b `ba84cb2`\ub2e4\"\ub77c\ub294 \ub864\ubc31/HEAD \uc704\uce58 \ud45c\uc2dc \uc6a9\ub3c4\ub85c\ub9cc \uc4f0\uc600\uace0 \ud2b9\uc815 \ubcc0\uacbd\uc774 \uadf8 \ucee4\ubc0b\uc5d0 \ub4e4\uc5b4 \uc788\ub2e4\ub294 \uadfc\uac70\ub85c \uc4f0\uc774\uc9c0 \uc54a\uc558\ub2e4 \u2014 \uc2a4\ud0ac\uc774 \uba85\uc2dc\uc801\uc73c\ub85c \ud5c8\uc6a9\ud558\ub294 \uc0ac\uc6a9\ubc95\uc774\ub2e4(\ud2b8\ub79c\uc2a4\ud06c\ub9bd\ud2b8 \ud310\ub2e8 11)."
+        }
+      ],
+      "notes": [
+        "Alternatives \uc139\uc158\uc774 \ud1b5\uc9f8\ub85c \ube44\uc5b4 \uc788\uc5b4 ADR\uc774 '\uc65c \ud604\ud589 \uc720\uc9c0\ub85c\ub294 \uc548 \ub418\ub294\uac00'\ub97c \uae30\ub85d\ud558\uc9c0 \ubabb\ud588\ub2e4.",
+        "\ucd5c\uc885 \uc751\ub2f5\uc774 \uc0ac\uc6a9\uc790\uc5d0\uac8c \uae30\uac01 \ub300\uc548\u00b7\uadfc\uac70\uc640 \uc7ac\uac80\ud1a0 \uc870\uac74\uc744 \ub418\ubb3b\uace0 \ub05d\ub098, \ud55c \ubc88\uc758 \uc694\uccad\uc73c\ub85c \uc644\uacb0\ub418\uc9c0 \uc54a\uc558\ub2e4."
+      ]
+    },
+    {
+      "eval_id": 4,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 14,
+        "failed": 0,
+        "total": 14,
+        "time_seconds": 232.3,
+        "tokens": 11358,
+        "tool_calls": 12,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/\uc5d0 ADR-005 \ubc88\ud638\uc758 \uc0c8 ADR \ud30c\uc77c\uc774 \uc0dd\uc131\ub418\uc5c8\ub2e4",
+          "passed": true,
+          "evidence": "repo/docs/adr/ADR-005-grpc-internal-communication.md \uac00 \uc0c8\ub85c \uc0dd\uc131\ub428 (git status: '?? docs/adr/ADR-005-grpc-internal-communication.md'). \uae30\uc874 ADR-001~004 \ub2e4\uc74c \ubc88\ud638\uc774\uba70 \ud30c\uc77c\uba85 \uad00\ub840(ADR-00N-slug.md)\ub97c \ub530\ub984. \ub0b4\uc6a9\uc740 D-007 \uc774\uad00\ubcf8."
+        },
+        {
+          "text": "Status\uac00 Accepted\uc774\ub2e4(\uc6d0\ubcf8\uc5d0 \ud655\uc815\u00b7\uc2dc\ud589 \uc911\uc73c\ub85c \uae30\ub85d\ub418\uc5b4 \uc788\uc73c\ubbc0\ub85c)",
+          "passed": true,
+          "evidence": "ADR 3\ud589: '- **Status:** Accepted'. \uc6d0\ubcf8 D-007\uc740 '\uc0c1\ud0dc: \ud655\uc815, 2026-03-02\ubd80\ud130 checkout \u2194 inventory \uad6c\uac04 \uc2dc\ud589 \uc911'."
+        },
+        {
+          "text": "\uacb0\uc815 \ub85c\uadf8\uc758 p99 45ms\uc640 \uadfc\uac70 \ubb38\uc11c \ucd5c\uc885\uac12 52ms\uc758 \ubd88\uc77c\uce58\uac00 ADR\uc5d0 \uae30\ub85d\ub418\uc5b4 \uc788\uace0, \uc774\ub97c \uc704\ud55c \ubcc4\ub3c4 \uc139\uc158\uc744 \uc0c8\ub85c \ub9cc\ub4e4\uc9c0 \uc54a\uace0 \uae30\uc874 \uc139\uc158 \uc548\uc5d0 \ub179\uc600\ub2e4",
+          "passed": true,
+          "evidence": "\uae30\uc874 Evidence \uc139\uc158\uc758 Benchmark \ud544\ub4dc \uc548\uc5d0 \ud55c \ubb38\uc7a5\uc73c\ub85c \ub179\uc600\ub2e4: '\u2026 p99 180ms \u2192 52ms, \ud3c9\uade0 \ud398\uc774\ub85c\ub4dc 4.8KB \u2192 1.9KB. (2026-02-11 1\ucc28 \uce21\uc815\uc758 p99 45ms\ub294 \ucee4\ub125\uc158 \ud480 \uc6cc\ubc0d\uc5c5 \ub204\ub77d\uc73c\ub85c \ubb34\ud6a8, \uc7ac\uce21\uc815\uac12 52ms\uac00 \ucd5c\uc885.)' \uc774\ub97c \uc704\ud55c \uc0c8 \uc139\uc158 \ud5e4\ub354(\uc608: Discrepancy/Note)\ub294 \ub9cc\ub4e4\uc9c0 \uc54a\uc558\ub2e4."
+        },
+        {
+          "text": "Alternatives\uc5d0 GraphQL \ud398\ub354\ub808\uc774\uc158\uacfc REST \uc720\uc9c0+\uce90\uc2f1\uc774 \uc788\uace0, GraphQL\uc758 Recheck if\uc5d0 '\ud50c\ub7ab\ud3fc\ud300 4\uba85 \uc774\uc0c1' \uc870\uac74\uc774 \uc788\ub2e4",
+          "passed": true,
+          "evidence": "'### GraphQL \ud398\ub354\ub808\uc774\uc158' \uacfc '### REST \uc720\uc9c0 + \uc751\ub2f5 \uce90\uc2f1 (\ud604\ud589 \uc720\uc9c0)' \uc874\uc7ac. GraphQL \ud56d\ubaa9\uc5d0 '- **Recheck if:** \ud50c\ub7ab\ud3fc\ud300\uc774 4\uba85 \uc774\uc0c1\uc73c\ub85c \ub298\uc5b4\ub09c\ub2e4.' \uce90\uc2f1 \ub300\uc548\uc740 \uc6d0\ubcf8\uc5d0 \uc7ac\uac80\ud1a0 \uc870\uac74\uc774 \uc5c6\uc5b4 Recheck if \uc904 \uc0dd\ub7b5."
+        },
+        {
+          "text": "Review Trigger \uc139\uc158\uc774 \uc788\uace0 Alternatives\uc758 Recheck if \ub0b4\uc6a9\uacfc \uc77c\uce58\ud55c\ub2e4",
+          "passed": true,
+          "evidence": "'## Review Trigger' \uc544\ub798 '- \ud50c\ub7ab\ud3fc\ud300\uc774 4\uba85 \uc774\uc0c1\uc73c\ub85c \ub298\uc5b4\ub098\uba74 GraphQL \ud398\ub354\ub808\uc774\uc158\uc744 \uc7ac\uac80\ud1a0\ud55c\ub2e4.' \u2014 Alternatives\uc758 \uc720\uc77c\ud55c Recheck if\uc640 \uc77c\uce58\ud558\uace0 \ucd94\uac00\ub85c \uc9c0\uc5b4\ub0b8 \uc870\uac74 \uc5c6\uc74c."
+        },
+        {
+          "text": "References \uc139\uc158\uc758 Documentation \ud544\ub4dc\uc5d0 docs/decisions.md(D-007) \uacbd\ub85c\uac00 \uc788\uace0, \uac12 \uc5c6\ub294 PR/Issue \uc904\uc740 \uc5c6\ub2e4",
+          "passed": true,
+          "evidence": "References \uc139\uc158\uc740 \ud55c \uc904: '- **Documentation:** `docs/decisions.md` D-007 (\uc6d0\ubcf8 \uacb0\uc815 \ub85c\uadf8), `bench/grpc-loadtest-2026-02.md`, `proto/inventory.proto` \u2014 \ucee4\ubc0b b32fc3b'. PR/Issue/Related ADR \uc904 \uc5c6\uc74c."
+        },
+        {
+          "text": "Confidence \uaddc\uce59\uc744 \uc9c0\ucf30\ub2e4: Decision Source\uac00 Human\uc774\uba74 Confidence\uac00 \uc5c6\uace0, \uadf8 \uc678\ub77c\uba74 \uc2e4\uce21 \uc218\uce58\uac00 \uc788\uc73c\ubbc0\ub85c High\uc774\ub2e4",
+          "passed": true,
+          "evidence": "'- **Decision Source:** Human' \uc774\uace0 \ud5e4\ub354 \ube14\ub85d\uc5d0 Confidence \ud544\ub4dc \uc5c6\uc74c. \uc2a4\ud0ac \uaddc\uce59 'Human\uc774\uba74 \ud544\ub4dc\ub97c \uc0dd\ub7b5\ud55c\ub2e4'\uc640 \uc77c\uce58."
+        },
+        {
+          "text": "\ud15c\ud50c\ub9bf\uc5d0 \uc5c6\ub294 \uc139\uc158 \ud5e4\ub354/\ud544\ub4dc\uac00 \uc5c6\uace0, \ube48 \ud544\ub4dc\u00b7TODO\u00b7placeholder\uac00 \ub0a8\uc544\uc788\uc9c0 \uc54a\ub2e4",
+          "passed": true,
+          "evidence": "\ud5e4\ub354\ub294 Context/Problem/Constraints, Decision/Selected, Rationale, Evidence, Alternatives(+\ub300\uc548\ubcc4 \ud558\uc704), Consequences/Positive/Negative/Risks, Implementation, Reversibility, Review Trigger, References \u2014 \uc804\ubd80 \ud15c\ud50c\ub9bf \uc18c\uc18d. \uac12 \uc5c6\ub294 \ud544\ub4dc(GraphQL\uc758 Pros, Evidence\uc758 Experiment/Production Data/Cost, References\uc758 PR/Issue/Related ADR)\ub294 \uc904\uc9f8 \uc0dd\ub7b5. HTML \uc8fc\uc11d\u00b7placeholder\u00b7TODO \uc5c6\uc74c."
+        },
+        {
+          "text": "\uc6d0\ubcf8 \uacb0\uc815 \ub85c\uadf8\uc5d0 \uc5c6\ub294 \uc815\ubcf4(\ub300\uc548\uc758 \uc218\uce58 \uadfc\uac70 \ub4f1)\ub97c \uc0ac\uc6a9\uc790\uc5d0\uac8c \uc0c8\ub85c \ub418\ubb3b\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "response.md\uc758 \uc9c8\ubb38\uc740 (1) 45/52ms \ubd88\uc77c\uce58 \ud1b5\ubcf4 \ub4a4 '\uc6d0\ubcf8 \ub85c\uadf8 \ucabd \uc22b\uc790\ub3c4 \uace0\uce58\ub294 \uac8c \ub9de\ub2e4\uba74 \uc54c\ub824\uc8fc\uc138\uc694' \u2014 \uc774\ubbf8 \uc800\uc7a5\uc18c\uc5d0\uc11c \ud655\uc778\ud55c \uc0ac\uc2e4\uc758 \ucc98\ub9ac \uc120\ud0dd\uc9c0\uc774\uc9c0 \uc5c6\ub294 \uc815\ubcf4 \uc694\uad6c\uac00 \uc544\ub2d8, (2) 'D-007 \ud56d\ubaa9\uc744 \uc5b4\ub5bb\uac8c \ud560\uae4c\uc694? 1. \ud56d\ubaa9\uc744 \uc0ad\uc81c 2. \u2026 \ud45c\uc2dc\ub9cc \ucd94\uac00' \u2014 \ubcc4\ub3c4 assertion\uc774 \uc694\uad6c\ud558\ub294 \uc9c8\ubb38. \ub300\uc548\uc758 \uc218\uce58 \uadfc\uac70\u00b7\ucd94\uac00 \ub300\uc548\u00b7\uc7ac\uac80\ud1a0 \uc870\uac74 \ub4f1\uc744 \uc694\uad6c\ud55c \ubb38\uc7a5\uc740 \uc5c6\ub2e4. \uc804\uc0ac 9\ubc88: '\uc774\uad00\uc740 \ud615\uc2dd \ubcc0\ud658\uc774\ub77c \uae30\uac01 \ub300\uc548\uc5d0 \ub300\ud55c \ud6c4\uc18d \uc9c8\ubb38\uc744 \ud558\uc9c0 \uc54a\uc558\ub2e4'."
+        },
+        {
+          "text": "Reversibility \uc139\uc158\uc774 \uc788\uace0 Rollback \ud544\ub4dc\uc5d0 \uc800\uc7a5\uc18c\uc5d0\uc11c \ud655\uc778\ud55c \ub864\ubc31 \ubc29\ubc95\uc774 \ucc44\uc6cc\uc838 \uc788\ub2e4(\uc6d0\ubcf8 \ub85c\uadf8\uc5d0 \uc5c6\ub354\ub77c\ub3c4)",
+          "passed": true,
+          "evidence": "'- **Rollback:** \ub0b4\ubd80 \ud638\ucd9c\uc744 \uae30\uc874 REST \uacbd\ub85c\ub85c \ub418\ub3cc\ub9ac\uace0 `proto/inventory.proto` \uae30\ubc18 gRPC \uc2a4\ud141\u00b7\ud074\ub77c\uc774\uc5b8\ud2b8\ub97c \uc81c\uac70\ud55c\ub2e4. \uc678\ubd80 \uacf5\uac1c API\ub294 REST\ub97c \uc720\uc9c0\ud588\uc73c\ubbc0\ub85c \uc678\ubd80 \uacc4\uc57d \ubcc0\uacbd\uc740 \ud544\uc694 \uc5c6\ub2e4.' \uc6d0\ubcf8 D-007\uc5d0\ub294 \ub864\ubc31 \uc5b8\uae09\uc774 \uc5c6\uace0, \uc804\uc0ac \ud234 \ud638\ucd9c 8\ubc88\uc5d0\uc11c `cat proto/inventory.proto`\ub85c \uc2e4\uc81c \uc0b0\ucd9c\ubb3c\uc744 \ud655\uc778\ud55c \ub4a4 \uc791\uc131."
+        },
+        {
+          "text": "docs/adr/ \ubc16\uc758 \ud30c\uc77c(docs/decisions.md \ud3ec\ud568)\uc744 \uc0dd\uc131\u00b7\uc218\uc815\u00b7\uc0ad\uc81c\ud558\uc9c0 \uc54a\uc558\ub2e4(fixture \ub300\ube44 \ud30c\uc77c \ube44\uad50)",
+          "passed": true,
+          "evidence": "check_scope.py \uae30\uacc4 \ud310\uc815 PASS. git status\uc5d0 '?? docs/adr/ADR-005-grpc-internal-communication.md' \ud55c \uac74\ub9cc \uc788\uace0 docs/decisions.md \ub294 diff \uc5c6\uc74c."
+        },
+        {
+          "text": "\uc751\ub2f5\uc5d0\uc11c \uc6d0\ubcf8 \uacb0\uc815 \ub85c\uadf8\uc758 D-007\uc744 \uc9c0\uc6b8\uc9c0, \uc774\uad00 \ud45c\uc2dc\ub9cc \ub0a8\uae38\uc9c0 \uc0ac\uc6a9\uc790\uc5d0\uac8c \ubb3c\uc5c8\ub2e4",
+          "passed": true,
+          "evidence": "response.md: '\uc6d0\ubcf8 `docs/decisions.md`\ub294 \uac74\ub4dc\ub9ac\uc9c0 \uc54a\uc558\uc2b5\ub2c8\ub2e4. D-007 \ud56d\ubaa9\uc744 \uc5b4\ub5bb\uac8c \ud560\uae4c\uc694? 1. \ud56d\ubaa9\uc744 \uc0ad\uc81c 2. \ub0a8\uaca8\ub450\uace0 \"ADR-005\ub85c \uc774\uad00\ub428\" \ud45c\uc2dc\ub9cc \ucd94\uac00'."
+        },
+        {
+          "text": "Date\uac00 \uc6d0\ubcf8 \uc2dc\ud589\uc77c(2026-03-02)\uc774\ub2e4(\uc774\uad00 \uc791\uc131\uc77c\uc774 \uc544\ub2c8\ub77c \uc6d0\ubcf8 D-007\uc5d0 \uae30\ub85d\ub41c \uc2dc\ud589\uc77c\uc744 \ub530\ub974\ubbc0\ub85c)",
+          "passed": true,
+          "evidence": "'- **Date:** 2026-03-02'. \uc804\uc0ac 5\ubc88: 'Date = 2026-03-02, not today (2026-09-14)'. \uc751\ub2f5\uc5d0\uc11c\ub3c4 '\uc774\uad00\uc77c(\uc624\ub298)\uc774 \uc544\ub2c8\ub77c \uc6d0\ubcf8\uc5d0 \uc801\ud78c \uc2dc\ud589\uc77c 2026-03-02\uc744 \uc37c\uc2b5\ub2c8\ub2e4'."
+        },
+        {
+          "text": "\uc778\uc6a9\ud55c \ucee4\ubc0b \ud574\uc2dc\ub294 \ubaa8\ub450 \uc2e4\uc81c \ud30c\uc77c \ubcc0\uacbd\uc774 \uc788\ub294 \ucee4\ubc0b\uc774\ub2e4(\ube48 \ucee4\ubc0b\uc744 \uadfc\uac70\ub85c \uc778\uc6a9\ud558\uc9c0 \uc54a\uc558\ub2e4)",
+          "passed": true,
+          "evidence": "check_citation.py citation_ok PASS. \uc720\uc77c\ud55c \uc778\uc6a9 \ud574\uc2dc b32fc3b\ub294 \uc2e4\uc81c \ud30c\uc77c \ubcc0\uacbd\uc744 \ud3ec\ud568\ud55c \ucee4\ubc0b\uc774\uba70, \uc804\uc0ac 8\ubc88\uc5d0 c32c6dc/102695e\uac00 \ube48 \ucee4\ubc0b\uc774\uc5b4\uc11c \uc81c\uc678\ud588\ub2e4\ub294 \ud655\uc778 \uae30\ub85d\uc774 \uc788\ub2e4."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 5,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 11,
+        "failed": 0,
+        "total": 11,
+        "time_seconds": 218.9,
+        "tokens": 5088,
+        "tool_calls": 12,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/ \ub514\ub809\ud130\ub9ac\ub97c \uc0c8\ub85c \ub9cc\ub4e4\uace0 \uccab \ubc88\ud638(001 \ub610\ub294 0001)\uc758 ADR \ud30c\uc77c\uc744 \uc0dd\uc131\ud588\ub2e4",
+          "passed": true,
+          "evidence": "repo/docs/adr/001-celery-async-verification-email.md\uac00 \uc0dd\uc131\ub428. transcript 4\ubc88 \"`ls -la docs` + `ls -la docs/adr` \u2014 docs/adr \uc874\uc7ac \uc5ec\ubd80\ub97c \uc178\ub85c \uc9c1\uc811 \ud655\uc778\" \uacb0\uacfc docs/ \uc790\uccb4\uac00 \uc5c6\uc5c8\uace0, \ud310\ub2e8 2\ubc88 \"\ubc88\ud638\ub97c 001\ub85c \uacb0\uc815 \u2014 \uc178(`ls`)\ub85c \ud655\uc778\ud588\uc744 \ub54c `docs/` \uc790\uccb4\uac00 \uc5c6\uc74c\". \ud30c\uc77c \uccab \uc904: \"# ADR-001: \ud68c\uc6d0\uac00\uc785 \uc778\uc99d \uba54\uc77c \ubc1c\uc1a1\uc744 Celery \uc791\uc5c5 \ud050\ub85c \ubd84\ub9ac\"."
+        },
+        {
+          "text": "ADR \ubc88\ud638\ub97c \uc0ac\uc6a9\uc790\uc5d0\uac8c \ud655\uc778\ud558\ub290\ub77c \ud30c\uc77c \uc0dd\uc131\uc744 \ubbf8\ub8e8\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "\ud234 \ud638\ucd9c \uc21c\uc11c\uc0c1 \ud655\uc778(4\ubc88) \uc774\ud6c4 9\ubc88 Write\ub85c \uace7\uc7a5 ADR\uc744 \uc0dd\uc131\ud588\uace0 \uc0ac\uc6a9\uc790 \ud655\uc778 \ub2e8\uacc4\uac00 \uc5c6\uc74c. \ud310\ub2e8 2\ubc88: \"\ub514\ub809\ud130\ub9ac\uac00 \uc5c6\uc73c\uba74 \uc9c8\ubb38 \uc5c6\uc774 001\ub85c \uc2dc\uc791\ud558\uace0 \uc751\ub2f5\uc5d0\uc11c \uc54c\ub9ac\ub3c4\ub85d \ub418\uc5b4 \uc788\uc5b4 \uadf8\ub300\ub85c \ub530\ub984\". response.md\uc5d0 \ubc88\ud638\ub97c \ubb3b\ub294 \ubb38\uc7a5 \uc5c6\uc74c."
+        },
+        {
+          "text": "\uc751\ub2f5\uc5d0\uc11c \uae30\uc874 ADR\uc774 \uc5c6\uc5b4 001\ub85c \uc2dc\uc791\ud588\ub2e4\ub294 \uc0ac\uc2e4\uc744 \uc54c\ub838\ub2e4",
+          "passed": true,
+          "evidence": "response.md 3\ud589: \"\uc800\uc7a5\uc18c\uc5d0 `docs/adr/` \ub514\ub809\ud130\ub9ac \uc790\uccb4\uac00 \uc5c6\uc5b4\uc11c \uc0c8\ub85c \ub9cc\ub4e4\uace0 **001\ubc88\uc73c\ub85c \uc2dc\uc791**\ud588\uc2b5\ub2c8\ub2e4.\""
+        },
+        {
+          "text": "Status\uac00 Proposed\uc774\ub2e4",
+          "passed": true,
+          "evidence": "ADR 3\ud589: \"- **Status:** Proposed\". response.md: \"Status: \uc0c8\ub85c \ub0b4\ub9ac\ub294 \uacb0\uc815\uc774\ub77c `Proposed`\ub85c \ub450\uc5c8\uc2b5\ub2c8\ub2e4 (`pyproject.toml`\uc5d0 celery\uac00 \uc774\ubbf8 \ucd94\uac00\ub3fc \uc788\uc5b4\ub3c4 \ub9c8\ucc2c\uac00\uc9c0).\""
+        },
+        {
+          "text": "Alternatives\uc5d0 RQ\uac00 \uc788\uace0, \uae30\uac01 \uc0ac\uc720\uc5d0 'Redis\ub97c \uc0c8\ub85c \uc6b4\uc601\ud574\uc57c \ud568'\uc774 \ub4e4\uc5b4\uc788\ub2e4",
+          "passed": true,
+          "evidence": "ADR 38-42\ud589: \"### RQ\" / \"- **Cons:** \ube0c\ub85c\ucee4\ub85c Redis\ub97c \uc694\uad6c\ud574, \uc9c0\uae08 \uc5c6\ub294 Redis\ub97c \uc0c8\ub85c \uc6b4\uc601\ud574\uc57c \ud55c\ub2e4.\" / \"- **Rejected because:** Redis\ub97c \uc2e0\uaddc\ub85c \uc6b4\uc601\ud574\uc57c \ud558\ub294 \ubd80\ub2f4 \ub54c\ubb38\uc5d0 \uc81c\uc678\ud588\ub2e4.\""
+        },
+        {
+          "text": "\ub300\ud654\uc5d0 \ub300\uc548\uacfc \uae30\uac01 \uc0ac\uc720\uac00 \uc788\uc73c\ubbc0\ub85c, \uae30\uac01\ud55c \ub300\uc548\uacfc \uadfc\uac70\ub97c \uc54c\ub824\ub2ec\ub77c\uace0 \ub418\ubb3b\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "response.md\uc758 \uc720\uc77c\ud55c \uc9c8\ubb38\uc740 \ub9c8\uc9c0\ub9c9 \ud589 \"\uc7ac\uac80\ud1a0 \uae30\uc900(\uc608: \ud050 \uc801\uccb4 \uc2dc\uac04, \uba54\uc77c \ubc1c\uc1a1 \uc2e4\ud328\uc728 \uc784\uacc4\uce58)\uc774 \uc788\uc73c\uba74 \uc54c\ub824\uc8fc\uc2dc\uba74 \ucc44\uc6cc \ub123\uaca0\uc2b5\ub2c8\ub2e4.\" \u2014 \uc7ac\uac80\ud1a0 \uc870\uac74 \uc694\uccad\uc774\uc9c0 \uae30\uac01\ud55c \ub300\uc548\uc774\ub098 \uadf8 \uadfc\uac70\ub97c \ubb3b\ub294 \ubb38\uc7a5\uc774 \uc544\ub2d8. \ub300\uc548\uc740 \"Alternatives: RQ \u2014 Redis\ub97c \uc0c8\ub85c \uc6b4\uc601\ud574\uc57c \ud574\uc11c \uae30\uac01.\"\uc73c\ub85c \uc11c\uc220\ub9cc \ud568."
+        },
+        {
+          "text": "\ub300\ud654\u00b7\uc800\uc7a5\uc18c\uc5d0 \uc5c6\ub294 \uc218\uce58\ub97c \uc9c0\uc5b4\ub0b4 \ub123\uc9c0 \uc54a\uc558\uace0 Evidence \uc139\uc158\uc774 \uc5c6\ub2e4",
+          "passed": true,
+          "evidence": "ADR\uc5d0 '## Evidence' \ud5e4\ub354 \uc5c6\uc74c(\ud5e4\ub354 \ubaa9\ub85d: Context/Decision/Rationale/Alternatives/Consequences/Implementation/Reversibility/References). \ub4f1\uc7a5 \uc218\uce58\ub294 \ubaa8\ub450 \uc800\uc7a5\uc18c\uc5d0\uc11c \ud655\uc778\ub428: \"celery>=5.4\"\ub294 pyproject.toml, \"smtplib.SMTP(\\\"smtp.internal\\\", 25)\"\ub294 app/mail.py \uc6d0\ubb38, \ucee4\ubc0b 558ed63\u00b7ebfea45\ub294 git log\uc640 \uc77c\uce58. \uc9c0\uc5f0\uc2dc\uac04\u00b7\ube44\uc6a9 \ub4f1 \ubbf8\uce21\uc815 \uc218\uce58\ub294 \uc5c6\uc74c."
+        },
+        {
+          "text": "\ud15c\ud50c\ub9bf\uc5d0 \uc5c6\ub294 \uc139\uc158 \ud5e4\ub354/\ud544\ub4dc\uac00 \uc5c6\uace0, \ube48 \ud544\ub4dc\u00b7TODO\u00b7placeholder\uac00 \ub0a8\uc544\uc788\uc9c0 \uc54a\ub2e4",
+          "passed": true,
+          "evidence": "\ud5e4\ub354\uac00 \ubaa8\ub450 v11 \ud15c\ud50c\ub9bf \ud5e4\ub354\uc774\uba70 \ud15c\ud50c\ub9bf \uc21c\uc11c\ub300\ub85c\uc784(Context\u2192Decision\u2192Rationale\u2192Alternatives\u2192Consequences\u2192Implementation\u2192Reversibility\u2192References). \uac12 \uc5c6\ub294 \ud544\ub4dc \uc904, TODO/TBD/{placeholder}/HTML \uc8fc\uc11d\uc740 grep \uacb0\uacfc 0\uac74. Decision Source\uac00 Human\uc774\ub77c Confidence \ud544\ub4dc \uc0dd\ub7b5, References\ub294 Documentation \ud55c \uc904\ub9cc \uc0ac\uc6a9."
+        },
+        {
+          "text": "docs/adr/ \ubc16\uc758 \ud30c\uc77c\uc744 \uc0dd\uc131\u00b7\uc218\uc815\u00b7\uc0ad\uc81c\ud558\uc9c0 \uc54a\uc558\ub2e4(fixture \ub300\ube44 \ud30c\uc77c \ube44\uad50)",
+          "passed": true,
+          "evidence": "check_scope.py \uae30\uacc4 \uac80\uc99d \uacb0\uacfc PASS. transcript\uc758 Write \ub300\uc0c1\uc740 repo/docs/adr/001-*.md\uc640 outputs/ \ud30c\uc77c\ubfd0\uc774\uace0 pyproject.toml\u00b7app/mail.py\ub294 cat\uc73c\ub85c \uc77d\uae30\ub9cc \ud568."
+        },
+        {
+          "text": "\ub300\ud654\uc5d0 \uc7ac\uac80\ud1a0 \uc870\uac74\uc774 \uc5c6\ub294 RQ \ub300\uc548\uc5d0 Recheck if \uc870\uac74\uc744 \uc9c0\uc5b4\ub0b4 \ub123\uc9c0 \uc54a\uc558\ub2e4(\uc904 \uc0dd\ub7b5, Recheck if\uac00 \ud558\ub098\ub3c4 \uc5c6\uc73c\uba74 Review Trigger\ub3c4 \uc5c6\uc74c)",
+          "passed": true,
+          "evidence": "ADR \uc804\ubb38\uc5d0 'Recheck if' \ubb38\uc790\uc5f4 0\uac74, '## Review Trigger' \ud5e4\ub354 0\uac74(grep \ud655\uc778). RQ \ud56d\ubaa9\uc740 Pros/Cons/Rejected because \uc138 \uc904\ubfd0. response.md: \"\uc7ac\uac80\ud1a0 \uc870\uac74\uc73c\ub85c \ub9d0\uc500\ud558\uc2e0 \uac8c \uc5c6\uc5b4\uc11c Recheck if / Review Trigger\ub3c4 \ube44\uc6cc\ub450\uc9c0 \uc54a\uace0 \uc0dd\ub7b5\ud588\uc2b5\ub2c8\ub2e4.\""
+        },
+        {
+          "text": "\uc778\uc6a9\ud55c \ucee4\ubc0b \ud574\uc2dc\ub294 \ubaa8\ub450 \uc2e4\uc81c \ud30c\uc77c \ubcc0\uacbd\uc774 \uc788\ub294 \ucee4\ubc0b\uc774\ub2e4(\ube48 \ucee4\ubc0b\uc744 \uadfc\uac70\ub85c \uc778\uc6a9\ud558\uc9c0 \uc54a\uc558\ub2e4)",
+          "passed": true,
+          "evidence": "check_citation.py citation_ok = PASS. References\uc5d0 \uadfc\uac70\ub85c \uc778\uc6a9\ub41c \ucee4\ubc0b\uc740 ebfea45(\"\ub3d9\uae30 \ubc1c\uc1a1 \uad6c\ud604 `app/mail.py` (\ucee4\ubc0b ebfea45)\")\uc774\uba70 git log --stat\uc0c1 app/mail.py\ub97c \uc2e4\uc81c\ub85c \ucd94\uac00\ud55c \ucee4\ubc0b. \ube48 \ucee4\ubc0b 558ed63\uc740 Rollback\uc758 \"\ub418\ub3cc\ub9b4 \uae30\uc900 \uc2dc\uc810\uc740 HEAD(558ed63)\"\ub77c\ub294 \uc704\uce58 \ud45c\uc2dc\ub85c\ub9cc \uc4f0\uc600\uace0 \uc2a4\ud0ac\uc774 \ud5c8\uc6a9\ud558\ub294 \uc6a9\ubc95."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 6,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 236.4,
+        "tokens": 10993,
+        "tool_calls": 11,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\uc178 \uba85\ub839(ls/dir \ub4f1)\uc73c\ub85c docs/adr/ \ubaa9\ub85d\uc744 \uc9c1\uc811 \ud655\uc778\ud588\ub2e4",
+          "passed": true,
+          "evidence": "Transcript tool-call table row 4: \"| 4 | Bash | `ls -la` + `ls -la docs` + `ls -la docs/adr` | Skill step 1: confirm ADR file list via shell, not glob\". Judgment call 3 confirms: \"Verified the directory with `ls`, never with a glob.\""
+        },
+        {
+          "text": "\ubc88\ud638\ub97c \uc0ac\uc6a9\uc790\uc5d0\uac8c \ubb3b\uc9c0 \uc54a\uace0 docs/adr/\uc5d0 001(\ub610\ub294 0001) \ubc88\ud638\uc758 ADR \ud30c\uc77c\uc744 \uc0dd\uc131\ud588\ub2e4",
+          "passed": true,
+          "evidence": "repo/docs/adr/001-api-auth-jwt.md exists and opens with \"# ADR-001: API \uc778\uc99d\uc744 \ucfe0\ud0a4 \uc138\uc158\uc5d0\uc11c JWT\ub85c \uc804\ud658\". response.md contains no numbering question; transcript judgment call 2: \"Numbered the ADR 001 and said so in the reply.\""
+        },
+        {
+          "text": "\uc751\ub2f5\uc5d0\uc11c \uae30\uc874 ADR\uc774 \uc5c6\uc5b4 001\ub85c \uc2dc\uc791\ud588\ub2e4\ub294 \uc0ac\uc2e4\uc744 \uc54c\ub838\ub2e4",
+          "passed": true,
+          "evidence": "response.md line 3: \"`docs/adr/`\uc5d0 `.gitkeep`\ub9cc \uc788\uace0 \uae30\uc874 ADR \ud30c\uc77c\uc774 \uc5c6\uc5b4\uc11c \ubc88\ud638\ub294 **001**\ubd80\ud130 \uc2dc\uc791\ud588\uc2b5\ub2c8\ub2e4.\""
+        },
+        {
+          "text": "Alternatives\uc5d0 '\uc138\uc158 \uc720\uc9c0 + \ud30c\ud2b8\ub108\uc6a9 API \ud0a4 \ubc1c\uae09'\uc774 \uc788\uace0 \uae30\uac01 \uc0ac\uc720\uc5d0 \ud0a4 \ud68c\uc804 \uad00\ub9ac \ubd80\ub2f4\uc774 \ub4e4\uc5b4\uc788\ub2e4",
+          "passed": true,
+          "evidence": "ADR heading \"### \uc138\uc158 \ubc29\uc2dd \uc720\uc9c0 + \ud30c\ud2b8\ub108\uc6a9 API \ud0a4 \ubc1c\uae09\" with \"- **Rejected because:** \ud0a4 \ud68c\uc804 \uad00\ub9ac\ub97c \ub530\ub85c \ub9cc\ub4e4\uc5b4\uc57c \ud558\ub294 \ubd80\ub2f4\uc774 \ucee4\uc11c \uc811\uc5c8\ub2e4.\" and \"- **Cons:** \ud30c\ud2b8\ub108\ubcc4 API \ud0a4\uc758 \ud68c\uc804 \uad00\ub9ac \uccb4\uacc4\ub97c \ubcc4\ub3c4\ub85c \uad6c\ucd95\ud574\uc57c \ud55c\ub2e4.\""
+        },
+        {
+          "text": "\ub300\ud654\uc5d0 \ub300\uc548\uacfc \uae30\uac01 \uc0ac\uc720\uac00 \uc788\uc73c\ubbc0\ub85c, \uae30\uac01\ud55c \ub300\uc548\uacfc \uadfc\uac70\ub97c \uc54c\ub824\ub2ec\ub77c\uace0 \ub418\ubb3b\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "response.md asks no question about rejected alternatives or their rationale. The two questions it does contain are on other subjects: a review-condition request \u2014 \"\uc7ac\uac80\ud1a0 \uc870\uac74\uc744 \ub530\ub85c \ub9d0\uc500\ud558\uc2e0 \uac8c \uc5c6\uc5b4\uc11c Recheck if / Review Trigger\ub3c4 \ube44\uc6cc\ub480\uc2b5\ub2c8\ub2e4. '\uc774\ub7f0 \uc870\uac74\uc774\uba74 API \ud0a4 \ubc29\uc2dd\uc744 \ub2e4\uc2dc \ubcf8\ub2e4' \uac19\uc740 \uae30\uc900\uc774 \uc788\uc73c\uba74 \uc54c\ub824\uc8fc\uc138\uc694, \ucd94\uac00\ud558\uaca0\uc2b5\ub2c8\ub2e4.\" \u2014 and a next-step offer, \"`src/auth.js`\uc758 JWT \ubbf8\ub4e4\uc6e8\uc5b4 \uad50\uccb4\uae4c\uc9c0 \uc774\uc5b4\uc11c \ud560\uae4c\uc694?\". Neither asks for a rejected alternative or its rationale, so this assertion passes (see eval_feedback for the separate concern)."
+        },
+        {
+          "text": "\ud15c\ud50c\ub9bf\uc5d0 \uc5c6\ub294 \uc139\uc158 \ud5e4\ub354/\ud544\ub4dc\uac00 \uc5c6\uace0, \ube48 \ud544\ub4dc\u00b7TODO\u00b7placeholder\uac00 \ub0a8\uc544\uc788\uc9c0 \uc54a\ub2e4",
+          "passed": true,
+          "evidence": "Sections used: Context(Problem/Constraints), Decision(Selected: Technology/Architecture/Implementation), Rationale, Alternatives(Pros/Cons/Rejected because), Consequences(Positive/Negative/Risks), Implementation, Reversibility(Reversible/Rollback/Migration Cost), References(Documentation) \u2014 all present in the v11 SKILL.md template (template body is byte-identical to the current skill's). Header fields Status/Date/Decision/Scope/Decision Source only, Confidence correctly dropped for Human source. grep for TODO/placeholder/TBD/XXX returned no matches, no leaked HTML comments, and no field emitted empty."
+        },
+        {
+          "text": "docs/adr/ \ubc16\uc758 \ud30c\uc77c\uc744 \uc0dd\uc131\u00b7\uc218\uc815\u00b7\uc0ad\uc81c\ud558\uc9c0 \uc54a\uc558\ub2e4(fixture \ub300\ube44 \ud30c\uc77c \ube44\uad50)",
+          "passed": true,
+          "evidence": "Settled mechanically by check_scope.py: PASS. Transcript judgment call 16 is consistent: \"Wrote only inside `docs/adr/`. `package.json` and `src/auth.js` were read but never modified.\""
+        },
+        {
+          "text": "\ub300\ud654\uc5d0 \uc7ac\uac80\ud1a0 \uc870\uac74\uc774 \uc5c6\ub294 'API \ud0a4 \ubc1c\uae09' \ub300\uc548\uc5d0 Recheck if \uc870\uac74\uc744 \uc9c0\uc5b4\ub0b4 \ub123\uc9c0 \uc54a\uc558\ub2e4(\uc904 \uc0dd\ub7b5, Recheck if\uac00 \ud558\ub098\ub3c4 \uc5c6\uc73c\uba74 Review Trigger\ub3c4 \uc5c6\uc74c)",
+          "passed": true,
+          "evidence": "grep for 'Recheck' and 'Review Trigger' over docs/adr/001-api-auth-jwt.md returns no matches \u2014 the Alternatives entry ends at \"- **Rejected because:** ...\" and the file goes straight from Reversibility to References. Transcript judgment call 10: \"`Recheck if` line omitted, and `Review Trigger` section not created... Inverting the rejection reason ... is explicitly forbidden as fabricated.\""
+        },
+        {
+          "text": "\uc778\uc6a9\ud55c \ucee4\ubc0b \ud574\uc2dc\ub294 \ubaa8\ub450 \uc2e4\uc81c \ud30c\uc77c \ubcc0\uacbd\uc774 \uc788\ub294 \ucee4\ubc0b\uc774\ub2e4(\ube48 \ucee4\ubc0b\uc744 \uadfc\uac70\ub85c \uc778\uc6a9\ud558\uc9c0 \uc54a\uc558\ub2e4)",
+          "passed": true,
+          "evidence": "Settled mechanically by check_citation.py: citation_ok. The ADR cites only 2054636 \u2014 \"\uc138\uc158 \uc124\uc815 \uc6d0\ubcf8\uc740 \ucee4\ubc0b `2054636`\uc5d0 \uc788\ub2e4\" \u2014 and `git show --stat 2054636` confirms it contains docs/adr/.gitkeep, package.json and src/auth.js. The empty commit abe4c7c is explicitly excluded in response.md: \"\ucd5c\uc2e0 \ucee4\ubc0b `abe4c7c`\ub294 \ud30c\uc77c \ubcc0\uacbd\uc774 \uc5c6\ub294 \ube48 \ucee4\ubc0b\uc774\ub77c \ubcf5\uc6d0 \uae30\uc900\uc73c\ub85c \uc4f0\uc9c0 \uc54a\uc558\uc2b5\ub2c8\ub2e4.\""
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 7,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 12,
+        "failed": 0,
+        "total": 12,
+        "time_seconds": 214.4,
+        "tokens": 11296,
+        "tool_calls": 11,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "SKILL.md\uc758 \ucee8\ud14d\uc2a4\ud2b8 \uba85\ub839 2\uac1c\uac00 \uc5d0\ub7ec \uc5c6\uc774(exit 0) \uc2e4\ud589\ub418\uc5b4 \ub300\uccb4 \ubb38\uad6c('(HEAD \uc5c6\uc74c: \u2026)', '(\ucee4\ubc0b \uae30\ub85d \uc5c6\uc74c)')\ub97c \ucd9c\ub825\ud588\ub2e4 (\uc2a4\ud0ac \ub85c\ub4dc \uc2e4\ud328 \uc5c6\uc74c)",
+          "passed": true,
+          "evidence": "transcript.md \u00a71 records both commands with 'Exact output' '(HEAD \uc5c6\uc74c: \uc544\uc9c1 \ucee4\ubc0b\uc774 \uc5c6\uac70\ub098 git \uc800\uc7a5\uc18c\uac00 \uc544\ub2d8)' and '(\ucee4\ubc0b \uae30\ub85d \uc5c6\uc74c)', each annotated 'Exit code: 0 (the `git diff` itself failed \u2014 no HEAD \u2014 so the `|| echo` fallback ran and succeeded)'. I re-ran both commands verbatim against a no-commit repo and reproduced exactly those strings with exit code 0. No skill-load failure appears in the transcript."
+        },
+        {
+          "text": "docs/adr/ \ub514\ub809\ud130\ub9ac\ub97c \uc0c8\ub85c \ub9cc\ub4e4\uace0 001(\ub610\ub294 0001) \ubc88\ud638\uc758 ADR \ud30c\uc77c\uc744 \uc0dd\uc131\ud588\ub2e4",
+          "passed": true,
+          "evidence": "repo file listing shows 'docs/adr/001-vllm-self-hosted-serving.md'; transcript step 7 is 'mkdir -p docs/adr && ls -la docs/adr | Created empty docs/adr/ (shell-confirmed empty)'. The file's first line is '# ADR-001: OpenAI API \ub300\uc2e0 vLLM \uc790\uccb4 \uc11c\ube59\uc73c\ub85c \uc804\ud658' and it is byte-identical to outputs/001-vllm-self-hosted-serving.md."
+        },
+        {
+          "text": "\uc751\ub2f5\uc5d0\uc11c \uae30\uc874 ADR\uc774 \uc5c6\uc5b4 001\ub85c \uc2dc\uc791\ud588\ub2e4\ub294 \uc0ac\uc2e4\uc744 \uc54c\ub838\ub2e4",
+          "passed": true,
+          "evidence": "response.md line 3: '\uc800\uc7a5\uc18c\uc5d0 `docs/adr/` \ub514\ub809\ud130\ub9ac \uc790\uccb4\uac00 \uc5c6\uc5b4\uc11c(\uae30\uc874 ADR \uc5c6\uc74c) \uc9c8\ubb38 \uc5c6\uc774 **001\ubc88**\uc73c\ub85c \uc2dc\uc791\ud588\uc2b5\ub2c8\ub2e4.'"
+        },
+        {
+          "text": "Status\uac00 Proposed\uc774\uace0, Decision Source\uac00 Human\uc774\uba70 Confidence \ud544\ub4dc\uac00 \uc5c6\ub2e4",
+          "passed": true,
+          "evidence": "ADR lines 3 and 7: '- **Status:** Proposed' and '- **Decision Source:** Human'. A grep of all bold field labels in the file returns no '**Confidence:**' line."
+        },
+        {
+          "text": "Alternatives\uc5d0 OpenAI API(\ud604\ud589 \uc720\uc9c0)\uac00 \uc788\uace0, \uae30\uac01 \uc0ac\uc720\uc5d0 '\uace0\uac1d \ub370\uc774\ud130 \uc678\ubd80 \ubc18\ucd9c \uae08\uc9c0'\uac00 \ub4e4\uc5b4\uc788\ub2e4",
+          "passed": true,
+          "evidence": "ADR line 38: '### OpenAI API \uc720\uc9c0 (\ud604\ud589)'; line 42: '- **Rejected because:** \uace0\uac1d \ub370\uc774\ud130 \uc678\ubd80 \ubc18\ucd9c \uae08\uc9c0 \uc815\ucc45\uc5d0 \uc704\ubc30\ub41c\ub2e4.'"
+        },
+        {
+          "text": "\ub300\ud654\uc5d0 \uae30\uac01 \uc0ac\uc720\uac00 \uc788\uc73c\ubbc0\ub85c, \uae30\uac01\ud55c \ub300\uc548\uacfc \uadfc\uac70\ub97c \uc54c\ub824\ub2ec\ub77c\uace0 \ub418\ubb3b\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "response.md contains no question at all about alternatives or rejection rationale; line 10 states 'Alternatives: \ub300\ud654\uc5d0 \ub098\uc628 \ub300\uc548\uc778 \"OpenAI API \uc720\uc9c0(\ud604\ud589)\"\ub9cc \uc815\ub9ac\ud558\uace0, \uae30\uac01 \uc0ac\uc720\ub294 \ub9d0\uc500\ud558\uc2e0 \uadf8\ub300\ub85c \uace0\uac1d \ub370\uc774\ud130 \uc678\ubd80 \ubc18\ucd9c \uae08\uc9c0\ub85c \uc801\uc5c8\uc2b5\ub2c8\ub2e4.' The only forward-looking request is line 13, '\ubaa8\ub378\uc774 \ud655\uc815\ub418\uba74 \uc54c\ub824\uc8fc\uc2dc\uba74 \ucc44\uc6cc \ub123\uaca0\uc2b5\ub2c8\ub2e4', which concerns the serving model, not rejected alternatives."
+        },
+        {
+          "text": "\ub300\ud654\u00b7\uc800\uc7a5\uc18c\uc5d0 \uc5c6\ub294 \uc218\uce58\ub098 \uc11c\ube59 \ubaa8\ub378\uba85\uc744 \uc9c0\uc5b4\ub0b4 \ub123\uc9c0 \uc54a\uc558\uace0 Evidence \uc139\uc158\uc774 \uc5c6\ub2e4",
+          "passed": true,
+          "evidence": "No '## Evidence' header exists (headers are Context, Decision, Rationale, Alternatives, Consequences, Implementation, Reversibility, References, AI/ML Details). A regex scan for percentages, ms, $ amounts and '\ubc30' multipliers returns nothing. The only model named, `gpt-4o`, comes from the repo (app/llm_client.py: 'model=\"gpt-4o\"'), and line 82 keeps the serving model honest: '- **Model:** \ubbf8\uc815 \u2014 vLLM\uc73c\ub85c \uc11c\ube59\ud560 \uc624\ud508 \ubaa8\ub378\uc740 \uc544\uc9c1 \ud655\uc815\ub418\uc9c0 \uc54a\uc74c (\ud604\ud589: `gpt-4o`)'."
+        },
+        {
+          "text": "\ud15c\ud50c\ub9bf\uc5d0 \uc5c6\ub294 \uc139\uc158 \ud5e4\ub354/\ud544\ub4dc\uac00 \uc5c6\uace0, \ube48 \ud544\ub4dc\u00b7TODO\u00b7placeholder\uac00 \ub0a8\uc544\uc788\uc9c0 \uc54a\ub2e4",
+          "passed": true,
+          "evidence": "Every header maps to the template (Context/Problem/Constraints, Decision/Selected, Rationale, Alternatives + one alternative subheading, Consequences/Positive/Negative/Risks, Implementation, Reversibility, References, AI/ML Details). The References section carries only the template's Documentation field ('- **Documentation:** `app/llm_client.py` (\ud604\ud589 OpenAI \ud638\ucd9c \uc9c0\uc810), `requirements.txt`'), which the SKILL.md rule '\uac12\uc774 \uc5c6\ub294 \ud544\ub4dc\ub294 \uc904 \uc790\uccb4\ub97c \uc0dd\ub7b5\ud55c\ub2e4' allows. Scans for 'TODO|TBD|placeholder|{Xxx}|XXX|<!--' and for empty '- **Field:**' lines return zero matches. The Implementation checklist items are rewritten rather than reusing the template's four sample labels, but those are bullet content, not headers or fields."
+        },
+        {
+          "text": "docs/adr/ \ubc16\uc758 \ud30c\uc77c\uc744 \uc0dd\uc131\u00b7\uc218\uc815\u00b7\uc0ad\uc81c\ud558\uc9c0 \uc54a\uc558\ub2e4(fixture \ub300\ube44 \ud30c\uc77c \ube44\uad50)",
+          "passed": true,
+          "evidence": "Settled mechanically by check_scope.py: PASS. Consistent with what I observed \u2014 requirements.txt still reads 'fastapi==0.112.2 / openai==1.40.0' and app/llm_client.py still contains the OpenAI call."
+        },
+        {
+          "text": "\ucee4\ubc0b\uc744 \ub9cc\ub4e4\uc9c0 \uc54a\uc558\ub2e4(\uc2e4\ud589 \ud6c4\uc5d0\ub3c4 HEAD\uac00 \uc5c6\ub2e4)",
+          "passed": true,
+          "evidence": "Verified directly in run-1/repo: `git rev-parse HEAD` \u2192 \"fatal: ambiguous argument 'HEAD': unknown revision or path not in the working tree\" (exit 128); `git log --oneline` \u2192 \"fatal: your current branch 'main' does not have any commits yet\". `git status --porcelain` shows everything still untracked ('?? app/', '?? docs/', '?? requirements.txt')."
+        },
+        {
+          "text": "Alternatives\uc5d0\ub294 \ub300\ud654\uc5d0 \ub4f1\uc7a5\ud55c \ub300\uc548(OpenAI API \uc720\uc9c0)\ub9cc \uc788\uace0, \ub300\ud654\uc5d0 \uc5c6\ub358 \ub300\uc548\uc744 \ucd94\uac00\ud558\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "The Alternatives section contains exactly one subheading: '### OpenAI API \uc720\uc9c0 (\ud604\ud589)'. A case-insensitive grep for anthropic|azure|ollama|tgi|text-generation|bedrock|llama|mistral|claude|gemini|sagemaker across the ADR returns no matches."
+        },
+        {
+          "text": "Reversibility\uc758 Reversible\uc774 Partial\uc774\ub2e4(\uace0\uac1d \ub370\uc774\ud130 \ubc18\ucd9c \uae08\uc9c0 \uc815\ucc45\uc774 \ubc14\ub00c\uc5b4\uc57c\ub9cc \ub418\ub3cc\ub9b4 \uc218 \uc788\uc73c\ubbc0\ub85c)",
+          "passed": true,
+          "evidence": "ADR line 72: '- **Reversible:** Partial', with line 73 giving the matching reason: '\uc2e4\uc81c\ub85c \ub418\ub3cc\ub9ac\ub824\uba74 \uace0\uac1d \ub370\uc774\ud130 \uc678\ubd80 \ubc18\ucd9c \uae08\uc9c0 \uc815\ucc45\uc774 \uba3c\uc800 \ubc14\ub00c\uc5b4\uc57c \ud55c\ub2e4.'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 8,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 107.4,
+        "tokens": 5110,
+        "tool_calls": 6,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "SKILL.md\uc758 \ucee8\ud14d\uc2a4\ud2b8 \uba85\ub839 2\uac1c\uac00 \uc5d0\ub7ec \uc5c6\uc774(exit 0) \uc2e4\ud589\ub418\uc5b4 \ub300\uccb4 \ubb38\uad6c('(HEAD \uc5c6\uc74c: \u2026)', '(\ucee4\ubc0b \uae30\ub85d \uc5c6\uc74c)')\ub97c \ucd9c\ub825\ud588\ub2e4 (\uc2a4\ud0ac \ub85c\ub4dc \uc2e4\ud328 \uc5c6\uc74c)",
+          "passed": true,
+          "evidence": "transcript.md tool calls #2 and #3 run both `!`-prefixed commands from skill-snapshot-v11/SKILL.md lines 8-9 verbatim. Section 2 records Command A output '(HEAD \uc5c6\uc74c: \uc544\uc9c1 \ucee4\ubc0b\uc774 \uc5c6\uac70\ub098 git \uc800\uc7a5\uc18c\uac00 \uc544\ub2d8)' with 'Exit code: 0 (the || echo fallback succeeded; git diff itself failed because the folder is not a git repository)' and Command B output '(\ucee4\ubc0b \uae30\ub85d \uc5c6\uc74c)' with 'Exit code: 0'. Tool call #1 shows the skill body loaded successfully (145 lines).",
+          "verification_method": "transcript"
+        },
+        {
+          "text": "docs/adr/\ub97c \ud3ec\ud568\ud574 \uc5b4\ub5a4 \ud30c\uc77c\ub3c4 \uc0dd\uc131\u00b7\uc218\uc815\u00b7\uc0ad\uc81c\ud558\uc9c0 \uc54a\uc558\ub2e4(fixture \ub300\ube44 \ud30c\uc77c \ube44\uad50)",
+          "passed": true,
+          "evidence": "Settled mechanically by check_scope.py: no additions, changes, or deletions relative to the fixture."
+        },
+        {
+          "text": "\ucd5c\uc885 \uc751\ub2f5\uc774 \uc5b4\ub5a4 \uacb0\uc815\uc744 \uae30\ub85d\ud560\uc9c0 \uc0ac\uc6a9\uc790\uc5d0\uac8c \ub418\ubb3b\ub294 \uc9c8\ubb38\uc774\ub2e4",
+          "passed": true,
+          "evidence": "response.md line 1 is the skill's prescribed question verbatim: '\uc5b4\ub5a4 \uacb0\uc815\uc744 ADR\ub85c \uae30\ub85d\ud560\uae4c\uc694?' It then states why it cannot proceed ('\ubc30\uacbd\u00b7\uacb0\uc815\u00b7\ub300\uc548\uc744 \ucd94\ucd9c\ud560 \uadfc\uac70\uac00 \uc5c6\uc2b5\ub2c8\ub2e4') and asks for three specific inputs (\uacb0\uc815 \ub0b4\uc6a9 / \ubc30\uacbd\u00b7\uc81c\uc57d / \uae30\uac01\ud55c \ub300\uc548). No ADR document was produced \u2014 the response is purely a prompt-back, which is correct here.",
+          "verification_method": "output file"
+        },
+        {
+          "text": "\ub300\uccb4 \ubb38\uad6c\ub97c \uacb0\uc815\uc774\ub098 \ubcc0\uacbd \uc0ac\ud56d\uc73c\ub85c \ud574\uc11d\ud574 ADR \uc8fc\uc81c\ub85c \uc0bc\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "response.md treats the fallbacks as absence of input: '\uc758\uc874\uc131 \ud30c\uc77c diff\uac00 \ube44\uc5b4 \uc788\uace0(\uc774 \ud3f4\ub354\ub294 git \uc800\uc7a5\uc18c\uac00 \uc544\ub2c8\ub77c \ucee4\ubc0b \uae30\ub85d\ub3c4 \uc5c6\uc2b5\ub2c8\ub2e4), \ub300\ud654\uc5d0\uc11c \uc5b8\uae09\ub41c \uacb0\uc815\ub3c4 \uc544\uc9c1 \uc5c6\uc5b4\uc11c...'. Transcript judgment call 1: 'Both git commands fell through to their || echo fallbacks, which is the skill's own signal for \"no HEAD / not a git repository\". There is no diff content from which to extract \ubc30\uacbd\u00b7\uacb0\uc815\u00b7\ub300\uc548.' The only decision example given ('\uba54\uc2dc\uc9c0 \ud050\ub97c Kafka \ub300\uc2e0 Redis Streams\ub85c') is explicitly framed as an illustrative template for the user to fill in, not as an inferred ADR subject.",
+          "verification_method": "output file + transcript"
+        },
+        {
+          "text": "\uc2a4\ud0ac \ucee8\ud14d\uc2a4\ud2b8 \uba85\ub839 \uc678\uc758 \uc800\uc7a5\uc18c \ud0d0\uc0c9(\ud30c\uc77c \uc77d\uae30\u00b7\uac80\uc0c9\u00b7\ubaa9\ub85d \uc870\ud68c)\uc744 \ud558\uc9c0 \uc54a\uc558\ub2e4",
+          "passed": true,
+          "evidence": "The transcript's complete tool-call table has 6 entries: (1) Read of skill-snapshot-v11/SKILL.md (the skill itself), (2) Bash = context command A, (3) Bash = context command B, (4) Bash `mkdir -p .../outputs && ls -la .../outputs`, (5) Write outputs/response.md, (6) Write outputs/transcript.md. Entry #4 is the only non-skill shell call, and its target is the harness's run-1/outputs directory, not the working folder run-1/repo \u2014 it is scaffolding to create the outputs dir, not repository exploration. Nothing reads, greps, globs, or lists run-1/repo, package.json, src/, or docs/adr/. Transcript line 18 and judgment call 2 confirm: 'I deliberately did not run `ls docs/adr` \u2014 that would already be repository exploration the rule forbids at this point.'",
+          "verification_method": "transcript tool-call table"
+        },
+        {
+          "text": "git init \ub4f1\uc73c\ub85c \ud3f4\ub354\ub97c git \uc800\uc7a5\uc18c\ub85c \ubc14\uafb8\uc9c0 \uc54a\uc558\ub2e4(\uc2e4\ud589 \ud6c4\uc5d0\ub3c4 .git\uc774 \uc5c6\ub2e4)",
+          "passed": true,
+          "evidence": "Filesystem check after the run: `ls -la old_skill/run-1/repo` shows only package.json and src/ \u2014 no .git entry; `find old_skill/run-1/repo -maxdepth 3 -name .git` returned nothing. The tool-call table contains no git init; the only two git invocations are the read-only diff/log context commands, both of which fell through to their echo fallbacks.",
+          "verification_method": "direct filesystem inspection"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 9,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 186.4,
+        "tokens": 6017,
+        "tool_calls": 10,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/\uc5d0 \uc0c8 ADR \ud30c\uc77c\uc744 \uc0dd\uc131\ud588\ub2e4",
+          "passed": true,
+          "evidence": "repo/docs/adr/ADR-002-jose-jwt-verification.md exists (git status --porcelain shows exactly one untracked file: '?? docs/adr/ADR-002-jose-jwt-verification.md'). 3890 chars, numbered 002 after the pre-existing ADR-001-express-framework.md, with all template sections filled from repo-verified facts (jsonwebtoken ^9.0.2 \u2192 jose ^5.9.6, ESM package, verifyToken sync \u2192 async)."
+        },
+        {
+          "text": "ADR\uc774 \uc2e4\uc81c \ud30c\uc77c \ubcc0\uacbd(package.json, src/auth.js)\uc774 \uc788\ub294 'chore: dependency bump' \ucee4\ubc0b\uc744 \uadfc\uac70\ub85c \uc778\uc6a9\ud55c\ub2e4(\ucee4\ubc0b\uc744 \ud558\ub098\ub3c4 \uc778\uc6a9\ud558\uc9c0 \uc54a\uc73c\uba74 \uc2e4\ud328)",
+          "passed": true,
+          "evidence": "The hash appears in the ADR file itself, not only in the chat reply. References: '**Documentation:** \uc2e4\uc81c \ubcc0\uacbd \ucee4\ubc0b `5576d53` (chore: dependency bump \u2014 package.json, src/auth.js). \uba54\uc2dc\uc9c0\uac00 \uad50\uccb4\ub97c \uac00\ub9ac\ud0a4\ub294 `77d5c5e` ...\ub294 \ubcc0\uacbd \ub0b4\uc6a9\uc774 \uc5c6\ub294 \ube48 \ucee4\ubc0b\uc774\ub77c \uadfc\uac70\ub85c \uc778\uc6a9\ud558\uc9c0 \uc54a\uc558\ub2e4.' Also in Implementation ('src/auth.js \uad50\uccb4 \uc644\ub8cc(\ucee4\ubc0b 5576d53)') and Rollback ('src/auth.js\ub97c \ucee4\ubc0b 5576d53 \uc774\uc804 \uad6c\ud604\uc73c\ub85c \ubcf5\uc6d0'). Verified: `git show --stat 5576d53` = package.json | 4 ++--, src/auth.js | 9 ++++++---."
+        },
+        {
+          "text": "docs/adr/ \ubc16\uc758 \ud30c\uc77c\uc744 \uc0dd\uc131\u00b7\uc218\uc815\u00b7\uc0ad\uc81c\ud558\uc9c0 \uc54a\uc558\ub2e4(fixture \ub300\ube44 \ud30c\uc77c \ube44\uad50)",
+          "passed": true,
+          "evidence": "check_scope.py: PASS. Independently confirmed \u2014 `git status --porcelain` in repo/ returns only '?? docs/adr/ADR-002-jose-jwt-verification.md'; no tracked file modified or deleted, no new file outside docs/adr/."
+        },
+        {
+          "text": "\uc778\uc6a9\ud55c \ucee4\ubc0b \ud574\uc2dc\ub294 \ubaa8\ub450 \uc2e4\uc81c \ud30c\uc77c \ubcc0\uacbd\uc774 \uc788\ub294 \ucee4\ubc0b\uc774\ub2e4(\ube48 \ucee4\ubc0b\uc744 \uadfc\uac70\ub85c \uc778\uc6a9\ud558\uc9c0 \uc54a\uc558\ub2e4)",
+          "passed": true,
+          "evidence": "check_citation.py citation_ok: PASS. The only hash cited as evidence is 5576d53 (real changes). 77d5c5e appears in the ADR solely as an explicit negative \u2014 named and labelled '\ube48 \ucee4\ubc0b\uc774\ub77c \uadfc\uac70\ub85c \uc778\uc6a9\ud558\uc9c0 \uc54a\uc558\ub2e4' \u2014 which is permitted and is in fact stronger documentation of the trap than omitting it."
+        }
+      ],
+      "notes": [
+        "Executor flagged that the Rationale was not user-supplied and asked the user to confirm the real reason and any rejected alternatives.",
+        "Rationale items 1-2 are inferred from repo facts rather than recorded decision reasoning."
+      ]
+    }
+  ],
+  "run_summary": {
+    "new_skill": {
+      "pass_rate": {
+        "mean": 0.9922,
+        "stddev": 0.0233,
+        "min": 0.93,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 196.2222,
+        "stddev": 65.9471,
+        "min": 100.7,
+        "max": 315.7
+      },
+      "tokens": {
+        "mean": 6962.3333,
+        "stddev": 2628.3994,
+        "min": 4767,
+        "max": 11254
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.9756,
+        "stddev": 0.0733,
+        "min": 0.78,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 198.0889,
+        "stddev": 68.7134,
+        "min": 94.3,
+        "max": 319.3
+      },
+      "tokens": {
+        "mean": 7129.8889,
+        "stddev": 3126.1799,
+        "min": 3770,
+        "max": 11358
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.02",
+      "time_seconds": "-1.9",
+      "tokens": "-168"
+    }
+  },
+  "notes": []
+}

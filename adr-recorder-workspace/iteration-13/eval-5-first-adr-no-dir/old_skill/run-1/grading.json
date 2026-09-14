@@ -1,0 +1,124 @@
+{
+  "expectations": [
+    {
+      "text": "docs/adr/ 디렉터리를 새로 만들고 첫 번호(001 또는 0001)의 ADR 파일을 생성했다",
+      "passed": true,
+      "evidence": "repo/docs/adr/001-celery-async-verification-email.md가 생성됨. transcript 4번 \"`ls -la docs` + `ls -la docs/adr` — docs/adr 존재 여부를 셸로 직접 확인\" 결과 docs/ 자체가 없었고, 판단 2번 \"번호를 001로 결정 — 셸(`ls`)로 확인했을 때 `docs/` 자체가 없음\". 파일 첫 줄: \"# ADR-001: 회원가입 인증 메일 발송을 Celery 작업 큐로 분리\"."
+    },
+    {
+      "text": "ADR 번호를 사용자에게 확인하느라 파일 생성을 미루지 않았다",
+      "passed": true,
+      "evidence": "툴 호출 순서상 확인(4번) 이후 9번 Write로 곧장 ADR을 생성했고 사용자 확인 단계가 없음. 판단 2번: \"디렉터리가 없으면 질문 없이 001로 시작하고 응답에서 알리도록 되어 있어 그대로 따름\". response.md에 번호를 묻는 문장 없음."
+    },
+    {
+      "text": "응답에서 기존 ADR이 없어 001로 시작했다는 사실을 알렸다",
+      "passed": true,
+      "evidence": "response.md 3행: \"저장소에 `docs/adr/` 디렉터리 자체가 없어서 새로 만들고 **001번으로 시작**했습니다.\""
+    },
+    {
+      "text": "Status가 Proposed이다",
+      "passed": true,
+      "evidence": "ADR 3행: \"- **Status:** Proposed\". response.md: \"Status: 새로 내리는 결정이라 `Proposed`로 두었습니다 (`pyproject.toml`에 celery가 이미 추가돼 있어도 마찬가지).\""
+    },
+    {
+      "text": "Alternatives에 RQ가 있고, 기각 사유에 'Redis를 새로 운영해야 함'이 들어있다",
+      "passed": true,
+      "evidence": "ADR 38-42행: \"### RQ\" / \"- **Cons:** 브로커로 Redis를 요구해, 지금 없는 Redis를 새로 운영해야 한다.\" / \"- **Rejected because:** Redis를 신규로 운영해야 하는 부담 때문에 제외했다.\""
+    },
+    {
+      "text": "대화에 대안과 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+      "passed": true,
+      "evidence": "response.md의 유일한 질문은 마지막 행 \"재검토 기준(예: 큐 적체 시간, 메일 발송 실패율 임계치)이 있으면 알려주시면 채워 넣겠습니다.\" — 재검토 조건 요청이지 기각한 대안이나 그 근거를 묻는 문장이 아님. 대안은 \"Alternatives: RQ — Redis를 새로 운영해야 해서 기각.\"으로 서술만 함."
+    },
+    {
+      "text": "대화·저장소에 없는 수치를 지어내 넣지 않았고 Evidence 섹션이 없다",
+      "passed": true,
+      "evidence": "ADR에 '## Evidence' 헤더 없음(헤더 목록: Context/Decision/Rationale/Alternatives/Consequences/Implementation/Reversibility/References). 등장 수치는 모두 저장소에서 확인됨: \"celery>=5.4\"는 pyproject.toml, \"smtplib.SMTP(\\\"smtp.internal\\\", 25)\"는 app/mail.py 원문, 커밋 558ed63·ebfea45는 git log와 일치. 지연시간·비용 등 미측정 수치는 없음."
+    },
+    {
+      "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+      "passed": true,
+      "evidence": "헤더가 모두 v11 템플릿 헤더이며 템플릿 순서대로임(Context→Decision→Rationale→Alternatives→Consequences→Implementation→Reversibility→References). 값 없는 필드 줄, TODO/TBD/{placeholder}/HTML 주석은 grep 결과 0건. Decision Source가 Human이라 Confidence 필드 생략, References는 Documentation 한 줄만 사용."
+    },
+    {
+      "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+      "passed": true,
+      "evidence": "check_scope.py 기계 검증 결과 PASS. transcript의 Write 대상은 repo/docs/adr/001-*.md와 outputs/ 파일뿐이고 pyproject.toml·app/mail.py는 cat으로 읽기만 함."
+    },
+    {
+      "text": "대화에 재검토 조건이 없는 RQ 대안에 Recheck if 조건을 지어내 넣지 않았다(줄 생략, Recheck if가 하나도 없으면 Review Trigger도 없음)",
+      "passed": true,
+      "evidence": "ADR 전문에 'Recheck if' 문자열 0건, '## Review Trigger' 헤더 0건(grep 확인). RQ 항목은 Pros/Cons/Rejected because 세 줄뿐. response.md: \"재검토 조건으로 말씀하신 게 없어서 Recheck if / Review Trigger도 비워두지 않고 생략했습니다.\""
+    },
+    {
+      "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+      "passed": true,
+      "evidence": "check_citation.py citation_ok = PASS. References에 근거로 인용된 커밋은 ebfea45(\"동기 발송 구현 `app/mail.py` (커밋 ebfea45)\")이며 git log --stat상 app/mail.py를 실제로 추가한 커밋. 빈 커밋 558ed63은 Rollback의 \"되돌릴 기준 시점은 HEAD(558ed63)\"라는 위치 표시로만 쓰였고 스킬이 허용하는 용법."
+    }
+  ],
+  "summary": {
+    "passed": 11,
+    "failed": 0,
+    "total": 11,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Bash": 8,
+      "Write": 3
+    },
+    "total_tool_calls": 12,
+    "total_steps": 12,
+    "errors_encountered": 0,
+    "output_chars": 5088,
+    "transcript_chars": 4967
+  },
+  "timing": {
+    "executor_duration_seconds": 218.9,
+    "total_duration_seconds": 218.9
+  },
+  "claims": [
+    {
+      "claim": "558ed63은 \"feat: 가입 인증 메일 발송\"이라는 메시지와 달리 파일 변경이 없는 빈 커밋이다",
+      "type": "factual",
+      "verified": true,
+      "evidence": "repo에서 `git log --oneline --stat` 결과 558ed63 아래 파일 통계가 없고 ebfea45에만 app/mail.py, pyproject.toml 변경이 붙어 있음."
+    },
+    {
+      "claim": "pyproject.toml의 celery>=5.4 추가는 미커밋 상태다",
+      "type": "factual",
+      "verified": true,
+      "evidence": "`git status --short`가 ` M pyproject.toml`을 반환 — References의 \"의존성 추가 `pyproject.toml` (`celery>=5.4`, 미커밋)\" 서술과 일치."
+    },
+    {
+      "claim": "RQ는 \"구성이 단순한 파이썬 작업 큐\"다 (Alternatives의 Pros)",
+      "type": "factual",
+      "verified": false,
+      "evidence": "일반적으로 통용되는 평가이긴 하나 사용자 대화(\"RQ도 봤는데 Redis를 새로 운영해야 해서 뺐다\")에도 저장소에도 근거가 없다. 수치가 아니라서 어떤 assertion에도 걸리지 않지만, 대화에 없는 정보를 모델이 채워 넣은 사례다. 같은 자리를 new_skill 런은 줄 생략으로 비워뒀다."
+    },
+    {
+      "claim": "docs/adr/ 밖 파일은 수정하지 않았다",
+      "type": "process",
+      "verified": true,
+      "evidence": "check_scope.py PASS이며 transcript의 Write 호출 대상이 ADR과 outputs/ 파일로 한정됨."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "이 런의 응답도 마지막 줄에서 \"재검토 기준 ... 이 있으면 알려주시면 채워 넣겠습니다\"라고 되묻는다. 두 구성 모두 같은 행동을 하는데 assertion은 '기각한 대안/근거'만 금지하므로 검출되지 않는다. 되묻기 금지 assertion을 재검토 조건까지 확장할 것을 제안한다."
+      },
+      {
+        "assertion": "대화·저장소에 없는 수치를 지어내 넣지 않았고 Evidence 섹션이 없다",
+        "reason": "'수치'로 한정돼 있어 정성적 날조를 놓친다. 이 런은 RQ의 Pros에 대화에 없는 \"구성이 단순한 파이썬 작업 큐\"를 넣었지만 통과한다. 두 구성을 가르는 실제 차이가 여기에 있으므로 '대화·저장소에서 확인되지 않는 서술을 넣지 않았다'로 넓히면 판별력이 올라간다."
+      }
+    ],
+    "overall": "assertion 세트는 시나리오 핵심을 잘 겨냥하지만, 되묻기 금지 범위와 '날조' 정의(수치 한정)가 좁아 두 구성이 11/11로 동점이 되어 차이를 드러내지 못한다."
+  }
+}

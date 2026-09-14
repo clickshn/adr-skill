@@ -1,0 +1,1195 @@
+{
+  "metadata": {
+    "skill_name": "adr-recorder",
+    "skill_path": "C:/adr-skill/skills/adr-recorder",
+    "executor_model": "claude-opus-5",
+    "analyzer_model": "claude-opus-5",
+    "timestamp": "2026-09-14T01:40:18Z",
+    "evals_run": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 11,
+        "failed": 0,
+        "total": 11,
+        "time_seconds": 152.5,
+        "tokens": 34446,
+        "tool_calls": 12,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/에 기존 명명 규칙을 따른 ADR-003 번호의 새 ADR 파일이 생성되었다",
+          "passed": true,
+          "evidence": "docs/adr/ADR-003-pino-logger.md"
+        },
+        {
+          "text": "Status가 Proposed이다",
+          "passed": true,
+          "evidence": "Status: Proposed"
+        },
+        {
+          "text": "Decision Source가 Human이고 Confidence 필드가 없다",
+          "passed": true,
+          "evidence": "Decision Source: Human, Confidence 없음"
+        },
+        {
+          "text": "Evidence 섹션에 사용자가 준 수치(p99 38ms→21ms, 초당 8.2k→11.5k req)가 정확히 들어있다",
+          "passed": true,
+          "evidence": "Evidence Benchmark: p99 38ms → 21ms, 8.2k → 11.5k req/s"
+        },
+        {
+          "text": "Alternatives에 winston과 bunyan이 각각 있고, bunyan의 기각 사유에 '마지막 릴리스 3년 전' 근거가 들어있다",
+          "passed": true,
+          "evidence": "'winston 유지 (현행)', 'bunyan' — bunyan Cons '마지막 릴리스가 3년 전으로 유지보수가 사실상 중단'"
+        },
+        {
+          "text": "Review Trigger 섹션이 있고, 그 내용이 Alternatives의 Recheck if 항목들로만 구성된다(새 조건 추가 없음)",
+          "passed": true,
+          "evidence": "Review Trigger = bunyan Recheck if(유지보수 재개) 1건"
+        },
+        {
+          "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+          "passed": true,
+          "evidence": "check_adr.py: 비표준 헤더/필드·빈 필드·빈 섹션·placeholder 없음"
+        },
+        {
+          "text": "AI/ML Details 섹션이 없다(AI/ML 결정이 아니므로)",
+          "passed": true,
+          "evidence": "AI/ML Details 없음"
+        },
+        {
+          "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+          "passed": true,
+          "evidence": "check_scope.py: docs/adr/ 밖 추가·변경·삭제 없음"
+        },
+        {
+          "text": "대화에 재검토 조건이 없는 대안(winston 유지)에 Recheck if 조건을 지어내 넣지 않았다(줄 생략)",
+          "passed": true,
+          "evidence": "winston 대안에 Recheck if 줄 없음"
+        },
+        {
+          "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+          "passed": true,
+          "evidence": "check_citation.py: citation_ok — 빈 커밋을 근거로 인용한 곳 없음 (6abee39는 '현재 HEAD … 복원 기준점'으로만 인용)"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 58.6,
+        "tokens": 25408,
+        "tool_calls": 5,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/에 새 ADR 파일을 생성하지 않았다",
+          "passed": true,
+          "evidence": "docs/adr/ 변경 없음"
+        },
+        {
+          "text": "최종 응답이 어떤 결정을 기록할지 사용자에게 되묻는 질문이다",
+          "passed": true,
+          "evidence": "response 첫 줄 '어떤 결정을 ADR로 기록할까요?' — Kafka 커밋은 참고로만 언급"
+        },
+        {
+          "text": "스킬 컨텍스트 명령(git diff, git log) 외의 저장소 탐색(파일 읽기·검색·목록 조회)을 하지 않았다",
+          "passed": true,
+          "evidence": "transcript: SKILL.md Read → 컨텍스트 명령 2개 → bookkeeping Write 2건, docs/adr 목록 확인도 하지 않음"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8889,
+        "passed": 8,
+        "failed": 1,
+        "total": 9,
+        "time_seconds": 172.0,
+        "tokens": 35243,
+        "tool_calls": 12,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/에 기존 4자리 번호 규칙을 따른 0002 번호의 새 ADR 파일이 생성되었다",
+          "passed": true,
+          "evidence": "docs/adr/0002-redis-session-store.md, 제목 ADR-0002"
+        },
+        {
+          "text": "Status가 Proposed이다",
+          "passed": true,
+          "evidence": "Status: Proposed"
+        },
+        {
+          "text": "대화·저장소에 없는 수치(지연시간, 처리량, 비용 등)를 지어내 넣지 않았다",
+          "passed": true,
+          "evidence": "수치 없음"
+        },
+        {
+          "text": "Evidence 섹션이 없다(실측 근거가 없으므로)",
+          "passed": true,
+          "evidence": "Evidence 섹션 없음"
+        },
+        {
+          "text": "Alternatives에 인메모리 세션 유지(현행 유지)가 있고, 기각 사유에 3대 서버에서 로그인이 풀리는 문제가 포함된다",
+          "passed": true,
+          "evidence": "'현행 유지 (프로세스 메모리 세션)' — Rejected because '서버를 3대로 늘린 뒤 … 로그인이 풀린다'"
+        },
+        {
+          "text": "대화에 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+          "passed": false,
+          "evidence": "response 마지막: '기각한 대안(예: sticky session, DB 세션 테이블)이 있었다면 그 근거를 알려주세요' — 기각 대안과 근거를 되물음"
+        },
+        {
+          "text": "Implementation 섹션이 체크리스트 형태로 존재한다",
+          "passed": true,
+          "evidence": "Implementation 체크리스트 4개 항목"
+        },
+        {
+          "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+          "passed": true,
+          "evidence": "check_scope.py: docs/adr/ 밖 추가·변경·삭제 없음"
+        },
+        {
+          "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+          "passed": true,
+          "evidence": "check_citation.py: citation_ok — 빈 커밋을 근거로 인용한 곳 없음 (83bb4e5 실제 변경, bd074f7은 '현재 HEAD … 복원 기준점')"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 4,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 14,
+        "failed": 0,
+        "total": 14,
+        "time_seconds": 150.5,
+        "tokens": 35329,
+        "tool_calls": 12,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/에 ADR-005 번호의 새 ADR 파일이 생성되었다",
+          "passed": true,
+          "evidence": "docs/adr/ADR-005-grpc-internal-communication.md"
+        },
+        {
+          "text": "Status가 Accepted이다(원본에 확정·시행 중으로 기록되어 있으므로)",
+          "passed": true,
+          "evidence": "Status: Accepted"
+        },
+        {
+          "text": "결정 로그의 p99 45ms와 근거 문서 최종값 52ms의 불일치가 ADR에 기록되어 있고, 이를 위한 별도 섹션을 새로 만들지 않고 기존 섹션 안에 녹였다",
+          "passed": true,
+          "evidence": "Evidence Benchmark 줄에 'D-007에 적힌 p99 45ms는 … 1차 측정 값이며, 재측정 최종값은 52ms' — 별도 섹션 없음"
+        },
+        {
+          "text": "Alternatives에 GraphQL 페더레이션과 REST 유지+캐싱이 있고, GraphQL의 Recheck if에 '플랫폼팀 4명 이상' 조건이 있다",
+          "passed": true,
+          "evidence": "GraphQL 페더레이션(Recheck if '플랫폼팀이 4명 이상으로 늘어난다'), REST 유지 + 응답 캐싱"
+        },
+        {
+          "text": "Review Trigger 섹션이 있고 Alternatives의 Recheck if 내용과 일치한다",
+          "passed": true,
+          "evidence": "Review Trigger = GraphQL Recheck if 1건"
+        },
+        {
+          "text": "References 섹션의 Documentation 필드에 docs/decisions.md(D-007) 경로가 있고, 값 없는 PR/Issue 줄은 없다",
+          "passed": true,
+          "evidence": "Documentation: `docs/decisions.md`의 D-007(원본 결정 로그) 등, PR/Issue 줄 없음"
+        },
+        {
+          "text": "Confidence 규칙을 지켰다: Decision Source가 Human이면 Confidence가 없고, 그 외라면 실측 수치가 있으므로 High이다",
+          "passed": true,
+          "evidence": "Decision Source: Human, Confidence 없음"
+        },
+        {
+          "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+          "passed": true,
+          "evidence": "check_adr.py: 비표준 헤더/필드·빈 필드·빈 섹션·placeholder 없음"
+        },
+        {
+          "text": "원본 결정 로그에 없는 정보(대안의 수치 근거 등)를 사용자에게 새로 되묻지 않았다",
+          "passed": true,
+          "evidence": "새 정보를 묻지 않음(원본 D-007 처리 방법만 물음)"
+        },
+        {
+          "text": "Reversibility 섹션이 있고 Rollback 필드에 저장소에서 확인한 롤백 방법이 채워져 있다(원본 로그에 없더라도)",
+          "passed": true,
+          "evidence": "Rollback: checkout 재고 조회를 REST 엔드포인트 호출로 복귀, 전환 범위 GetStock 1개 RPC 명시"
+        },
+        {
+          "text": "docs/adr/ 밖의 파일(docs/decisions.md 포함)을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+          "passed": true,
+          "evidence": "check_scope.py: docs/adr/ 밖 추가·변경·삭제 없음 (docs/decisions.md 포함)"
+        },
+        {
+          "text": "응답에서 원본 결정 로그의 D-007을 지울지, 이관 표시만 남길지 사용자에게 물었다",
+          "passed": true,
+          "evidence": "response: '(a) 항목을 삭제 (b) … 이관됨 표시만 추가'"
+        },
+        {
+          "text": "Date가 원본 시행일(2026-03-02)이다(이관 작성일이 아니라 원본 D-007에 기록된 시행일을 따르므로)",
+          "passed": true,
+          "evidence": "Date: 2026-03-02 (response: '이관일이 아니라 원본에 적힌 시행일')"
+        },
+        {
+          "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+          "passed": true,
+          "evidence": "check_citation.py: citation_ok — 빈 커밋을 근거로 인용한 곳 없음 (ac6b178 실제 변경; 빈 커밋 25bb2fe·69c4790은 response에서만 언급)"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 5,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.9091,
+        "passed": 10,
+        "failed": 1,
+        "total": 11,
+        "time_seconds": 167.3,
+        "tokens": 34176,
+        "tool_calls": 13,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/ 디렉터리를 새로 만들고 첫 번호(001 또는 0001)의 ADR 파일을 생성했다",
+          "passed": true,
+          "evidence": "docs/adr/ 새로 생성, 001-celery-async-signup-verification-email.md"
+        },
+        {
+          "text": "ADR 번호를 사용자에게 확인하느라 파일 생성을 미루지 않았다",
+          "passed": true,
+          "evidence": "번호를 묻지 않고 생성"
+        },
+        {
+          "text": "응답에서 기존 ADR이 없어 001로 시작했다는 사실을 알렸다",
+          "passed": true,
+          "evidence": "response: '디렉터리를 새로 만들고 번호를 **001**부터 시작'"
+        },
+        {
+          "text": "Status가 Proposed이다",
+          "passed": true,
+          "evidence": "Status: Proposed"
+        },
+        {
+          "text": "Alternatives에 RQ가 있고, 기각 사유에 'Redis를 새로 운영해야 함'이 들어있다",
+          "passed": true,
+          "evidence": "RQ Rejected because 'Redis를 새로 운영해야 해서 제외했다'"
+        },
+        {
+          "text": "대화에 대안과 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+          "passed": true,
+          "evidence": "되묻지 않음"
+        },
+        {
+          "text": "대화·저장소에 없는 수치를 지어내 넣지 않았고 Evidence 섹션이 없다",
+          "passed": true,
+          "evidence": "수치 없음, Evidence 없음"
+        },
+        {
+          "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+          "passed": false,
+          "evidence": "check_adr.py: 섹션 헤더에 템플릿 주석이 그대로 남음 — '## Context <!-- 필수 -->' 등 8개 H2, placeholder '<!--' 8건"
+        },
+        {
+          "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+          "passed": true,
+          "evidence": "check_scope.py: docs/adr/ 밖 추가·변경·삭제 없음"
+        },
+        {
+          "text": "대화에 재검토 조건이 없는 RQ 대안에 Recheck if 조건을 지어내 넣지 않았다(줄 생략, Recheck if가 하나도 없으면 Review Trigger도 없음)",
+          "passed": true,
+          "evidence": "RQ에 Recheck if 없음, Review Trigger 없음"
+        },
+        {
+          "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+          "passed": true,
+          "evidence": "check_citation.py: citation_ok — 빈 커밋을 근거로 인용한 곳 없음 (8014104 실제 변경; 빈 커밋 f8ac775는 '근거로 인용하지 않았다'고 명시 + 롤백 기준점)"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 6,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 147.1,
+        "tokens": 32594,
+        "tool_calls": 10,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "셸 명령(ls/dir 등)으로 docs/adr/ 목록을 직접 확인했다",
+          "passed": true,
+          "evidence": "transcript #4: Bash `ls -la docs/adr` → .gitkeep만"
+        },
+        {
+          "text": "번호를 사용자에게 묻지 않고 docs/adr/에 001(또는 0001) 번호의 ADR 파일을 생성했다",
+          "passed": true,
+          "evidence": "묻지 않고 001-jwt-api-authentication.md 생성"
+        },
+        {
+          "text": "응답에서 기존 ADR이 없어 001로 시작했다는 사실을 알렸다",
+          "passed": true,
+          "evidence": "response: '`.gitkeep`만 있고 기존 ADR 파일이 없어서 **001번으로 시작**'"
+        },
+        {
+          "text": "Alternatives에 '세션 유지 + 파트너용 API 키 발급'이 있고 기각 사유에 키 회전 관리 부담이 들어있다",
+          "passed": true,
+          "evidence": "'세션 방식 유지 + 파트너용 API 키 발급' Rejected because '키 회전 관리를 별도로 만들어야 해서 접었다'"
+        },
+        {
+          "text": "대화에 대안과 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+          "passed": true,
+          "evidence": "기각 대안·근거를 되묻지 않음(재검토 조건 유무만 덧붙임)"
+        },
+        {
+          "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+          "passed": true,
+          "evidence": "check_adr.py: 비표준 헤더/필드·빈 필드·빈 섹션·placeholder 없음"
+        },
+        {
+          "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+          "passed": true,
+          "evidence": "check_scope.py: docs/adr/ 밖 추가·변경·삭제 없음"
+        },
+        {
+          "text": "대화에 재검토 조건이 없는 'API 키 발급' 대안에 Recheck if 조건을 지어내 넣지 않았다(줄 생략, Recheck if가 하나도 없으면 Review Trigger도 없음)",
+          "passed": true,
+          "evidence": "Recheck if 없음, Review Trigger 없음"
+        },
+        {
+          "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+          "passed": true,
+          "evidence": "check_citation.py: citation_ok — 빈 커밋을 근거로 인용한 곳 없음 (2a29f15는 '커밋 전이므로 HEAD … 기준으로 되돌리면 된다'로만 인용)"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 7,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 12,
+        "failed": 0,
+        "total": 12,
+        "time_seconds": 167.6,
+        "tokens": 34286,
+        "tool_calls": 11,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "SKILL.md의 컨텍스트 명령 2개가 에러 없이(exit 0) 실행되어 대체 문구('(HEAD 없음: …)', '(커밋 기록 없음)')를 출력했다 (스킬 로드 실패 없음)",
+          "passed": true,
+          "evidence": "transcript: 두 명령 exit 0, '(HEAD 없음: …)'·'(커밋 기록 없음)' 출력"
+        },
+        {
+          "text": "docs/adr/ 디렉터리를 새로 만들고 001(또는 0001) 번호의 ADR 파일을 생성했다",
+          "passed": true,
+          "evidence": "docs/adr/ 새로 생성, 001-self-hosted-vllm-instead-of-openai.md"
+        },
+        {
+          "text": "응답에서 기존 ADR이 없어 001로 시작했다는 사실을 알렸다",
+          "passed": true,
+          "evidence": "response: '`docs/adr/` 디렉터리 자체가 없어서 … 001로 시작'"
+        },
+        {
+          "text": "Status가 Proposed이고, Decision Source가 Human이며 Confidence 필드가 없다",
+          "passed": true,
+          "evidence": "Status: Proposed, Decision Source: Human, Confidence 없음"
+        },
+        {
+          "text": "Alternatives에 OpenAI API(현행 유지)가 있고, 기각 사유에 '고객 데이터 외부 반출 금지'가 들어있다",
+          "passed": true,
+          "evidence": "'OpenAI API 유지 (현행)' Rejected because '고객 데이터 외부 반출이 금지되어 있어 정책상 사용할 수 없다'"
+        },
+        {
+          "text": "대화에 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+          "passed": true,
+          "evidence": "되묻지 않음(코드 전환 진행 여부만 제안)"
+        },
+        {
+          "text": "대화·저장소에 없는 수치나 서빙 모델명을 지어내 넣지 않았고 Evidence 섹션이 없다",
+          "passed": true,
+          "evidence": "수치·서빙 모델명 없음('오픈 웨이트 모델 미정'), Evidence 없음"
+        },
+        {
+          "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+          "passed": true,
+          "evidence": "check_adr.py: 비표준 헤더/필드·빈 필드·빈 섹션·placeholder 없음"
+        },
+        {
+          "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+          "passed": true,
+          "evidence": "check_scope.py: docs/adr/ 밖 추가·변경·삭제 없음"
+        },
+        {
+          "text": "커밋을 만들지 않았다(실행 후에도 HEAD가 없다)",
+          "passed": true,
+          "evidence": "실행 후 HEAD 없음"
+        },
+        {
+          "text": "Alternatives에는 대화에 등장한 대안(OpenAI API 유지)만 있고, 대화에 없던 대안을 추가하지 않았다",
+          "passed": true,
+          "evidence": "대안은 OpenAI 현행 유지 1개뿐"
+        },
+        {
+          "text": "Reversibility의 Reversible이 Partial이다(고객 데이터 반출 금지 정책이 바뀌어야만 되돌릴 수 있으므로)",
+          "passed": true,
+          "evidence": "Reversible: Partial"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 8,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 69.8,
+        "tokens": 25906,
+        "tool_calls": 6,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "SKILL.md의 컨텍스트 명령 2개가 에러 없이(exit 0) 실행되어 대체 문구('(HEAD 없음: …)', '(커밋 기록 없음)')를 출력했다 (스킬 로드 실패 없음)",
+          "passed": true,
+          "evidence": "transcript: 두 명령 exit 0, fallback 문구 출력"
+        },
+        {
+          "text": "docs/adr/를 포함해 어떤 파일도 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+          "passed": true,
+          "evidence": "check_scope.py: 변경 없음"
+        },
+        {
+          "text": "최종 응답이 어떤 결정을 기록할지 사용자에게 되묻는 질문이다",
+          "passed": true,
+          "evidence": "response: '**어떤 결정을 ADR로 기록할까요?**' 질문으로 끝남"
+        },
+        {
+          "text": "대체 문구를 결정이나 변경 사항으로 해석해 ADR 주제로 삼지 않았다",
+          "passed": true,
+          "evidence": "fallback 문구를 '비교 기준이 없어 변경 내역을 가져올 수 없음'으로만 해석"
+        },
+        {
+          "text": "스킬 컨텍스트 명령 외의 저장소 탐색(파일 읽기·검색·목록 조회)을 하지 않았다",
+          "passed": true,
+          "evidence": "transcript: SKILL.md Read → 컨텍스트 명령 2개 → bookkeeping(mkdir+Write 2건), 저장소 탐색 없음"
+        },
+        {
+          "text": "git init 등으로 폴더를 git 저장소로 바꾸지 않았다(실행 후에도 .git이 없다)",
+          "passed": true,
+          "evidence": "실행 후 .git 없음"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 9,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 144.1,
+        "tokens": 33576,
+        "tool_calls": 12,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/에 새 ADR 파일을 생성했다",
+          "passed": true,
+          "evidence": "docs/adr/ADR-002-jose-jwt-verification.md"
+        },
+        {
+          "text": "ADR이 실제 파일 변경(package.json, src/auth.js)이 있는 'chore: dependency bump' 커밋을 근거로 인용한다(커밋을 하나도 인용하지 않으면 실패)",
+          "passed": true,
+          "evidence": "References·Rollback에 f4dcf2f(chore: dependency bump, package.json·src/auth.js 변경) 인용"
+        },
+        {
+          "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+          "passed": true,
+          "evidence": "check_scope.py: docs/adr/ 밖 추가·변경·삭제 없음"
+        },
+        {
+          "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+          "passed": true,
+          "evidence": "check_citation.py: citation_ok — 빈 커밋을 근거로 인용한 곳 없음 (빈 커밋 e187d04은 '근거로 인용하지 않았다'고 명시)"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 11,
+        "failed": 0,
+        "total": 11,
+        "time_seconds": 161.6,
+        "tokens": 35382,
+        "tool_calls": 15,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/에 기존 명명 규칙을 따른 ADR-003 번호의 새 ADR 파일이 생성되었다",
+          "passed": true,
+          "evidence": "docs/adr/ADR-003-pino-logger.md"
+        },
+        {
+          "text": "Status가 Proposed이다",
+          "passed": true,
+          "evidence": "Status: Proposed"
+        },
+        {
+          "text": "Decision Source가 Human이고 Confidence 필드가 없다",
+          "passed": true,
+          "evidence": "Decision Source: Human, Confidence 없음"
+        },
+        {
+          "text": "Evidence 섹션에 사용자가 준 수치(p99 38ms→21ms, 초당 8.2k→11.5k req)가 정확히 들어있다",
+          "passed": true,
+          "evidence": "Evidence Benchmark: p99 38ms → 21ms, 8.2k → 11.5k req/s"
+        },
+        {
+          "text": "Alternatives에 winston과 bunyan이 각각 있고, bunyan의 기각 사유에 '마지막 릴리스 3년 전' 근거가 들어있다",
+          "passed": true,
+          "evidence": "'winston 유지 (현행 유지)', 'bunyan' — bunyan Cons '마지막 릴리스가 3년 전으로 유지보수가 사실상 중단'"
+        },
+        {
+          "text": "Review Trigger 섹션이 있고, 그 내용이 Alternatives의 Recheck if 항목들로만 구성된다(새 조건 추가 없음)",
+          "passed": true,
+          "evidence": "Review Trigger = bunyan Recheck if 1건"
+        },
+        {
+          "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+          "passed": true,
+          "evidence": "check_adr.py: 비표준 헤더/필드·빈 필드·빈 섹션·placeholder 없음"
+        },
+        {
+          "text": "AI/ML Details 섹션이 없다(AI/ML 결정이 아니므로)",
+          "passed": true,
+          "evidence": "AI/ML Details 없음"
+        },
+        {
+          "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+          "passed": true,
+          "evidence": "check_scope.py: docs/adr/ 밖 추가·변경·삭제 없음"
+        },
+        {
+          "text": "대화에 재검토 조건이 없는 대안(winston 유지)에 Recheck if 조건을 지어내 넣지 않았다(줄 생략)",
+          "passed": true,
+          "evidence": "winston 대안에 Recheck if 줄 없음"
+        },
+        {
+          "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+          "passed": true,
+          "evidence": "check_citation.py: citation_ok — 빈 커밋을 근거로 인용한 곳 없음 (f6a7269 = winston 도입 커밋, 실제 변경 있음)"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 54.2,
+        "tokens": 25034,
+        "tool_calls": 5,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/에 새 ADR 파일을 생성하지 않았다",
+          "passed": true,
+          "evidence": "docs/adr/ 변경 없음"
+        },
+        {
+          "text": "최종 응답이 어떤 결정을 기록할지 사용자에게 되묻는 질문이다",
+          "passed": true,
+          "evidence": "response 첫 줄 '어떤 결정을 ADR로 기록할까요?' — Kafka 커밋은 참고로만 언급"
+        },
+        {
+          "text": "스킬 컨텍스트 명령(git diff, git log) 외의 저장소 탐색(파일 읽기·검색·목록 조회)을 하지 않았다",
+          "passed": true,
+          "evidence": "transcript: SKILL.md Read → 컨텍스트 명령 2개 → bookkeeping Write 2건, 저장소 탐색 없음"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8889,
+        "passed": 8,
+        "failed": 1,
+        "total": 9,
+        "time_seconds": 171.4,
+        "tokens": 35199,
+        "tool_calls": 11,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/에 기존 4자리 번호 규칙을 따른 0002 번호의 새 ADR 파일이 생성되었다",
+          "passed": true,
+          "evidence": "docs/adr/0002-redis-session-store.md, 제목 ADR-0002"
+        },
+        {
+          "text": "Status가 Proposed이다",
+          "passed": true,
+          "evidence": "Status: Proposed"
+        },
+        {
+          "text": "대화·저장소에 없는 수치(지연시간, 처리량, 비용 등)를 지어내 넣지 않았다",
+          "passed": true,
+          "evidence": "수치 없음"
+        },
+        {
+          "text": "Evidence 섹션이 없다(실측 근거가 없으므로)",
+          "passed": true,
+          "evidence": "Evidence 섹션 없음"
+        },
+        {
+          "text": "Alternatives에 인메모리 세션 유지(현행 유지)가 있고, 기각 사유에 3대 서버에서 로그인이 풀리는 문제가 포함된다",
+          "passed": true,
+          "evidence": "'프로세스 메모리 세션 유지 (현행)' — Rejected because '서버를 3대로 늘리면서 … 로그인이 풀리는 문제가 실제로 발생'"
+        },
+        {
+          "text": "대화에 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+          "passed": false,
+          "evidence": "response 마지막: '스티키 세션이나 DB 세션 테이블처럼 같이 검토했다가 접은 대안이 있었다면 그 근거를 알려주세요' — 기각 대안과 근거를 되물음"
+        },
+        {
+          "text": "Implementation 섹션이 체크리스트 형태로 존재한다",
+          "passed": true,
+          "evidence": "Implementation 체크리스트 5개 항목"
+        },
+        {
+          "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+          "passed": true,
+          "evidence": "check_scope.py: docs/adr/ 밖 추가·변경·삭제 없음"
+        },
+        {
+          "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+          "passed": true,
+          "evidence": "check_citation.py: citation_ok — 빈 커밋을 근거로 인용한 곳 없음 (ADR에 커밋 해시 인용 없음)"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 4,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 14,
+        "failed": 0,
+        "total": 14,
+        "time_seconds": 170.0,
+        "tokens": 36819,
+        "tool_calls": 14,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/에 ADR-005 번호의 새 ADR 파일이 생성되었다",
+          "passed": true,
+          "evidence": "docs/adr/ADR-005-internal-grpc.md"
+        },
+        {
+          "text": "Status가 Accepted이다(원본에 확정·시행 중으로 기록되어 있으므로)",
+          "passed": true,
+          "evidence": "Status: Accepted"
+        },
+        {
+          "text": "결정 로그의 p99 45ms와 근거 문서 최종값 52ms의 불일치가 ADR에 기록되어 있고, 이를 위한 별도 섹션을 새로 만들지 않고 기존 섹션 안에 녹였다",
+          "passed": true,
+          "evidence": "Evidence Benchmark 줄에 '원본 결정 로그(D-007)에 적힌 p99 45ms는 … 1차 측정 값이며, 재측정된 최종값은 52ms' — 별도 섹션 없음"
+        },
+        {
+          "text": "Alternatives에 GraphQL 페더레이션과 REST 유지+캐싱이 있고, GraphQL의 Recheck if에 '플랫폼팀 4명 이상' 조건이 있다",
+          "passed": true,
+          "evidence": "GraphQL 페더레이션(Recheck if '플랫폼팀이 4명 이상으로 늘어날 때'), REST 유지 + 응답 캐싱"
+        },
+        {
+          "text": "Review Trigger 섹션이 있고 Alternatives의 Recheck if 내용과 일치한다",
+          "passed": true,
+          "evidence": "Review Trigger = GraphQL Recheck if 1건"
+        },
+        {
+          "text": "References 섹션의 Documentation 필드에 docs/decisions.md(D-007) 경로가 있고, 값 없는 PR/Issue 줄은 없다",
+          "passed": true,
+          "evidence": "Documentation: `docs/decisions.md`의 D-007 (원본 결정 로그) 등, PR/Issue 줄 없음"
+        },
+        {
+          "text": "Confidence 규칙을 지켰다: Decision Source가 Human이면 Confidence가 없고, 그 외라면 실측 수치가 있으므로 High이다",
+          "passed": true,
+          "evidence": "Decision Source: Human, Confidence 없음"
+        },
+        {
+          "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+          "passed": true,
+          "evidence": "check_adr.py: 비표준 헤더/필드·빈 필드·빈 섹션·placeholder 없음"
+        },
+        {
+          "text": "원본 결정 로그에 없는 정보(대안의 수치 근거 등)를 사용자에게 새로 되묻지 않았다",
+          "passed": true,
+          "evidence": "새 정보를 묻지 않음(원본 처리·45ms 정정 여부만 물음)"
+        },
+        {
+          "text": "Reversibility 섹션이 있고 Rollback 필드에 저장소에서 확인한 롤백 방법이 채워져 있다(원본 로그에 없더라도)",
+          "passed": true,
+          "evidence": "Rollback: 재고 조회를 내부 REST 엔드포인트로 복귀, 적용 구간이 1곳이라 범위가 좁다고 명시"
+        },
+        {
+          "text": "docs/adr/ 밖의 파일(docs/decisions.md 포함)을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+          "passed": true,
+          "evidence": "check_scope.py: docs/adr/ 밖 추가·변경·삭제 없음 (docs/decisions.md 포함)"
+        },
+        {
+          "text": "응답에서 원본 결정 로그의 D-007을 지울지, 이관 표시만 남길지 사용자에게 물었다",
+          "passed": true,
+          "evidence": "response: 'D-007을 삭제할까요, 아니면 \"ADR-005로 이관됨\" 표시만 남길까요?'"
+        },
+        {
+          "text": "Date가 원본 시행일(2026-03-02)이다(이관 작성일이 아니라 원본 D-007에 기록된 시행일을 따르므로)",
+          "passed": true,
+          "evidence": "Date: 2026-03-02 (response: '원본에 적힌 시행일')"
+        },
+        {
+          "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+          "passed": true,
+          "evidence": "check_citation.py: citation_ok — 빈 커밋을 근거로 인용한 곳 없음 (ac6b178 실제 변경; 빈 커밋 25bb2fe·69c4790은 response에서만 언급)"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 5,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 11,
+        "failed": 0,
+        "total": 11,
+        "time_seconds": 149.2,
+        "tokens": 33246,
+        "tool_calls": 11,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/ 디렉터리를 새로 만들고 첫 번호(001 또는 0001)의 ADR 파일을 생성했다",
+          "passed": true,
+          "evidence": "docs/adr/ 새로 생성, 001-celery-async-verification-email.md"
+        },
+        {
+          "text": "ADR 번호를 사용자에게 확인하느라 파일 생성을 미루지 않았다",
+          "passed": true,
+          "evidence": "번호를 묻지 않고 생성"
+        },
+        {
+          "text": "응답에서 기존 ADR이 없어 001로 시작했다는 사실을 알렸다",
+          "passed": true,
+          "evidence": "response: '`docs/adr/` 디렉터리가 없어서 … 001번으로 시작'"
+        },
+        {
+          "text": "Status가 Proposed이다",
+          "passed": true,
+          "evidence": "Status: Proposed"
+        },
+        {
+          "text": "Alternatives에 RQ가 있고, 기각 사유에 'Redis를 새로 운영해야 함'이 들어있다",
+          "passed": true,
+          "evidence": "RQ Rejected because 'Redis를 새로 운영해야 해서'"
+        },
+        {
+          "text": "대화에 대안과 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+          "passed": true,
+          "evidence": "기각 대안·근거를 되묻지 않음(재검토 조건 유무만 덧붙임)"
+        },
+        {
+          "text": "대화·저장소에 없는 수치를 지어내 넣지 않았고 Evidence 섹션이 없다",
+          "passed": true,
+          "evidence": "수치 없음, Evidence 없음"
+        },
+        {
+          "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+          "passed": true,
+          "evidence": "check_adr.py: 비표준 헤더/필드·빈 필드·빈 섹션·placeholder 없음"
+        },
+        {
+          "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+          "passed": true,
+          "evidence": "check_scope.py: docs/adr/ 밖 추가·변경·삭제 없음"
+        },
+        {
+          "text": "대화에 재검토 조건이 없는 RQ 대안에 Recheck if 조건을 지어내 넣지 않았다(줄 생략, Recheck if가 하나도 없으면 Review Trigger도 없음)",
+          "passed": true,
+          "evidence": "RQ에 Recheck if 없음, Review Trigger 없음"
+        },
+        {
+          "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+          "passed": true,
+          "evidence": "check_citation.py: citation_ok — 빈 커밋을 근거로 인용한 곳 없음 (8014104 실제 변경; 빈 커밋 f8ac775는 '근거로 인용하지 않는다'고 명시)"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 6,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8889,
+        "passed": 8,
+        "failed": 1,
+        "total": 9,
+        "time_seconds": 146.5,
+        "tokens": 32599,
+        "tool_calls": 11,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "셸 명령(ls/dir 등)으로 docs/adr/ 목록을 직접 확인했다",
+          "passed": true,
+          "evidence": "transcript #4: Bash `ls -la docs/adr` → .gitkeep만"
+        },
+        {
+          "text": "번호를 사용자에게 묻지 않고 docs/adr/에 001(또는 0001) 번호의 ADR 파일을 생성했다",
+          "passed": true,
+          "evidence": "묻지 않고 001-api-auth-jwt.md 생성"
+        },
+        {
+          "text": "응답에서 기존 ADR이 없어 001로 시작했다는 사실을 알렸다",
+          "passed": true,
+          "evidence": "response 첫 줄: '`.gitkeep`만 있고 기존 ADR 파일이 없어서 번호를 001부터 시작'"
+        },
+        {
+          "text": "Alternatives에 '세션 유지 + 파트너용 API 키 발급'이 있고 기각 사유에 키 회전 관리 부담이 들어있다",
+          "passed": true,
+          "evidence": "'세션 방식 유지 + 파트너용 API 키 발급' Rejected because '키 회전 관리를 따로 구축해야 하는 부담'"
+        },
+        {
+          "text": "대화에 대안과 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+          "passed": true,
+          "evidence": "되묻지 않음"
+        },
+        {
+          "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+          "passed": false,
+          "evidence": "check_adr.py: 섹션 헤더에 템플릿 주석이 그대로 남음 — '## Context <!-- 필수 -->' 등 7개 H2, placeholder '<!--' 7건"
+        },
+        {
+          "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+          "passed": true,
+          "evidence": "check_scope.py: docs/adr/ 밖 추가·변경·삭제 없음"
+        },
+        {
+          "text": "대화에 재검토 조건이 없는 'API 키 발급' 대안에 Recheck if 조건을 지어내 넣지 않았다(줄 생략, Recheck if가 하나도 없으면 Review Trigger도 없음)",
+          "passed": true,
+          "evidence": "Recheck if 없음, Review Trigger 없음"
+        },
+        {
+          "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+          "passed": true,
+          "evidence": "check_citation.py: citation_ok — 빈 커밋을 근거로 인용한 곳 없음 (ADR에 커밋 해시 인용 없음; 빈 커밋 2a29f15는 response에서만 언급)"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 7,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 12,
+        "failed": 0,
+        "total": 12,
+        "time_seconds": 164.6,
+        "tokens": 33837,
+        "tool_calls": 10,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "SKILL.md의 컨텍스트 명령 2개가 에러 없이(exit 0) 실행되어 대체 문구('(HEAD 없음: …)', '(커밋 기록 없음)')를 출력했다 (스킬 로드 실패 없음)",
+          "passed": true,
+          "evidence": "transcript: 두 명령 exit 0, '(HEAD 없음: …)'·'(커밋 기록 없음)' 출력"
+        },
+        {
+          "text": "docs/adr/ 디렉터리를 새로 만들고 001(또는 0001) 번호의 ADR 파일을 생성했다",
+          "passed": true,
+          "evidence": "docs/adr/ 새로 생성, 001-self-hosted-llm-serving-with-vllm.md"
+        },
+        {
+          "text": "응답에서 기존 ADR이 없어 001로 시작했다는 사실을 알렸다",
+          "passed": true,
+          "evidence": "response: '`docs/adr/` 디렉터리 자체가 없어서 … **001번**으로 시작'"
+        },
+        {
+          "text": "Status가 Proposed이고, Decision Source가 Human이며 Confidence 필드가 없다",
+          "passed": true,
+          "evidence": "Status: Proposed, Decision Source: Human, Confidence 없음"
+        },
+        {
+          "text": "Alternatives에 OpenAI API(현행 유지)가 있고, 기각 사유에 '고객 데이터 외부 반출 금지'가 들어있다",
+          "passed": true,
+          "evidence": "'OpenAI API 유지 (현행)' Rejected because '고객 데이터 외부 반출이 금지되어 있다'"
+        },
+        {
+          "text": "대화에 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+          "passed": true,
+          "evidence": "되묻지 않음(코드 전환 필요 여부만 제안)"
+        },
+        {
+          "text": "대화·저장소에 없는 수치나 서빙 모델명을 지어내 넣지 않았고 Evidence 섹션이 없다",
+          "passed": true,
+          "evidence": "수치·서빙 모델명 없음('자체 서빙할 모델은 아직 정해지지 않았다'), Evidence 없음"
+        },
+        {
+          "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+          "passed": true,
+          "evidence": "check_adr.py: 비표준 헤더/필드·빈 필드·빈 섹션·placeholder 없음"
+        },
+        {
+          "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+          "passed": true,
+          "evidence": "check_scope.py: docs/adr/ 밖 추가·변경·삭제 없음"
+        },
+        {
+          "text": "커밋을 만들지 않았다(실행 후에도 HEAD가 없다)",
+          "passed": true,
+          "evidence": "실행 후 HEAD 없음"
+        },
+        {
+          "text": "Alternatives에는 대화에 등장한 대안(OpenAI API 유지)만 있고, 대화에 없던 대안을 추가하지 않았다",
+          "passed": true,
+          "evidence": "대안은 OpenAI 현행 유지 1개뿐"
+        },
+        {
+          "text": "Reversibility의 Reversible이 Partial이다(고객 데이터 반출 금지 정책이 바뀌어야만 되돌릴 수 있으므로)",
+          "passed": true,
+          "evidence": "Reversible: Partial"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 8,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 52.8,
+        "tokens": 24603,
+        "tool_calls": 5,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "SKILL.md의 컨텍스트 명령 2개가 에러 없이(exit 0) 실행되어 대체 문구('(HEAD 없음: …)', '(커밋 기록 없음)')를 출력했다 (스킬 로드 실패 없음)",
+          "passed": true,
+          "evidence": "transcript: 두 명령 exit 0, fallback 문구 출력"
+        },
+        {
+          "text": "docs/adr/를 포함해 어떤 파일도 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+          "passed": true,
+          "evidence": "check_scope.py: 변경 없음"
+        },
+        {
+          "text": "최종 응답이 어떤 결정을 기록할지 사용자에게 되묻는 질문이다",
+          "passed": true,
+          "evidence": "response가 '어떤 결정을 ADR로 기록할까요?'로 끝남"
+        },
+        {
+          "text": "대체 문구를 결정이나 변경 사항으로 해석해 ADR 주제로 삼지 않았다",
+          "passed": true,
+          "evidence": "fallback 문구를 '의존성 diff 없음·커밋 기록 없음'으로만 해석"
+        },
+        {
+          "text": "스킬 컨텍스트 명령 외의 저장소 탐색(파일 읽기·검색·목록 조회)을 하지 않았다",
+          "passed": true,
+          "evidence": "transcript: SKILL.md Read → 컨텍스트 명령 2개 → bookkeeping Write 2건, 저장소 탐색 없음"
+        },
+        {
+          "text": "git init 등으로 폴더를 git 저장소로 바꾸지 않았다(실행 후에도 .git이 없다)",
+          "passed": true,
+          "evidence": "실행 후 .git 없음"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 9,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 160.2,
+        "tokens": 34333,
+        "tool_calls": 12,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/에 새 ADR 파일을 생성했다",
+          "passed": true,
+          "evidence": "docs/adr/ADR-002-jose-jwt-verification.md"
+        },
+        {
+          "text": "ADR이 실제 파일 변경(package.json, src/auth.js)이 있는 'chore: dependency bump' 커밋을 근거로 인용한다(커밋을 하나도 인용하지 않으면 실패)",
+          "passed": true,
+          "evidence": "References에 f4dcf2f(chore: dependency bump, package.json·src/auth.js 변경) 인용"
+        },
+        {
+          "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+          "passed": true,
+          "evidence": "check_scope.py: docs/adr/ 밖 추가·변경·삭제 없음"
+        },
+        {
+          "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+          "passed": true,
+          "evidence": "check_citation.py: citation_ok — 빈 커밋을 근거로 인용한 곳 없음 (빈 커밋 e187d04은 '근거로 인용하지 않는다'는 메모로만 언급)"
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "new_skill": {
+      "pass_rate": {
+        "mean": 0.9776,
+        "stddev": 0.0448,
+        "min": 0.8889,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 136.6111,
+        "stddev": 42.3016,
+        "min": 58.6,
+        "max": 172.0
+      },
+      "tokens": {
+        "mean": 32329.3333,
+        "stddev": 3872.8986,
+        "min": 25408,
+        "max": 35329
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.9753,
+        "stddev": 0.049,
+        "min": 0.8889,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 136.7222,
+        "stddev": 47.908,
+        "min": 52.8,
+        "max": 171.4
+      },
+      "tokens": {
+        "mean": 32339.1111,
+        "stddev": 4441.6897,
+        "min": 24603,
+        "max": 36819
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "-0.1",
+      "tokens": "-10"
+    }
+  },
+  "notes": [
+    "비교 대상: new_skill = v10, old_skill = v9. v10은 SKILL.md에 3줄 추가 — '커밋 해시는 \"이 커밋이 실제로 이 변경을 담고 있다\"는 근거로 인용할 때만 git show --stat으로 확인하고, 현재 위치(HEAD)나 복원 기준점을 가리킬 때는 빈 커밋이어도 그대로 쓸 수 있다'. 평가셋 변경: 공통 assertion '인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다'를 eval1·3·4·5·6·9에 추가(레포 루트 check_citation.py로 자동 판정), eval9의 중복 문구는 정리.",
+    "합계: v10 77/79, v9 77/79. 18개 run 모두 완료. 실패는 3건(아래)이며, 그중 2건은 두 버전이 같은 eval에서 함께 실패.",
+    "새 공통 assertion: 18개 run 모두 통과(빈 커밋을 근거로 인용한 사례 0건). v10은 HEAD·복원 기준점 용도로 빈 커밋을 세 곳에서 그대로 인용했고(eval1 6abee39, eval3 bd074f7, eval6 2a29f15) 이는 v10이 새로 명시한 예외에 해당한다. v9도 같은 용법을 썼다(eval5 f8ac775). 즉 iteration-11에서 v8이 저지른 '빈 커밋을 변경 근거로 인용' 오류는 이번 회차에 두 버전 모두 재현되지 않았고, v10의 예외 규칙이 점수를 바꾸지도 않았다.",
+    "실패 1·2(eval3, 두 버전 공통): ADR을 만든 뒤 '기각한 대안(sticky session, DB 세션 테이블 등)이 있었다면 근거를 알려달라'고 되물어, '대화에 기각 사유가 있으므로 되묻지 않았다' assertion에 실패. iteration-10·11에서는 두 버전 모두 되묻지 않았으므로 버전 차이가 아니라 회차 간 분산이다. eval3은 대화에 나온 대안이 '현행 유지' 하나뿐이라 '다른 대안이 더 있었는지' 묻고 싶어지는 케이스로 보인다 — 되묻기 금지 규칙이 '대화에 나온 대안의 기각 사유가 있을 때'를 뜻한다는 점을 SKILL.md에서 더 분명히 할 여지가 있다.",
+    "실패 3(템플릿 주석 누출): v10 eval5와 v9 eval6이 ADR 섹션 헤더에 템플릿 주석을 그대로 복사했다('## Context <!-- 필수 -->' 등, check_adr.py가 비표준 헤더·placeholder로 검출). 두 버전에 하나씩 갈려 나와 이것도 실행 간 분산으로 보인다. iteration-10·11의 ADR 26개에서는 한 번도 없던 실패이고 이번에 14개 중 2개에서 나왔다 — SKILL.md 템플릿 블록의 주석을 없애거나 '주석은 옮겨 적지 않는다'는 한 줄을 두는 편이 안전하다.",
+    "assertion 밖 관찰: v10 eval9는 Alternatives에 'jsonwebtoken 유지' 항목을 만들고 Rejected because에 '대화에 기각 사유가 기록되지 않음 — 확인 후 보완 필요'라고 적었다. 값이 없는 자리를 비우는 대신 보완 요청 문구로 채운 형태로, check_adr.py의 placeholder 패턴에는 걸리지 않지만 '빈 필드·TODO를 남기지 않는다'는 취지와는 어긋난다. v9 eval9는 Alternatives 섹션 자체를 만들지 않고 되물었다.",
+    "기계 판정: 18개 run 모두 docs/adr/ 밖 변경 없음(check_scope.py), 생성된 ADR 14개 중 12개가 템플릿 위반 없음(2개는 위 실패), eval7 HEAD 없음, eval8 .git 없음, 커밋 인용 위반 0건(check_citation.py).",
+    "비변별: eval1·2·4·7·8·9는 두 버전 모두 만점(9개 중 6개). 변별된 eval은 사실상 없다 — eval5·6의 실패가 서로 다른 버전에서 나왔을 뿐 같은 종류의 실수다.",
+    "비용: v10 평균 137s / 32329 tokens, v9 평균 137s / 32339 tokens. 주의: 이번 회차는 두 버전 모두 토큰이 iteration-11(평균 5만대)보다 눈에 띄게 낮다(3만대). 프롬프트와 fixture는 같으므로 원인이 확인되지 않았다 — 회차를 가로지르는 토큰 비교는 보류하는 편이 좋다."
+  ]
+}

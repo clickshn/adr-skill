@@ -1,0 +1,13 @@
+{
+  "expectations": [
+    {"text": "docs/adr/에 새 ADR 파일을 생성하지 않았다", "passed": true, "evidence": "repo/docs/adr에는 기존 ADR-001-fastify.md뿐"},
+    {"text": "최종 응답이 어떤 결정을 기록할지 사용자에게 되묻는 질문이다", "passed": true, "evidence": "response.md 첫 줄 '어떤 결정을 ADR로 기록할까요?'"},
+    {"text": "스킬 컨텍스트 명령(git diff, git log) 외의 저장소 탐색(파일 읽기·검색·목록 조회)을 하지 않았다", "passed": true, "evidence": "transcript: Read SKILL.md → git diff → git log → bookkeeping Write 2건"}
+  ],
+  "summary": {"passed": 3, "failed": 0, "total": 3, "pass_rate": 1.0},
+  "execution_metrics": {"total_tool_calls": 5, "errors_encountered": 0},
+  "timing": {"total_duration_seconds": 41.3},
+  "claims": [],
+  "user_notes_summary": {"uncertainties": [], "needs_review": [], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "v4에서도 0단계 동작 유지(회귀 없음)"}
+}

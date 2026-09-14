@@ -1,0 +1,18 @@
+{
+  "eval_id": 3,
+  "eval_name": "redis-session-no-numbers",
+  "skill_version": "current (post-v11 edit to step 3)",
+  "skill_path": "C:/adr-skill/skills/adr-recorder/SKILL.md",
+  "assertion": "대화에 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+  "runs": 5,
+  "results": [
+    {"run": 1, "asked_back": true,  "quote": "혹시 Memcached, DB 세션 테이블, 스티키 세션, JWT 같은 선택지를 검토하고 접으셨다면 기각 사유와 함께 알려주시면 섹션에 추가하겠습니다."},
+    {"run": 2, "asked_back": true,  "quote": "참고로 스티키 세션이나 DB 세션 테이블, JWT 같은 다른 안을 함께 검토하셨다면 말씀해 주세요."},
+    {"run": 3, "asked_back": true,  "quote": "검토했다가 기각한 다른 대안이 있으면 알려주세요. Alternatives에 추가하겠습니다."},
+    {"run": 4, "asked_back": false, "quote": "(대안 관련 되묻기 없음. 마지막 문장은 'app/session.py의 Redis 전환 구현도 해드릴까요?' — 후속 작업 제안이지 대안 질문 아님)"},
+    {"run": 5, "asked_back": true,  "quote": "Memcached, DB 세션 테이블, 스티키 세션처럼 검토했다가 접은 안이 있으면 알려주세요."}
+  ],
+  "ask_back_rate": 0.8,
+  "baseline_v11": {"runs": 5, "asked_back": 4, "ask_back_rate": 0.8},
+  "note": "5회 모두 ADR을 먼저 생성한 뒤 응답 말미에 조건부로 되물음(차단형 질문 아님). v11 대비 개선 없음."
+}

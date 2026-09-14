@@ -1,0 +1,60 @@
+{
+  "expectations": [
+    {
+      "text": "셸 명령(ls/dir 등)으로 docs/adr/ 목록을 직접 확인했다",
+      "passed": true,
+      "evidence": "transcript #4: Bash `ls -la docs/adr/` → .gitkeep만"
+    },
+    {
+      "text": "번호를 사용자에게 묻지 않고 docs/adr/에 001(또는 0001) 번호의 ADR 파일을 생성했다",
+      "passed": true,
+      "evidence": "번호를 묻지 않고 001-api-auth-session-to-jwt.md 생성"
+    },
+    {
+      "text": "응답에서 기존 ADR이 없어 001로 시작했다는 사실을 알렸다",
+      "passed": true,
+      "evidence": "response: '.gitkeep만 있고 기존 ADR이 없어서 ADR-001로 시작'"
+    },
+    {
+      "text": "Alternatives에 '세션 유지 + 파트너용 API 키 발급'이 있고 기각 사유에 키 회전 관리 부담이 들어있다",
+      "passed": true,
+      "evidence": "'express-session 세션 유지 + 파트너용 API 키 발급' Rejected because '키 회전 관리를 별도로 구축해야 해서'"
+    },
+    {
+      "text": "대화에 대안과 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+      "passed": true,
+      "evidence": "되묻지 않음"
+    },
+    {
+      "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+      "passed": true,
+      "evidence": "check_adr.py: 비표준 헤더/필드·빈 필드·빈 섹션·placeholder 없음"
+    },
+    {
+      "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+      "passed": true,
+      "evidence": "check_scope.py: docs/adr/ 밖 추가·변경·삭제 없음"
+    },
+    {
+      "text": "대화에 재검토 조건이 없는 'API 키 발급' 대안에 Recheck if 조건을 지어내 넣지 않았다(줄 생략, Recheck if가 하나도 없으면 Review Trigger도 없음)",
+      "passed": false,
+      "evidence": "대화에 없는 Recheck if를 만듦: '키 발급·회전을 제공하는 외부 서비스나 게이트웨이를 쓸 수 있게 되는 경우' → Review Trigger에도 반영"
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 1,
+    "total": 8,
+    "pass_rate": 0.875
+  },
+  "execution_metrics": {
+    "total_tool_calls": 13,
+    "errors_encountered": 0
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  }
+}

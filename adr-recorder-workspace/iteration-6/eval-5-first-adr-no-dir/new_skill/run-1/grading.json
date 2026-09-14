@@ -1,0 +1,19 @@
+{
+  "expectations": [
+    {"text": "docs/adr/ 디렉터리를 새로 만들고 첫 번호(001 또는 0001)의 ADR 파일을 생성했다", "passed": true, "evidence": "docs/adr/001-verification-email-celery-queue.md, H1 'ADR-001'"},
+    {"text": "ADR 번호를 사용자에게 확인하느라 파일 생성을 미루지 않았다", "passed": true, "evidence": "파일 생성 완료, 번호 질문 없음"},
+    {"text": "응답에서 기존 ADR이 없어 001로 시작했다는 사실을 알렸다", "passed": true, "evidence": "response: '`docs/adr/` 디렉터리가 없어서 새로 만들고 **ADR-001**부터 번호를 매겼습니다.'"},
+    {"text": "Status가 Proposed이다", "passed": true, "evidence": "Status: Proposed — 응답: '새로 내린 결정이라 pyproject.toml에 이미 celery가 추가돼 있어도 Proposed로 시작합니다'"},
+    {"text": "Alternatives에 RQ가 있고, 기각 사유에 'Redis를 새로 운영해야 함'이 들어있다", "passed": true, "evidence": "### RQ (Redis Queue) — Rejected because: '이 용도 하나 때문에 Redis를 새로 운영해야 한다.'"},
+    {"text": "대화에 대안과 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다", "passed": true, "evidence": "response는 Evidence용 수치만 요청, 대안 질문 없음"},
+    {"text": "대화·저장소에 없는 수치를 지어내 넣지 않았고 Evidence 섹션이 없다", "passed": true, "evidence": "Evidence 섹션 없음"},
+    {"text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다", "passed": true, "evidence": "check_adr.py 모든 항목 []"},
+    {"text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)", "passed": true, "evidence": "check_scope.py: outside_adr 모두 []"}
+  ],
+  "summary": {"passed": 9, "failed": 0, "total": 9, "pass_rate": 1.0},
+  "execution_metrics": {"total_tool_calls": 13, "errors_encountered": 0},
+  "timing": {"total_duration_seconds": 135.6},
+  "claims": [],
+  "user_notes_summary": {"uncertainties": [], "needs_review": [], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "v6 회귀 없음"}
+}

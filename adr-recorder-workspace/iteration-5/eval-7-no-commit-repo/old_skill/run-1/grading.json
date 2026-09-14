@@ -1,0 +1,20 @@
+{
+  "expectations": [
+    {"text": "SKILL.md의 컨텍스트 명령 2개가 에러 없이(exit 0) 실행되어 대체 문구('(HEAD 없음: …)', '(커밋 기록 없음)')를 출력했다 (스킬 로드 실패 없음)", "passed": false, "evidence": "v4 명령에는 fallback이 없어 두 명령 모두 exit 128 — git diff: 'fatal: bad revision HEAD', git log: 'does not have any commits yet'. 스킬 로드 실패"},
+    {"text": "docs/adr/ 디렉터리를 새로 만들고 001(또는 0001) 번호의 ADR 파일을 생성했다", "passed": false, "evidence": "로드 실패로 ADR 미생성"},
+    {"text": "응답에서 기존 ADR이 없어 001로 시작했다는 사실을 알렸다", "passed": false, "evidence": "응답은 로드 실패 에러 메시지뿐"},
+    {"text": "Status가 Proposed이고, Decision Source가 Human이며 Confidence 필드가 없다", "passed": false, "evidence": "ADR 없음"},
+    {"text": "Alternatives에 OpenAI API(현행 유지)가 있고, 기각 사유에 '고객 데이터 외부 반출 금지'가 들어있다", "passed": false, "evidence": "ADR 없음"},
+    {"text": "대화에 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다", "passed": false, "evidence": "되묻지 않은 것은 로드 실패로 아무 작업도 하지 않았기 때문 — 우연히 충족된 항목은 통과로 보지 않음"},
+    {"text": "대화·저장소에 없는 수치나 서빙 모델명을 지어내 넣지 않았고 Evidence 섹션이 없다", "passed": false, "evidence": "ADR 없음 — 우연히 충족"},
+    {"text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다", "passed": false, "evidence": "평가할 ADR 없음"},
+    {"text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)", "passed": false, "evidence": "check_scope.py상 변경 없음이지만 로드 실패로 아무 작업도 하지 않은 결과 — 우연히 충족"},
+    {"text": "커밋을 만들지 않았다(실행 후에도 HEAD가 없다)", "passed": false, "evidence": "HEAD 없음이지만 로드 실패로 아무 작업도 하지 않은 결과 — 우연히 충족"}
+  ],
+  "summary": {"passed": 0, "failed": 10, "total": 10, "pass_rate": 0.0},
+  "execution_metrics": {"total_tool_calls": 5, "errors_encountered": 2},
+  "timing": {"total_duration_seconds": 34.6},
+  "claims": [],
+  "user_notes_summary": {"uncertainties": [], "needs_review": ["스킬 로드 실패: Shell command failed for pattern \"git diff HEAD ...\": fatal: bad revision 'HEAD'"], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "v4의 알려진 버그(커밋 없는 저장소에서 로드 실패)를 재현 — v5 fallback의 효과를 변별하는 케이스"}
+}

@@ -1,0 +1,85 @@
+{
+  "expectations": [
+    {
+      "text": "docs/adr/에 ADR-005 번호의 새 ADR 파일이 생성되었다",
+      "passed": true,
+      "evidence": "docs/adr/ADR-005-internal-grpc.md"
+    },
+    {
+      "text": "Status가 Accepted이다(원본에 확정·시행 중으로 기록되어 있으므로)",
+      "passed": true,
+      "evidence": "Status: Accepted"
+    },
+    {
+      "text": "결정 로그의 p99 45ms와 근거 문서 최종값 52ms의 불일치가 ADR에 기록되어 있고, 이를 위한 별도 섹션을 새로 만들지 않고 기존 섹션 안에 녹였다",
+      "passed": true,
+      "evidence": "Evidence Benchmark 줄과 Risks에 45ms/52ms 불일치 기록 — 별도 섹션 없음"
+    },
+    {
+      "text": "Alternatives에 GraphQL 페더레이션과 REST 유지+캐싱이 있고, GraphQL의 Recheck if에 '플랫폼팀 4명 이상' 조건이 있다",
+      "passed": true,
+      "evidence": "GraphQL 페더레이션(Recheck if '플랫폼팀이 4명 이상으로 늘어날 때'), REST 유지 + 응답 캐싱"
+    },
+    {
+      "text": "Review Trigger 섹션이 있고 Alternatives의 Recheck if 내용과 일치한다",
+      "passed": true,
+      "evidence": "Review Trigger = GraphQL Recheck if 1건"
+    },
+    {
+      "text": "References 섹션의 Documentation 필드에 docs/decisions.md(D-007) 경로가 있고, 값 없는 PR/Issue 줄은 없다",
+      "passed": true,
+      "evidence": "Documentation: docs/decisions.md (D-007, 원본) 등. PR/Issue 줄 없음"
+    },
+    {
+      "text": "Confidence 규칙을 지켰다: Decision Source가 Human이면 Confidence가 없고, 그 외라면 실측 수치가 있으므로 High이다",
+      "passed": true,
+      "evidence": "Decision Source: Human, Confidence 없음"
+    },
+    {
+      "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+      "passed": true,
+      "evidence": "check_adr.py: 비표준 헤더/필드·빈 필드·빈 섹션·placeholder 없음"
+    },
+    {
+      "text": "원본 결정 로그에 없는 정보(대안의 수치 근거 등)를 사용자에게 새로 되묻지 않았다",
+      "passed": true,
+      "evidence": "새 정보를 묻지 않음(원본 처리 방식과 45ms 정정 여부만 물음)"
+    },
+    {
+      "text": "Reversibility 섹션이 있고 Rollback 필드에 저장소에서 확인한 롤백 방법이 채워져 있다(원본 로그에 없더라도)",
+      "passed": true,
+      "evidence": "Rollback: REST+JSON 복귀, inventory REST 엔드포인트 존재 여부는 확인 불가 명시"
+    },
+    {
+      "text": "docs/adr/ 밖의 파일(docs/decisions.md 포함)을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+      "passed": true,
+      "evidence": "check_scope.py: docs/adr/ 밖 추가·변경·삭제 없음 (docs/decisions.md 포함)"
+    },
+    {
+      "text": "응답에서 원본 결정 로그의 D-007을 지울지, 이관 표시만 남길지 사용자에게 물었다",
+      "passed": true,
+      "evidence": "response: '원본 D-007은 어떻게 할까요? 1. 지운다 2. 이관 표시만'"
+    },
+    {
+      "text": "Date가 원본 시행일(2026-03-02)이다(이관 작성일이 아니라 원본 D-007에 기록된 시행일을 따르므로)",
+      "passed": true,
+      "evidence": "Date: 2026-03-02 (v6에는 Date 규칙이 없지만 이번 실행은 시행일을 씀)"
+    }
+  ],
+  "summary": {
+    "passed": 13,
+    "failed": 0,
+    "total": 13,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "total_tool_calls": 12,
+    "errors_encountered": 0
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  }
+}

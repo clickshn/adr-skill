@@ -1,0 +1,135 @@
+{
+  "expectations": [
+    {
+      "text": "docs/adr/에 기존 4자리 번호 규칙을 따른 0002 번호의 새 ADR 파일이 생성되었다",
+      "passed": true,
+      "evidence": "repo/docs/adr/에 `0002-redis-session-store.md`(4008 bytes)가 새로 존재한다. fixture의 기존 파일은 `0001-record-architecture-decisions.md` 하나이며 4자리 zero-padding을 그대로 이었다. 트랜스크립트 판단 3: \"I followed the repo's established number and zero-padding convention (`0001` → `0002`)\"."
+    },
+    {
+      "text": "Status가 Proposed이다",
+      "passed": true,
+      "evidence": "ADR 헤더: \"- **Status:** Proposed\". response.md도 \"Status: Proposed — 새로 내리는 결정이라, `requirements.txt`에 redis가 이미 들어가 있어도 Proposed로 시작합니다\"라고 근거를 밝힌다."
+    },
+    {
+      "text": "대화·저장소에 없는 수치(지연시간, 처리량, 비용 등)를 지어내 넣지 않았다",
+      "passed": true,
+      "evidence": "ADR에 등장하는 수치는 `redis==5.0.8`(repo/requirements.txt 실제 값), \"서버 3대\"(사용자 발화), `0002`, 날짜 2026-09-14, 커밋 ba84cb2뿐이다. \"FastAPI + uvicorn 기반\"도 requirements.txt의 fastapi==0.112.2 / uvicorn==0.30.6에서 확인 가능한 사실이다. 지연시간·처리량·비용 수치는 없고 Risks/Negative는 모두 정성적 서술이다."
+    },
+    {
+      "text": "Evidence 섹션이 없다(실측 근거가 없으므로)",
+      "passed": true,
+      "evidence": "ADR의 섹션은 Context / Decision / Rationale / Consequences / Implementation / Reversibility / References뿐이고 Evidence 헤딩이 없다. response.md: \"Evidence — 벤치마크나 프로덕션 측정 수치가 없어서 만들지 않았습니다. '서버 3대에서 로그인이 풀린다'는 정성적 관찰은 Context에 넣었습니다.\""
+    },
+    {
+      "text": "Alternatives에 인메모리 세션 유지(현행 유지)가 있고, 기각 사유에 3대 서버에서 로그인이 풀리는 문제가 포함된다",
+      "passed": false,
+      "evidence": "ADR 파일에 Alternatives 섹션 자체가 존재하지 않는다(Rationale 다음이 곧바로 Consequences). 따라서 '인메모리 세션 유지(현행 유지)' 항목도, 그 기각 사유도 기록되지 않았다. 트랜스크립트 판단 8이 이를 의도적 선택으로 명시한다: \"No Alternatives section, and asked the user for rejected alternatives … I deliberately did not dress up 'keep process memory' as an alternative\". 현행 유지가 기각된 이유(3대 확장 시 로그인 풀림)는 대화에 이미 있었으므로 추측이 아니라 기록 가능한 정보였다."
+    },
+    {
+      "text": "대화에 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+      "passed": false,
+      "evidence": "response.md 마지막 문단이 정확히 그 질문이다: \"**이 결정에서 기각한 대안과 근거를 알려주세요.** (예: 스티키 세션, DB 세션 테이블, JWT 등을 검토하셨다면 각각 왜 접었는지) 알려주시면 Alternatives 섹션을 채우고, 재검토 조건까지 주시면 Review Trigger도 함께 추가하겠습니다.\" 사용자는 이미 현행(프로세스 메모리) 유지와 그 기각 사유(3대 확장 시 로그인 풀림)를 말했으므로 되물을 필요가 없었다."
+    },
+    {
+      "text": "Implementation 섹션이 체크리스트 형태로 존재한다",
+      "passed": true,
+      "evidence": "\"## Implementation\" 아래에 `- [ ]` 형식 항목 4개: get/put의 Redis 구현 교체(직렬화·TTL), 3대 교차 요청/재시작 후 세션 유지 테스트, 연결 실패율·지연·키 개수 모니터링, 접속 설정 환경변수화 및 배포 문서 업데이트."
+    },
+    {
+      "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+      "passed": true,
+      "evidence": "check_scope.py 기계 검증 결과 PASS. 트랜스크립트 판단 12와 일치: \"`app/session.py` and `requirements.txt` were read but not modified\"."
+    },
+    {
+      "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+      "passed": true,
+      "evidence": "check_citation.py citation_ok PASS. 인용된 해시는 ba84cb2 하나로 실제로는 파일 변경이 없는 빈 커밋이지만, \"되돌리기 직전 기준점은 커밋 `ba84cb2`다\"라는 롤백/HEAD 위치 표시 용도로만 쓰였고 특정 변경이 그 커밋에 들어 있다는 근거로 쓰이지 않았다 — 스킬이 명시적으로 허용하는 사용법이다(트랜스크립트 판단 11)."
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 2,
+    "total": 9,
+    "pass_rate": 0.78
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Bash": 6,
+      "Write": 3
+    },
+    "total_tool_calls": 10,
+    "total_steps": 10,
+    "errors_encountered": 0,
+    "output_chars": 5669,
+    "transcript_chars": 5017
+  },
+  "timing": {
+    "executor_duration_seconds": 319.3,
+    "total_duration_seconds": 319.3,
+    "duration_ms": 319281,
+    "total_tokens": 49362
+  },
+  "claims": [
+    {
+      "claim": "대화 어디에도 구체적 기각 사유를 가진 대안이 등장하지 않는다 (Alternatives 생략의 근거, 트랜스크립트 판단 8)",
+      "type": "quality",
+      "verified": false,
+      "evidence": "eval 프롬프트가 \"세션 저장소를 프로세스 메모리에서 Redis로 옮기기로 했어. 서버를 3대로 늘리면서 로그인이 풀리는 문제 때문에\"이다. 현행 유지(프로세스 메모리)라는 대안과 그 기각 사유(3대 구성에서 로그인이 풀림)가 모두 명시되어 있으므로 이 판단은 성립하지 않는다. 실제로 같은 ADR의 Rollback 문단이 \"롤백하면 3대 구성에서 로그인이 풀리는 원래 문제가 그대로 재발한다\"고 적어 현행 유지의 기각 사유를 스스로 서술하면서도 Alternatives로는 옮기지 않았다."
+    },
+    {
+      "claim": "'keep process memory'를 대안으로 쓰면 Pros를 지어내야 한다 (Alternatives 생략의 보조 근거)",
+      "type": "quality",
+      "verified": false,
+      "evidence": "repo 코드만으로 '외부 저장소 의존성이 없다', '현재 구현이 그대로 동작한다'는 Pros가 도출 가능하다 — 동일 fixture에서 new_skill 런이 지어낸 수치 없이 그렇게 작성했다."
+    },
+    {
+      "claim": "ba84cb2는 롤백 기준점(현재 HEAD) 표시로만 인용했다",
+      "type": "process",
+      "verified": true,
+      "evidence": "ADR Rollback 문구가 \"되돌리기 직전 기준점은 커밋 `ba84cb2`다\"이고, `git log --oneline`상 ba84cb2가 실제 HEAD다. 다만 트랜스크립트 판단 11이 인정하듯 `git show --stat` 검증은 하지 않았고, 그 커밋은 파일 변경이 없는 빈 커밋이다."
+    },
+    {
+      "claim": "app/session.py의 get/put 인터페이스가 고정되어 있어 호출부 변경 없이 구현만 교체할 수 있다 (Migration Cost: Low 근거)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "repo/app/session.py가 `_sessions` dict와 `get(session_id)` / `put(session_id, data)` 두 함수만 담고 있다."
+    },
+    {
+      "claim": "requirements.txt에 redis==5.0.8이 이미 추가되어 있다",
+      "type": "factual",
+      "verified": true,
+      "evidence": "git diff HEAD 출력이 `+redis==5.0.8`을 보여주고 작업트리 requirements.txt에 해당 줄이 있다."
+    },
+    {
+      "claim": "Review Trigger는 Alternatives의 'Recheck if'에서만 만들어지므로 Alternatives가 없으면 생성하지 않는다",
+      "type": "process",
+      "verified": true,
+      "evidence": "ADR에 Review Trigger 섹션이 없다. 규칙 적용 자체는 일관되나, 선행 단계인 Alternatives 누락에서 파생된 결과다."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [
+      "Alternatives 섹션이 통째로 비어 있어 ADR이 '왜 현행 유지로는 안 되는가'를 기록하지 못했다.",
+      "최종 응답이 사용자에게 기각 대안·근거와 재검토 조건을 되묻고 끝나, 한 번의 요청으로 완결되지 않았다."
+    ],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "대화에 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+        "reason": "이 assertion은 '기각 대안' 질문만 금지한다. 같은 응답의 \"재검토 조건까지 주시면 Review Trigger도 함께 추가하겠습니다\"라는 되묻기는 어떤 assertion도 잡지 못한다. '사용자에게 ADR 내용을 채워달라고 요구하는 질문이 없다'로 넓히거나 Review Trigger 되묻기용 assertion을 따로 두면 변별력이 올라간다."
+      },
+      {
+        "reason": "Reversibility/Rollback의 품질을 직접 검사하는 assertion이 없다. 인용 assertion이 '빈 커밋을 근거로 쓰지 않았는가'만 보기 때문에, 빈 커밋을 기준점으로 인용한 이 런과 실제 변경 커밋을 조사해 인용한 런이 동일하게 통과한다. '롤백 절차가 저장소에서 확인한 구체 파일/커밋을 근거로 서술되었다' 같은 assertion이 그 차이를 드러낼 수 있다."
+      },
+      {
+        "assertion": "Status가 Proposed이다",
+        "reason": "템플릿 기본값으로도 통과해 단독 변별력은 낮다. '의존성이 이미 수정돼 있어도 Accepted로 올리지 않는다'는 함정을 겨냥하므로 유지할 만하나, Date가 오늘 날짜인지와 묶으면 더 강해진다."
+      }
+    ],
+    "overall": "assertion 세트는 이 런의 실제 결함을 정확히 잡아냈다 — 5번(Alternatives 누락)과 6번(기각 대안 되묻기)이 함께 실패하며 스킬 버전 차이를 그대로 드러낸다. 보완이 필요한 곳은 되묻기 금지의 범위(Review Trigger 되묻기 미포착)와 Rollback 근거 품질 미검사 두 가지다."
+  }
+}

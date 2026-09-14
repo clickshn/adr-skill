@@ -1,0 +1,123 @@
+{
+  "expectations": [
+    {
+      "text": "셸 명령(ls/dir 등)으로 docs/adr/ 목록을 직접 확인했다",
+      "passed": true,
+      "evidence": "Transcript tool-call table row 4: \"| 4 | Bash | `ls -la` + `ls -la docs` + `ls -la docs/adr` | Skill step 1: confirm ADR file list via shell, not glob\". Judgment call 3 confirms: \"Verified the directory with `ls`, never with a glob.\""
+    },
+    {
+      "text": "번호를 사용자에게 묻지 않고 docs/adr/에 001(또는 0001) 번호의 ADR 파일을 생성했다",
+      "passed": true,
+      "evidence": "repo/docs/adr/001-api-auth-jwt.md exists and opens with \"# ADR-001: API 인증을 쿠키 세션에서 JWT로 전환\". response.md contains no numbering question; transcript judgment call 2: \"Numbered the ADR 001 and said so in the reply.\""
+    },
+    {
+      "text": "응답에서 기존 ADR이 없어 001로 시작했다는 사실을 알렸다",
+      "passed": true,
+      "evidence": "response.md line 3: \"`docs/adr/`에 `.gitkeep`만 있고 기존 ADR 파일이 없어서 번호는 **001**부터 시작했습니다.\""
+    },
+    {
+      "text": "Alternatives에 '세션 유지 + 파트너용 API 키 발급'이 있고 기각 사유에 키 회전 관리 부담이 들어있다",
+      "passed": true,
+      "evidence": "ADR heading \"### 세션 방식 유지 + 파트너용 API 키 발급\" with \"- **Rejected because:** 키 회전 관리를 따로 만들어야 하는 부담이 커서 접었다.\" and \"- **Cons:** 파트너별 API 키의 회전 관리 체계를 별도로 구축해야 한다.\""
+    },
+    {
+      "text": "대화에 대안과 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+      "passed": true,
+      "evidence": "response.md asks no question about rejected alternatives or their rationale. The two questions it does contain are on other subjects: a review-condition request — \"재검토 조건을 따로 말씀하신 게 없어서 Recheck if / Review Trigger도 비워뒀습니다. '이런 조건이면 API 키 방식을 다시 본다' 같은 기준이 있으면 알려주세요, 추가하겠습니다.\" — and a next-step offer, \"`src/auth.js`의 JWT 미들웨어 교체까지 이어서 할까요?\". Neither asks for a rejected alternative or its rationale, so this assertion passes (see eval_feedback for the separate concern)."
+    },
+    {
+      "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+      "passed": true,
+      "evidence": "Sections used: Context(Problem/Constraints), Decision(Selected: Technology/Architecture/Implementation), Rationale, Alternatives(Pros/Cons/Rejected because), Consequences(Positive/Negative/Risks), Implementation, Reversibility(Reversible/Rollback/Migration Cost), References(Documentation) — all present in the v11 SKILL.md template (template body is byte-identical to the current skill's). Header fields Status/Date/Decision/Scope/Decision Source only, Confidence correctly dropped for Human source. grep for TODO/placeholder/TBD/XXX returned no matches, no leaked HTML comments, and no field emitted empty."
+    },
+    {
+      "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+      "passed": true,
+      "evidence": "Settled mechanically by check_scope.py: PASS. Transcript judgment call 16 is consistent: \"Wrote only inside `docs/adr/`. `package.json` and `src/auth.js` were read but never modified.\""
+    },
+    {
+      "text": "대화에 재검토 조건이 없는 'API 키 발급' 대안에 Recheck if 조건을 지어내 넣지 않았다(줄 생략, Recheck if가 하나도 없으면 Review Trigger도 없음)",
+      "passed": true,
+      "evidence": "grep for 'Recheck' and 'Review Trigger' over docs/adr/001-api-auth-jwt.md returns no matches — the Alternatives entry ends at \"- **Rejected because:** ...\" and the file goes straight from Reversibility to References. Transcript judgment call 10: \"`Recheck if` line omitted, and `Review Trigger` section not created... Inverting the rejection reason ... is explicitly forbidden as fabricated.\""
+    },
+    {
+      "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+      "passed": true,
+      "evidence": "Settled mechanically by check_citation.py: citation_ok. The ADR cites only 2054636 — \"세션 설정 원본은 커밋 `2054636`에 있다\" — and `git show --stat 2054636` confirms it contains docs/adr/.gitkeep, package.json and src/auth.js. The empty commit abe4c7c is explicitly excluded in response.md: \"최신 커밋 `abe4c7c`는 파일 변경이 없는 빈 커밋이라 복원 기준으로 쓰지 않았습니다.\""
+    }
+  ],
+  "summary": {
+    "passed": 9,
+    "failed": 0,
+    "total": 9,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 2,
+      "Bash": 6,
+      "Write": 3
+    },
+    "total_tool_calls": 11,
+    "total_steps": 11,
+    "errors_encountered": 0,
+    "output_chars": 10993,
+    "transcript_chars": 5452
+  },
+  "timing": {
+    "executor_duration_seconds": 236.4,
+    "total_duration_seconds": 236.4,
+    "duration_ms": 236379,
+    "total_tokens": 49259
+  },
+  "claims": [
+    {
+      "claim": "abe4c7c is an empty commit containing no files, while 2054636 actually contains src/auth.js and package.json",
+      "type": "factual",
+      "verified": true,
+      "evidence": "`git show --stat abe4c7c` prints the header with no file stats; `git show --stat 2054636` lists \"docs/adr/.gitkeep | 0, package.json | 9 +++++++++, src/auth.js | 7 +++++++, 3 files changed\"."
+    },
+    {
+      "claim": "package.json dropped express-session while src/auth.js still requires it, so install/boot would fail",
+      "type": "factual",
+      "verified": true,
+      "evidence": "repo/src/auth.js line 1: \"const session = require('express-session');\"; the working-tree diff removes express-session ^1.18.0 and adds jsonwebtoken ^9.0.2."
+    },
+    {
+      "claim": "The commit hash used as evidence was verified with git show --stat before citing",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript row 7: \"Bash | `git show --stat abe4c7c` and `git show --stat 2054636` | Verify which commit actually contains the session implementation\"."
+    },
+    {
+      "claim": "docs/adr/ listing was done by shell rather than glob",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript row 4 records `ls -la docs/adr`; the only Read calls in the table are SKILL.md and src/auth.js — no Glob call appears."
+    },
+    {
+      "claim": "Evidence section was omitted because no measured figures exist",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The ADR has no Evidence section and the qualitative observation (\"쿠키 기반이 번거로워서\") appears under Context/Problem instead, matching the skill's Evidence rule."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "대화에 재검토 조건이 없는 'API 키 발급' 대안에 Recheck if 조건을 지어내 넣지 않았다(줄 생략, Recheck if가 하나도 없으면 Review Trigger도 없음)",
+        "reason": "The assertion only checks the ADR file. This run kept the file clean but then asked the user in the reply — \"'이런 조건이면 API 키 방식을 다시 본다' 같은 기준이 있으면 알려주세요, 추가하겠습니다\" — which is exactly what the current skill added a rule against (\"사용자에게 재검토 조건을 알려달라고 되묻지 않는다\"). The new-skill run does not ask. This is the clearest behavioral difference between the two configurations and no assertion catches it; consider adding one scoped to the response."
+      },
+      {
+        "assertion": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+        "reason": "Both configurations pass, but only this run actually ran `git show --stat` on both hashes; the other cited the empty commit in a permitted position-marker role without verifying. The assertion cannot separate verification from luck — a companion assertion on the verification step would be more discriminating."
+      }
+    ],
+    "overall": "Assertions are mostly discriminating, but on this eval all nine pass for both skill versions, so the suite does not currently separate v11 from the current skill. The recheck-condition follow-up question is the one observable divergence and is uncovered."
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "expectations": [
+    {
+      "text": "셸 명령(ls/dir 등)으로 docs/adr/ 목록을 직접 확인했다",
+      "passed": true,
+      "evidence": "Transcript tool-call table row 4: \"| 4 | Bash | `ls -la` + `ls -la docs` + `ls -la docs/adr` | Skill step 1: shell check of docs/adr. Only `.gitkeep` present → start at 001.\" An actual shell listing of docs/adr was run; no Glob-only path was used (judgment call 2: \"Verified docs/adr by shell, not glob.\")."
+    },
+    {
+      "text": "번호를 사용자에게 묻지 않고 docs/adr/에 001(또는 0001) 번호의 ADR 파일을 생성했다",
+      "passed": true,
+      "evidence": "repo/docs/adr/001-api-auth-session-to-jwt.md exists and opens with \"# ADR-001: API 인증을 쿠키 세션에서 JWT로 전환\". No numbering question appears anywhere in response.md; transcript judgment call 1: \"Numbered the ADR 001 without asking.\""
+    },
+    {
+      "text": "응답에서 기존 ADR이 없어 001로 시작했다는 사실을 알렸다",
+      "passed": true,
+      "evidence": "response.md line 1: \"`docs/adr/`에 `.gitkeep`만 있고 기존 ADR 파일이 없어서 **001번**으로 시작했습니다.\""
+    },
+    {
+      "text": "Alternatives에 '세션 유지 + 파트너용 API 키 발급'이 있고 기각 사유에 키 회전 관리 부담이 들어있다",
+      "passed": true,
+      "evidence": "ADR heading \"### 세션 방식 유지 + 파트너용 API 키 발급\" with \"- **Rejected because:** 키 회전 관리를 따로 구축해야 하는 부담 때문에 접었다.\" and \"- **Cons:** 키 회전(rotation) 관리 체계를 새로 만들어야 한다.\""
+    },
+    {
+      "text": "대화에 대안과 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+      "passed": true,
+      "evidence": "response.md contains no question at all about rejected alternatives or their rationale. The only forward-looking sentence is about a review condition, and it is phrased as an offer, not a request: \"재검토 조건(Recheck if)은 말씀에 없어서 넣지 않았고, 그래서 Review Trigger 섹션도 만들지 않았습니다. 나중에 '파트너사가 N곳 넘으면' 같은 조건이 정해지면 추가해 드릴게요.\""
+    },
+    {
+      "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+      "passed": true,
+      "evidence": "Sections used: Context(Problem/Constraints), Decision(Selected: Technology/Architecture/Implementation), Rationale, Alternatives(Pros/Cons/Rejected because), Consequences(Positive/Negative/Risks), Implementation, Reversibility(Reversible/Rollback/Migration Cost), References(Documentation) — all present in the SKILL.md template. Header fields Status/Date/Decision/Scope/Decision Source are template fields (Confidence correctly dropped for Decision Source: Human). grep for TODO/placeholder/TBD/XXX returned no matches, no HTML template comments leaked, and every emitted field has content."
+    },
+    {
+      "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+      "passed": true,
+      "evidence": "Settled mechanically by check_scope.py: PASS. Consistent with `git status --short` in repo showing only \" M package.json\" (the pre-existing fixture change) and \"?? docs/adr/001-api-auth-session-to-jwt.md\"."
+    },
+    {
+      "text": "대화에 재검토 조건이 없는 'API 키 발급' 대안에 Recheck if 조건을 지어내 넣지 않았다(줄 생략, Recheck if가 하나도 없으면 Review Trigger도 없음)",
+      "passed": true,
+      "evidence": "grep for 'Recheck' and 'Review Trigger' over docs/adr/001-api-auth-session-to-jwt.md returns no matches — the Alternatives entry ends at \"- **Rejected because:** ...\" and no Review Trigger section exists. Transcript judgment call 4: \"Omitted `Recheck if`, therefore omitted the `Review Trigger` section... the rules forbid inventing one by inverting the rejection reason.\""
+    },
+    {
+      "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+      "passed": true,
+      "evidence": "Settled mechanically by check_citation.py: citation_ok. abe4c7c (an empty commit) is cited only as a restore/HEAD position marker — \"아직 커밋되지 않은 작업 트리 변경이므로 현재 시점에서는 HEAD(abe4c7c) 기준으로 되돌리면 된다\" — which the skill explicitly permits; no commit is cited as evidence that it contains a change."
+    }
+  ],
+  "summary": {
+    "passed": 9,
+    "failed": 0,
+    "total": 9,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Bash": 6,
+      "Write": 3
+    },
+    "total_tool_calls": 10,
+    "total_steps": 10,
+    "errors_encountered": 0,
+    "output_chars": 9877,
+    "transcript_chars": 4641
+  },
+  "timing": {
+    "executor_duration_seconds": 201.5,
+    "total_duration_seconds": 201.5,
+    "duration_ms": 201526,
+    "total_tokens": 48141
+  },
+  "claims": [
+    {
+      "claim": "docs/adr/ contained only .gitkeep, so 001 is the correct next number",
+      "type": "factual",
+      "verified": true,
+      "evidence": "repo/docs/adr/ holds only .gitkeep plus the newly created 001 file; `git show --stat 2054636` lists docs/adr/.gitkeep as the only file under docs/adr."
+    },
+    {
+      "claim": "src/auth.js still requires express-session although package.json dropped the dependency",
+      "type": "factual",
+      "verified": true,
+      "evidence": "repo/src/auth.js line 1: \"const session = require('express-session');\" while the package.json diff removes express-session and adds jsonwebtoken."
+    },
+    {
+      "claim": "The docs/adr listing was done by shell (ls), not by glob",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript row 4 records `ls -la docs/adr`; no Glob tool call appears in the tool-call table."
+    },
+    {
+      "claim": "HEAD (abe4c7c) is a valid rollback baseline for the package.json change",
+      "type": "quality",
+      "verified": true,
+      "evidence": "`git status --short` shows package.json as an uncommitted modification, so reverting to HEAD does restore express-session — correct despite abe4c7c itself being an empty commit."
+    },
+    {
+      "claim": "Confidence was omitted because Decision Source is Human",
+      "type": "process",
+      "verified": true,
+      "evidence": "ADR header has \"- **Decision Source:** Human\" and no Confidence line, matching the SKILL.md rule \"Decision Source가 Human이면 필드를 생략한다\"."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+        "reason": "Both configurations pass, but for different reasons: this run cites the empty commit abe4c7c as a position marker without ever running `git show --stat`, while the other run verified both hashes and deliberately cited 2054636. The assertion cannot distinguish 'verified then cited correctly' from 'happened to cite it in a permitted role'. Consider a companion assertion on whether a hash used as change evidence was verified with `git show --stat`."
+      },
+      {
+        "reason": "No assertion covers the SKILL.md rule '사용자에게 재검토 조건을 알려달라고 되묻지 않는다'. This run complies (it only offers to add one later), but the old-skill run does ask the user for a recheck condition — a real behavioral difference between the two configurations that the current assertion set leaves uncaught, because assertion 5 is scoped to rejected-alternative questions only."
+      }
+    ],
+    "overall": "Assertions are mostly discriminating (the shell-listing and fabricated-Recheck-if ones especially). Main gap: no assertion on whether the model interrogates the user for a review condition, which is where the two skill versions actually diverge."
+  }
+}

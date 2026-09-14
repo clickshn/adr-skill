@@ -1,0 +1,21 @@
+{
+  "expectations": [
+    {"text": "docs/adr/에 ADR-005 번호의 새 ADR 파일이 생성되었다", "passed": true, "evidence": "docs/adr/ADR-005-internal-grpc.md"},
+    {"text": "Status가 Accepted이다(원본에 확정·시행 중으로 기록되어 있으므로)", "passed": true, "evidence": "Status: Accepted"},
+    {"text": "결정 로그의 p99 45ms와 근거 문서 최종값 52ms의 불일치가 ADR에 기록되어 있고, 이를 위한 별도 섹션을 새로 만들지 않고 기존 섹션 안에 녹였다", "passed": true, "evidence": "Evidence > Benchmark 줄 안에 '원본 D-007에는 gRPC p99가 45ms로 적혀 있으나 ... 재측정 최종값은 52ms다'. nonstandard_h2 []"},
+    {"text": "Alternatives에 GraphQL 페더레이션과 REST 유지+캐싱이 있고, GraphQL의 Recheck if에 '플랫폼팀 4명 이상' 조건이 있다", "passed": true, "evidence": "GraphQL Recheck if: '플랫폼팀이 4명 이상으로 늘어날 때'; REST 유지 + 응답 캐싱 존재"},
+    {"text": "Review Trigger 섹션이 있고 Alternatives의 Recheck if 내용과 일치한다", "passed": true, "evidence": "Review Trigger '플랫폼팀이 4명 이상으로 늘어나면 GraphQL 페더레이션을 재검토한다.'"},
+    {"text": "References 섹션의 Documentation 필드에 docs/decisions.md(D-007) 경로가 있고, 값 없는 PR/Issue 줄은 없다", "passed": true, "evidence": "References: Documentation 한 줄만, '`docs/decisions.md` D-007 (2026-09-11 이관), ...'"},
+    {"text": "Confidence 규칙을 지켰다: Decision Source가 Human이면 Confidence가 없고, 그 외라면 실측 수치가 있으므로 High이다", "passed": true, "evidence": "Decision Source: Human, Confidence 없음"},
+    {"text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다", "passed": true, "evidence": "check_adr.py 모든 항목 []"},
+    {"text": "원본 결정 로그에 없는 정보(대안의 수치 근거 등)를 사용자에게 새로 되묻지 않았다", "passed": true, "evidence": "response에 대안 근거 질문 없음. '원본에 없는 내용은 추측해서 채우지 않았습니다'. 마지막 문장은 decisions.md 이관 표시 여부 제안일 뿐"}
+  ],
+  "summary": {"passed": 9, "failed": 0, "total": 9, "pass_rate": 1.0},
+  "execution_metrics": {"total_tool_calls": 17, "errors_encountered": 0},
+  "timing": {"total_duration_seconds": 154.3},
+  "claims": [
+    {"claim": "Reversibility가 원본에 없어서 섹션을 넣지 않았다", "type": "quality", "verified": false, "evidence": "템플릿 주석은 Reversibility '가능하면 항상'. iteration-1 v1 실행은 저장소 정보로 Reversibility를 작성했음 — v2의 '원본에 없는 정보를 새로 캐묻지 않는다' 규칙이 '작성하지도 않는다'로 과잉 적용된 것으로 보임"}
+  ],
+  "user_notes_summary": {"uncertainties": [], "needs_review": ["이관 시 Reversibility 섹션 생략 — v2 3단계 문구의 과잉 해석 가능성"], "workarounds": []},
+  "eval_feedback": {"suggestions": [{"reason": "이관 시 Reversibility처럼 '가능하면 항상' 섹션이 유지되는지 확인하는 assertion이 없음"}], "overall": "v2 변경 의도(되묻지 않기)는 달성. 부작용으로 섹션 생략 발생"}
+}

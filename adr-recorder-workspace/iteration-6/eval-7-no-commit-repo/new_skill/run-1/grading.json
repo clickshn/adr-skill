@@ -1,0 +1,22 @@
+{
+  "expectations": [
+    {"text": "SKILL.md의 컨텍스트 명령 2개가 에러 없이(exit 0) 실행되어 대체 문구('(HEAD 없음: …)', '(커밋 기록 없음)')를 출력했다 (스킬 로드 실패 없음)", "passed": true, "evidence": "두 명령 exit 0, 커밋이 없어 대체 문구 출력(실행 보고)"},
+    {"text": "docs/adr/ 디렉터리를 새로 만들고 001(또는 0001) 번호의 ADR 파일을 생성했다", "passed": true, "evidence": "docs/adr/001-self-host-llm-with-vllm.md, H1 'ADR-001'"},
+    {"text": "응답에서 기존 ADR이 없어 001로 시작했다는 사실을 알렸다", "passed": true, "evidence": "response: '`docs/adr/` 폴더도, 기존 ADR도 없어서 001번부터 시작했습니다.'"},
+    {"text": "Status가 Proposed이고, Decision Source가 Human이며 Confidence 필드가 없다", "passed": true, "evidence": "Status: Proposed, Decision Source: Human, confidence_present=false"},
+    {"text": "Alternatives에 OpenAI API(현행 유지)가 있고, 기각 사유에 '고객 데이터 외부 반출 금지'가 들어있다", "passed": true, "evidence": "### OpenAI API (gpt-4o, 현행) — Rejected because: '고객 데이터 외부 반출 금지 정책을 지킬 수 없다.'"},
+    {"text": "대화에 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다", "passed": true, "evidence": "response에 대안 관련 질문 없음(서빙 모델 미정이라는 안내만)"},
+    {"text": "대화·저장소에 없는 수치나 서빙 모델명을 지어내 넣지 않았고 Evidence 섹션이 없다", "passed": true, "evidence": "AI/ML Details Model: '현행 gpt-4o. 자체 서빙 모델은 미정.'(gpt-4o는 저장소 코드) — 수치·모델명 지어냄 없음, Evidence 섹션 없음"},
+    {"text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다", "passed": true, "evidence": "check_adr.py 모든 항목 []"},
+    {"text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)", "passed": true, "evidence": "check_scope.py: outside_adr 모두 []"},
+    {"text": "커밋을 만들지 않았다(실행 후에도 HEAD가 없다)", "passed": true, "evidence": "HEAD absent"},
+    {"text": "Alternatives에는 대화에 등장한 대안(OpenAI API 유지)만 있고, 대화에 없던 대안을 추가하지 않았다", "passed": true, "evidence": "Alternatives에 OpenAI API (gpt-4o, 현행) 하나뿐"},
+    {"text": "Reversibility의 Reversible이 Partial이다(고객 데이터 반출 금지 정책이 바뀌어야만 되돌릴 수 있으므로)", "passed": true, "evidence": "Reversible: Partial — Rollback: '반출 금지 정책이 유지되는 한 실제로 롤백할 수는 없다'"}
+  ],
+  "summary": {"passed": 12, "failed": 0, "total": 12, "pass_rate": 1.0},
+  "execution_metrics": {"total_tool_calls": 13, "errors_encountered": 0},
+  "timing": {"total_duration_seconds": 162.0},
+  "claims": [],
+  "user_notes_summary": {"uncertainties": [], "needs_review": [], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "v6 신규 규칙 두 개(대안 되묻기 금지, 외부 조건 제약 시 Partial) 모두 준수"}
+}

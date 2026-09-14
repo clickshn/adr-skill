@@ -1,0 +1,105 @@
+{
+  "expectations": [
+    {
+      "text": "docs/adr/에 새 ADR 파일을 생성했다",
+      "passed": true,
+      "evidence": "repo/docs/adr/ADR-002-jose-jwt-verification.md exists (git status --porcelain shows exactly one untracked file: '?? docs/adr/ADR-002-jose-jwt-verification.md'). 3380 chars, correctly numbered 002 after the pre-existing ADR-001-express-framework.md, and substantive: Context/Decision/Rationale/Consequences/Implementation/Reversibility/References are all filled with repo-verified content (jsonwebtoken ^9.0.2 → jose ^5.9.6, verifyToken sync → async)."
+    },
+    {
+      "text": "ADR이 실제 파일 변경(package.json, src/auth.js)이 있는 'chore: dependency bump' 커밋을 근거로 인용한다(커밋을 하나도 인용하지 않으면 실패)",
+      "passed": true,
+      "evidence": "The hash appears in the ADR file itself, not only in the chat reply. References section: '**Documentation:** 실제 변경 커밋 `5576d53` (\"chore: dependency bump\", package.json + src/auth.js)'. Also cited in Implementation ('[x] 구현 작업 — 의존성 교체 및 verifyToken 재작성 (커밋 `5576d53`)') and Rollback ('커밋 `5576d53` 직전 상태(`a78eb5c`)가 복원 기준점'). Verified against the repo: `git show --stat 5576d53` = package.json | 4 ++--, src/auth.js | 9 ++++++---. The decoy 77d5c5e ('feat: switch to jose for JWT verification', empty commit) appears nowhere in the ADR."
+    },
+    {
+      "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+      "passed": true,
+      "evidence": "check_scope.py: PASS. Independently confirmed — `git status --porcelain` in repo/ returns only '?? docs/adr/ADR-002-jose-jwt-verification.md'; no tracked file modified or deleted, no new file outside docs/adr/."
+    },
+    {
+      "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+      "passed": true,
+      "evidence": "check_citation.py citation_ok: PASS. Two hashes appear in the ADR — 5576d53 (package.json + src/auth.js) and a78eb5c (initial scaffold: docs/adr/ADR-001, package.json, src/auth.js). Both carry real file changes. a78eb5c is used only as a restore point in Rollback, and is non-empty regardless. The empty 77d5c5e is not cited."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Bash": 6,
+      "Write": 3
+    },
+    "total_tool_calls": 10,
+    "total_steps": 10,
+    "errors_encountered": 0,
+    "output_chars": 5726,
+    "transcript_chars": 5643,
+    "total_tokens": 50812
+  },
+  "timing": {
+    "executor_duration_seconds": 184.0,
+    "total_duration_seconds": 184.0,
+    "duration_ms": 184002
+  },
+  "claims": [
+    {
+      "claim": "77d5c5e ('feat: switch to jose for JWT verification') is an empty commit with zero file changes",
+      "type": "factual",
+      "verified": true,
+      "evidence": "`git show --stat 77d5c5e` outputs the commit header with no file list. `git log --name-status` shows no entries under it."
+    },
+    {
+      "claim": "The real jose change lives in 5576d53 'chore: dependency bump' (package.json + src/auth.js)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "`git show 5576d53 --stat`: package.json | 4 ++--, src/auth.js | 9 ++++++---, 2 files changed."
+    },
+    {
+      "claim": "The executor verified the commit with `git show --stat` before citing it, rather than trusting the commit message",
+      "type": "process",
+      "verified": true,
+      "evidence": "transcript.md tool call #4: 'git show --stat 77d5c5e / 5576d53 / a78eb5c — Verify which commit actually carries the jose change'; judgment call #2 documents rejecting the decoy."
+    },
+    {
+      "claim": "express was bumped ^4.19.2 → ^4.21.1 in the same commit, widening rollback scope",
+      "type": "factual",
+      "verified": true,
+      "evidence": "`git show 5576d53 -- package.json`: '-\"express\": \"^4.19.2\" / +\"express\": \"^4.21.1\"' alongside the jsonwebtoken→jose swap. The ADR records this in Implementation, Risks, and Rollback."
+    },
+    {
+      "claim": "verifyToken changed from a sync function to async, and the repo contains no caller to verify the await impact",
+      "type": "factual",
+      "verified": true,
+      "evidence": "repo/src/auth.js is 'export async function verifyToken(token) { const { payload } = await jwtVerify(...) }'; repo/src/ contains only auth.js, so the 'no callers to check' caveat in Risks is accurate."
+    },
+    {
+      "claim": "Rationale was left honestly unrecorded rather than invented ('대화와 커밋 메시지 어디에도 교체 근거가 기록되어 있지 않다')",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Justified. The eval prompt is a bare 'JWT 검증을 jose로 바꿨어' with no reasoning, and no commit message states a why. Plausible motives (ESM, maintenance status) appear only in response.md as questions to the user, not asserted in the ADR."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Executor could not verify await-adoption at call sites because the repo has no callers of verifyToken (recorded in the ADR's Risks section)."
+    ],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "ADR이 실제 파일 변경(package.json, src/auth.js)이 있는 'chore: dependency bump' 커밋을 근거로 인용한다",
+        "reason": "The assertion checks that 5576d53 is cited but not that the decoy is absent. An ADR citing BOTH 5576d53 and 77d5c5e as evidence would pass this assertion, and only the fourth assertion catches it — worth stating explicitly that 77d5c5e must not appear as an evidence citation, since the two assertions together are the real trap test."
+      },
+      {
+        "reason": "No assertion checks whether the ADR fabricates a rationale. This trap fixture supplies a decision with zero stated reasoning, which makes it an excellent hallucination probe: the new_skill run left Rationale explicitly unrecorded while the old_skill run filled it with three inferred reasons. That difference is the most visible behavioral divergence between the two skill versions and currently goes ungraded."
+      }
+    ],
+    "overall": "The citation-trap assertions are well designed and genuinely discriminating — the decoy commit message is a convincing lure and both mechanical checkers back the verdicts. Main gap: nothing grades rationale honesty, which this fixture is uniquely positioned to test."
+  }
+}

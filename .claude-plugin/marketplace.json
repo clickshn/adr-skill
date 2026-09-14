@@ -1,0 +1,14 @@
+{
+  "name": "adr-skill-marketplace",
+  "owner": {
+    "name": "Hanna"
+  },
+  "description": "adr-recorder 스킬을 배포하는 개인 마켓플레이스입니다.",
+  "plugins": [
+    {
+      "name": "adr-skill",
+      "source": "./",
+      "description": "대화나 코드 변경에서 기술 결정이 감지되면 자동으로 ADR 문서를 생성합니다."
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "expectations": [
+    {
+      "text": "docs/adr/에 ADR-005 번호의 새 ADR 파일이 생성되었다",
+      "passed": true,
+      "evidence": "repo/docs/adr/ADR-005-grpc-internal-communication.md 가 새로 생성됨 (git status: '?? docs/adr/ADR-005-grpc-internal-communication.md'). 기존 ADR-001~004 다음 번호이며 파일명 관례(ADR-00N-slug.md)를 따름. 내용은 D-007 이관본."
+    },
+    {
+      "text": "Status가 Accepted이다(원본에 확정·시행 중으로 기록되어 있으므로)",
+      "passed": true,
+      "evidence": "ADR 3행: '- **Status:** Accepted'. 원본 D-007은 '상태: 확정, 2026-03-02부터 checkout ↔ inventory 구간 시행 중'."
+    },
+    {
+      "text": "결정 로그의 p99 45ms와 근거 문서 최종값 52ms의 불일치가 ADR에 기록되어 있고, 이를 위한 별도 섹션을 새로 만들지 않고 기존 섹션 안에 녹였다",
+      "passed": true,
+      "evidence": "기존 Evidence 섹션의 Benchmark 필드 안에 한 문장으로 녹였다: '… p99 180ms → 52ms, 평균 페이로드 4.8KB → 1.9KB. (2026-02-11 1차 측정의 p99 45ms는 커넥션 풀 워밍업 누락으로 무효, 재측정값 52ms가 최종.)' 이를 위한 새 섹션 헤더(예: Discrepancy/Note)는 만들지 않았다."
+    },
+    {
+      "text": "Alternatives에 GraphQL 페더레이션과 REST 유지+캐싱이 있고, GraphQL의 Recheck if에 '플랫폼팀 4명 이상' 조건이 있다",
+      "passed": true,
+      "evidence": "'### GraphQL 페더레이션' 과 '### REST 유지 + 응답 캐싱 (현행 유지)' 존재. GraphQL 항목에 '- **Recheck if:** 플랫폼팀이 4명 이상으로 늘어난다.' 캐싱 대안은 원본에 재검토 조건이 없어 Recheck if 줄 생략."
+    },
+    {
+      "text": "Review Trigger 섹션이 있고 Alternatives의 Recheck if 내용과 일치한다",
+      "passed": true,
+      "evidence": "'## Review Trigger' 아래 '- 플랫폼팀이 4명 이상으로 늘어나면 GraphQL 페더레이션을 재검토한다.' — Alternatives의 유일한 Recheck if와 일치하고 추가로 지어낸 조건 없음."
+    },
+    {
+      "text": "References 섹션의 Documentation 필드에 docs/decisions.md(D-007) 경로가 있고, 값 없는 PR/Issue 줄은 없다",
+      "passed": true,
+      "evidence": "References 섹션은 한 줄: '- **Documentation:** `docs/decisions.md` D-007 (원본 결정 로그), `bench/grpc-loadtest-2026-02.md`, `proto/inventory.proto` — 커밋 b32fc3b'. PR/Issue/Related ADR 줄 없음."
+    },
+    {
+      "text": "Confidence 규칙을 지켰다: Decision Source가 Human이면 Confidence가 없고, 그 외라면 실측 수치가 있으므로 High이다",
+      "passed": true,
+      "evidence": "'- **Decision Source:** Human' 이고 헤더 블록에 Confidence 필드 없음. 스킬 규칙 'Human이면 필드를 생략한다'와 일치."
+    },
+    {
+      "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+      "passed": true,
+      "evidence": "헤더는 Context/Problem/Constraints, Decision/Selected, Rationale, Evidence, Alternatives(+대안별 하위), Consequences/Positive/Negative/Risks, Implementation, Reversibility, Review Trigger, References — 전부 템플릿 소속. 값 없는 필드(GraphQL의 Pros, Evidence의 Experiment/Production Data/Cost, References의 PR/Issue/Related ADR)는 줄째 생략. HTML 주석·placeholder·TODO 없음."
+    },
+    {
+      "text": "원본 결정 로그에 없는 정보(대안의 수치 근거 등)를 사용자에게 새로 되묻지 않았다",
+      "passed": true,
+      "evidence": "response.md의 질문은 (1) 45/52ms 불일치 통보 뒤 '원본 로그 쪽 숫자도 고치는 게 맞다면 알려주세요' — 이미 저장소에서 확인한 사실의 처리 선택지이지 없는 정보 요구가 아님, (2) 'D-007 항목을 어떻게 할까요? 1. 항목을 삭제 2. … 표시만 추가' — 별도 assertion이 요구하는 질문. 대안의 수치 근거·추가 대안·재검토 조건 등을 요구한 문장은 없다. 전사 9번: '이관은 형식 변환이라 기각 대안에 대한 후속 질문을 하지 않았다'."
+    },
+    {
+      "text": "Reversibility 섹션이 있고 Rollback 필드에 저장소에서 확인한 롤백 방법이 채워져 있다(원본 로그에 없더라도)",
+      "passed": true,
+      "evidence": "'- **Rollback:** 내부 호출을 기존 REST 경로로 되돌리고 `proto/inventory.proto` 기반 gRPC 스텁·클라이언트를 제거한다. 외부 공개 API는 REST를 유지했으므로 외부 계약 변경은 필요 없다.' 원본 D-007에는 롤백 언급이 없고, 전사 툴 호출 8번에서 `cat proto/inventory.proto`로 실제 산출물을 확인한 뒤 작성."
+    },
+    {
+      "text": "docs/adr/ 밖의 파일(docs/decisions.md 포함)을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+      "passed": true,
+      "evidence": "check_scope.py 기계 판정 PASS. git status에 '?? docs/adr/ADR-005-grpc-internal-communication.md' 한 건만 있고 docs/decisions.md 는 diff 없음."
+    },
+    {
+      "text": "응답에서 원본 결정 로그의 D-007을 지울지, 이관 표시만 남길지 사용자에게 물었다",
+      "passed": true,
+      "evidence": "response.md: '원본 `docs/decisions.md`는 건드리지 않았습니다. D-007 항목을 어떻게 할까요? 1. 항목을 삭제 2. 남겨두고 \"ADR-005로 이관됨\" 표시만 추가'."
+    },
+    {
+      "text": "Date가 원본 시행일(2026-03-02)이다(이관 작성일이 아니라 원본 D-007에 기록된 시행일을 따르므로)",
+      "passed": true,
+      "evidence": "'- **Date:** 2026-03-02'. 전사 5번: 'Date = 2026-03-02, not today (2026-09-14)'. 응답에서도 '이관일(오늘)이 아니라 원본에 적힌 시행일 2026-03-02을 썼습니다'."
+    },
+    {
+      "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+      "passed": true,
+      "evidence": "check_citation.py citation_ok PASS. 유일한 인용 해시 b32fc3b는 실제 파일 변경을 포함한 커밋이며, 전사 8번에 c32c6dc/102695e가 빈 커밋이어서 제외했다는 확인 기록이 있다."
+    }
+  ],
+  "summary": {
+    "passed": 14,
+    "failed": 0,
+    "total": 14,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 3,
+      "Bash": 6,
+      "Write": 3
+    },
+    "total_tool_calls": 12,
+    "total_steps": 12,
+    "errors_encountered": 0,
+    "output_chars": 11358,
+    "transcript_chars": 5670
+  },
+  "timing": {
+    "executor_duration_seconds": 232.3,
+    "total_duration_seconds": 232.3,
+    "duration_ms": 232324,
+    "total_tokens": 52192
+  },
+  "claims": [
+    {
+      "claim": "45ms는 2026-02-11 1차 측정이고 커넥션 풀 워밍업 누락으로 무효, 최종값은 52ms",
+      "type": "factual",
+      "verified": true,
+      "evidence": "bench/grpc-loadtest-2026-02.md 비고와 표(gRPC p99 52ms)가 그대로 뒷받침."
+    },
+    {
+      "claim": "c32c6dc와 102695e는 빈 커밋이고 b32fc3b가 proto와 부하테스트 문서를 실제로 담고 있다",
+      "type": "process",
+      "verified": true,
+      "evidence": "check_citation.py citation_ok PASS(b32fc3b는 실제 변경 포함). 전사 툴 호출 8번에 세 커밋 모두 git show --stat 확인 기록."
+    },
+    {
+      "claim": "Evidence 수치(p50 41→12ms, p99 180→52ms, 4.8KB→1.9KB)가 벤치 문서와 일치한다",
+      "type": "factual",
+      "verified": true,
+      "evidence": "bench 문서 표: REST+JSON 41ms/180ms/4.8KB, gRPC 12ms/52ms/1.9KB — 전부 일치."
+    },
+    {
+      "claim": "'SLO 100ms 충족이라는 결론 자체는 두 수치 모두 동일합니다'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "45ms와 52ms 모두 SLO 100ms 미만이므로 결론은 불변. 원본 D-007의 SLO는 100ms로 명시됨."
+    },
+    {
+      "claim": "값이 없는 필드는 줄째 생략했다",
+      "type": "quality",
+      "verified": true,
+      "evidence": "GraphQL 대안에 Pros 줄이 없고, Evidence는 Benchmark만, References는 Documentation만 존재. 빈 콜론 줄이 하나도 없음."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "결정 로그의 p99 45ms와 근거 문서 최종값 52ms의 불일치가 ADR에 기록되어 있고, 이를 위한 별도 섹션을 새로 만들지 않고 기존 섹션 안에 녹였다",
+        "reason": "두 조건이 한 assertion에 묶여 있다. 같은 eval의 다른 런은 '응답에는 잘 설명했지만 ADR에는 안 남긴' 형태로 실패했는데, 쪼개 두면(45ms가 ADR 본문에 있는가 / 이를 위한 새 섹션 헤더가 없는가) 회귀 원인이 바로 드러난다."
+      },
+      {
+        "reason": "'D-007 처리를 물었다'와 '원본에 없는 정보를 되묻지 않았다'는 실무에서 충돌하기 쉬운 쌍인데, 허용되는 질문 범위(원본 처리 방식, 발견된 불일치의 처리)가 assertion 텍스트에 없어 판정자에 따라 갈릴 수 있다. 명시를 권한다."
+      },
+      {
+        "reason": "Evidence에 적힌 수치 자체가 bench 문서와 일치하는지 확인하는 assertion이 없다. 숫자를 하나 틀리게 옮겨도 14개 assertion을 모두 통과할 수 있다."
+      }
+    ],
+    "overall": "변별력 있는 세트다(두 런을 실제로 갈라냈다). 3번 assertion의 복합 조건 분리와 Evidence 수치 정확성 검증 추가를 권한다."
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "expectations": [
+    {
+      "text": "docs/adr/에 기존 명명 규칙을 따른 ADR-003 번호의 새 ADR 파일이 생성되었다",
+      "passed": true,
+      "evidence": "docs/adr/ADR-003-pino-logger.md"
+    },
+    {
+      "text": "Status가 Proposed이다",
+      "passed": true,
+      "evidence": "Status: Proposed"
+    },
+    {
+      "text": "Decision Source가 Human이고 Confidence 필드가 없다",
+      "passed": true,
+      "evidence": "Decision Source: Human, Confidence 없음"
+    },
+    {
+      "text": "Evidence 섹션에 사용자가 준 수치(p99 38ms→21ms, 초당 8.2k→11.5k req)가 정확히 들어있다",
+      "passed": true,
+      "evidence": "Evidence Benchmark: winston p99 38ms / 8.2k req/s, pino p99 21ms / 11.5k req/s"
+    },
+    {
+      "text": "Alternatives에 winston과 bunyan이 각각 있고, bunyan의 기각 사유에 '마지막 릴리스 3년 전' 근거가 들어있다",
+      "passed": true,
+      "evidence": "'winston 유지 (현행)', 'bunyan' — bunyan Rejected because '유지보수가 멈춘 상태(마지막 릴리스 3년 전)'"
+    },
+    {
+      "text": "Review Trigger 섹션이 있고, 그 내용이 Alternatives의 Recheck if 항목들로만 구성된다(새 조건 추가 없음)",
+      "passed": true,
+      "evidence": "Review Trigger = bunyan Recheck if 1건"
+    },
+    {
+      "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+      "passed": true,
+      "evidence": "check_adr.py: 비표준 헤더/필드·빈 필드·빈 섹션·placeholder 없음"
+    },
+    {
+      "text": "AI/ML Details 섹션이 없다(AI/ML 결정이 아니므로)",
+      "passed": true,
+      "evidence": "AI/ML Details 없음"
+    },
+    {
+      "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+      "passed": true,
+      "evidence": "check_scope.py: docs/adr/ 밖 추가·변경·삭제 없음"
+    },
+    {
+      "text": "대화에 재검토 조건이 없는 대안(winston 유지)에 Recheck if 조건을 지어내 넣지 않았다(줄 생략)",
+      "passed": true,
+      "evidence": "winston 대안에 Recheck if 줄 없음"
+    }
+  ],
+  "summary": {
+    "passed": 10,
+    "failed": 0,
+    "total": 10,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "total_tool_calls": 15,
+    "errors_encountered": 0
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  }
+}

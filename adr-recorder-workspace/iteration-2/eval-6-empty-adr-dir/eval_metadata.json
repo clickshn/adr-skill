@@ -1,0 +1,10 @@
+{
+  "eval_id": 6,
+  "eval_name": "empty-adr-dir",
+  "prompt": "API 인증을 express-session 쿠키 세션에서 JWT로 바꾸기로 했어. 파트너사 서버들이 붙으면서 쿠키 기반이 번거로워서. package.json에 jsonwebtoken 추가하고 express-session은 뺐어. 세션 방식 유지하면서 파트너용 API 키 발급하는 것도 고민했는데 키 회전 관리를 따로 만들어야 해서 접었어. ADR 써줘.",
+  "assertions": [
+    "셸 명령(ls/dir 등)으로 docs/adr/ 목록을 직접 확인했다",
+    "번호를 임의로 정해 docs/adr/에 ADR 파일을 생성하지 않았다",
+    "사용자에게 ADR 번호(시작 번호나 기존 ADR 위치)를 확인하는 질문을 했다"
+  ]
+}

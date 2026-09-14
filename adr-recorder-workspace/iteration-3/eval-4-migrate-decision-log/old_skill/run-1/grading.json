@@ -1,0 +1,22 @@
+{
+  "expectations": [
+    {"text": "docs/adr/에 ADR-005 번호의 새 ADR 파일이 생성되었다", "passed": true, "evidence": "docs/adr/ADR-005-grpc-internal-communication.md"},
+    {"text": "Status가 Accepted이다(원본에 확정·시행 중으로 기록되어 있으므로)", "passed": true, "evidence": "Status: Accepted"},
+    {"text": "결정 로그의 p99 45ms와 근거 문서 최종값 52ms의 불일치가 ADR에 기록되어 있고, 이를 위한 별도 섹션을 새로 만들지 않고 기존 섹션 안에 녹였다", "passed": true, "evidence": "Evidence > Benchmark 줄 안에 '원본 D-007에 적힌 p99 45ms는 ... 벤치 문서의 최종값은 52ms다'"},
+    {"text": "Alternatives에 GraphQL 페더레이션과 REST 유지+캐싱이 있고, GraphQL의 Recheck if에 '플랫폼팀 4명 이상' 조건이 있다", "passed": true, "evidence": "GraphQL Recheck if '플랫폼팀이 4명 이상으로 늘어날 때', REST 유지 + 응답 캐싱 존재"},
+    {"text": "Review Trigger 섹션이 있고 Alternatives의 Recheck if 내용과 일치한다", "passed": true, "evidence": "Review Trigger '플랫폼팀이 4명 이상으로 늘면 GraphQL 페더레이션 재검토'"},
+    {"text": "References 섹션의 Documentation 필드에 docs/decisions.md(D-007) 경로가 있고, 값 없는 PR/Issue 줄은 없다", "passed": true, "evidence": "References: Documentation 한 줄만, 'docs/decisions.md D-007 (원본 결정 로그), ...'"},
+    {"text": "Confidence 규칙을 지켰다: Decision Source가 Human이면 Confidence가 없고, 그 외라면 실측 수치가 있으므로 High이다", "passed": true, "evidence": "Decision Source: Human, Confidence 없음"},
+    {"text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다", "passed": true, "evidence": "check_adr.py 모든 항목 []"},
+    {"text": "원본 결정 로그에 없는 정보(대안의 수치 근거 등)를 사용자에게 새로 되묻지 않았다", "passed": true, "evidence": "response에 질문 없음"},
+    {"text": "Reversibility 섹션이 있고 Rollback 필드에 저장소에서 확인한 롤백 방법이 채워져 있다(원본 로그에 없더라도)", "passed": true, "evidence": "Rollback: '외부 공개 API는 REST 그대로라서 영향이 없다. 내부 전환 구간은 REST 호출로 다시 돌려야 한다.' (v3 실행보다 구체성은 낮음)"}
+  ],
+  "summary": {"passed": 10, "failed": 0, "total": 10, "pass_rate": 1.0},
+  "execution_metrics": {"total_tool_calls": 13, "errors_encountered": 0},
+  "timing": {"total_duration_seconds": 126.7},
+  "claims": [
+    {"claim": "docs/decisions.md에서 D-007 항목을 삭제했다", "type": "process", "verified": true, "evidence": "outputs/decisions.md 사본 존재, response에 명시. 사용자는 '옮겨줘'만 요청했고 원본 삭제는 요청하지 않음 — 확인 없이 원본을 수정한 범위 확장"}
+  ],
+  "user_notes_summary": {"uncertainties": [], "needs_review": ["확인 없이 원본 결정 로그(docs/decisions.md)에서 D-007 삭제"], "workarounds": []},
+  "eval_feedback": {"suggestions": [{"reason": "원본 결정 로그를 사용자 확인 없이 수정/삭제했는지 확인하는 assertion이 없음 — 이번 v2 실행은 삭제했지만 모든 항목 통과"}], "overall": "v2도 이번엔 Reversibility를 작성 — iteration-2의 생략은 실행 편차였을 가능성"}
+}

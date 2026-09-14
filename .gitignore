@@ -1,0 +1,7 @@
+# skill-creator 평가용 테스트 저장소 (각각 중첩 .git을 가진 git 저장소)
+# fixture는 skills/adr-recorder/evals/setup_fixtures.sh로 다시 만들 수 있다.
+adr-recorder-workspace/fixtures/
+# 실행별 작업 저장소 사본. 생성된 ADR은 같은 run의 outputs/에 복사돼 있다.
+adr-recorder-workspace/iteration-*/eval-*/*/run-*/repo/
+# 채점 스크립트가 check_adr.py 등을 import할 때 생기는 바이트코드 캐시 (모든 깊이)
+__pycache__/

@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "docs/adr/에 새 ADR 파일을 생성하지 않았다",
+      "passed": true,
+      "evidence": "docs/adr/ 변경 없음"
+    },
+    {
+      "text": "최종 응답이 어떤 결정을 기록할지 사용자에게 되묻는 질문이다",
+      "passed": true,
+      "evidence": "response 첫 줄 '어떤 결정을 ADR로 기록할까요?' — Kafka 커밋은 참고로만 언급"
+    },
+    {
+      "text": "스킬 컨텍스트 명령(git diff, git log) 외의 저장소 탐색(파일 읽기·검색·목록 조회)을 하지 않았다",
+      "passed": true,
+      "evidence": "transcript: SKILL.md Read → 컨텍스트 명령 2개 → bookkeeping Write 2건"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "total_tool_calls": 5,
+    "errors_encountered": 0
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  }
+}

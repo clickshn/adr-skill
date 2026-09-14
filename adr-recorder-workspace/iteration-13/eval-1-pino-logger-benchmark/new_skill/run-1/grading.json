@@ -1,0 +1,154 @@
+{
+  "expectations": [
+    {
+      "text": "docs/adr/에 기존 명명 규칙을 따른 ADR-003 번호의 새 ADR 파일이 생성되었다",
+      "passed": true,
+      "evidence": "repo/docs/adr/ 실제 목록: ADR-001-express-framework.md, ADR-002-postgresql-primary-db.md, ADR-003-pino-logger.md. 새 파일은 기존 'ADR-{NNN}-{kebab-title}.md' 규칙과 일치하고 번호도 다음 번호인 003. 내용도 실질적(4048바이트, 전 섹션 채워짐)이며 제목 '# ADR-003: 로깅 라이브러리를 winston에서 pino로 교체'가 기존 ADR의 헤더 스타일과 동일."
+    },
+    {
+      "text": "Status가 Proposed이다",
+      "passed": true,
+      "evidence": "ADR 3행: '- **Status:** Proposed'. package.json이 이미 변경된 상태였음에도 Accepted로 올리지 않았다(트랜스크립트 판단 4번: '새 결정이므로 Proposed')."
+    },
+    {
+      "text": "Decision Source가 Human이고 Confidence 필드가 없다",
+      "passed": true,
+      "evidence": "ADR 7행 '- **Decision Source:** Human'. 파일 전체에 'Confidence' 문자열 없음 — 프런트 블록은 Status/Date/Decision/Scope/Decision Source 5줄로 끝나고 바로 '---'."
+    },
+    {
+      "text": "Evidence 섹션에 사용자가 준 수치(p99 38ms→21ms, 초당 8.2k→11.5k req)가 정확히 들어있다",
+      "passed": true,
+      "evidence": "Evidence 섹션 38행: '- **Benchmark:** autocannon으로 order-api 부하 측정 — p99 지연 38ms(winston) → 21ms(pino), 처리량 초당 8.2k req(winston) → 11.5k req(pino).' 네 수치 모두 프롬프트와 정확히 일치하고 방향(winston→pino)도 올바르게 귀속됨."
+    },
+    {
+      "text": "Alternatives에 winston과 bunyan이 각각 있고, bunyan의 기각 사유에 '마지막 릴리스 3년 전' 근거가 들어있다",
+      "passed": true,
+      "evidence": "'### winston 유지 (현행 유지)'와 '### bunyan' 두 하위 섹션 존재. bunyan 항목: '- **Rejected because:** 마지막 릴리스가 3년 전이라 유지보수 중단으로 판단했다.' (Cons에도 동일 근거 기재)."
+    },
+    {
+      "text": "Review Trigger 섹션이 있고, 그 내용이 Alternatives의 Recheck if 항목들로만 구성된다(새 조건 추가 없음)",
+      "passed": true,
+      "evidence": "'## Review Trigger' 섹션은 한 줄뿐: '- bunyan 유지보수가 재개되면 로거 선택을 다시 검토한다.' 이는 bunyan Alternatives의 유일한 Recheck if('bunyan 유지보수가 재개되면 다시 검토한다')와 같은 조건이며, 문서 내 Recheck if는 그 1건뿐이다. 벤치마크 재측정·버전 업그레이드 같은 새 조건은 추가되지 않았다."
+    },
+    {
+      "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+      "passed": true,
+      "evidence": "생성된 섹션: Context(Problem/Constraints), Decision(Selected), Rationale, Evidence, Alternatives, Consequences(Positive/Negative/Risks), Implementation, Reversibility, Review Trigger — 모두 SKILL.md 템플릿에 존재. 템플릿 외 헤더 없음. HTML 주석(<!-- 필수 --> 등)이나 {NNN}/{결정 제목} 같은 플레이스홀더, TODO 문자열 없음. 값 없는 필드(Experiment/Production Data/Cost, References의 PR/Issue 등)는 빈 줄로 남기지 않고 줄 자체를 생략했다. Implementation의 '- [ ]' 체크박스는 템플릿이 규정한 미완료 작업 목록이며 플레이스홀더가 아니라 저장소 실사(src/logger.js가 아직 winston)에 기반한 구체 항목이다."
+    },
+    {
+      "text": "AI/ML Details 섹션이 없다(AI/ML 결정이 아니므로)",
+      "passed": true,
+      "evidence": "파일에 'AI/ML Details' 헤더도, Model/Evaluation/Inference 필드도, Evaluation 표도 없다. 마지막 섹션은 '## Review Trigger'."
+    },
+    {
+      "text": "docs/adr/ 밖의 파일을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)",
+      "passed": true,
+      "evidence": "check_scope.py, fixture 대비 docs/adr/ 밖 추가·변경·삭제 없음."
+    },
+    {
+      "text": "대화에 재검토 조건이 없는 대안(winston 유지)에 Recheck if 조건을 지어내 넣지 않았다(줄 생략)",
+      "passed": true,
+      "evidence": "'### winston 유지 (현행 유지)' 항목은 Pros/Cons/Rejected because 세 줄로 끝나고 Recheck if 줄이 아예 없다. 기각 사유(벤치마크 열세)를 뒤집은 '벤치마크가 역전되면' 류의 조건을 지어내지 않았다. 사용자가 명시한 bunyan 조건만 Recheck if로 남겼다."
+    },
+    {
+      "text": "인용한 커밋 해시는 모두 실제 파일 변경이 있는 커밋이다(빈 커밋을 근거로 인용하지 않았다)",
+      "passed": true,
+      "evidence": "check_citation.py citation_ok; a20723d는 빈 커밋이지만 복원 기준점으로만 인용되어 위반 아님."
+    }
+  ],
+  "summary": {
+    "passed": 11,
+    "failed": 0,
+    "total": 11,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Bash": 6,
+      "Write": 3
+    },
+    "total_tool_calls": 10,
+    "total_steps": 10,
+    "errors_encountered": 0,
+    "output_chars": 5343,
+    "transcript_chars": 5059,
+    "note": "metrics.json이 없어 트랜스크립트의 도구 호출 표에서 집계. output_chars = ADR + response.md 바이트 수."
+  },
+  "timing": {
+    "total_tokens": 49463,
+    "duration_ms": 180948,
+    "total_duration_seconds": 180.9
+  },
+  "claims": [
+    {
+      "claim": "src/logger.js는 아직 winston 기반이라 pino 인스턴스 생성으로 변경이 필요하다",
+      "type": "factual",
+      "verified": true,
+      "evidence": "repo/src/logger.js 실제 내용: const winston = require('winston'); module.exports = winston.createLogger({...}). 미수정 확인."
+    },
+    {
+      "claim": "package.json 변경은 아직 커밋되지 않아 `git checkout -- package.json`으로 즉시 되돌릴 수 있다",
+      "type": "factual",
+      "verified": true,
+      "evidence": "repo에서 git status --short 결과 ' M package.json' (unstaged modified). 워킹트리 변경이므로 checkout 복원이 실제로 유효."
+    },
+    {
+      "claim": "기존 로그는 JSON 포맷으로 콘솔에 출력되고 있다(Constraints)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "src/logger.js가 format: winston.format.json(), transports: [new winston.transports.Console()]. 저장소를 실제로 읽고 쓴 제약이며 추측이 아님."
+    },
+    {
+      "claim": "p99 지연이 약 45% 감소, 처리량이 약 40% 증가했다",
+      "type": "factual",
+      "verified": true,
+      "evidence": "38→21ms = 44.7% 감소, 8.2k→11.5k = 40.2% 증가. 사용자가 주지 않은 파생 수치지만 산술적으로 정확."
+    },
+    {
+      "claim": "docs/adr/ 파일 목록을 glob이 아닌 셸 ls로 직접 확인해 번호를 003으로 확정했다",
+      "type": "process",
+      "verified": true,
+      "evidence": "트랜스크립트 도구 호출 #4: `ls -la` / `ls -la docs` / `ls -la docs/adr`. 스킬 1단계 지시를 실제로 수행."
+    },
+    {
+      "claim": "References 섹션은 PR/Issue/Related ADR/근거 문서가 하나도 없어 생성하지 않았다",
+      "type": "process",
+      "verified": true,
+      "evidence": "ADR에 References 섹션 없음. package.json 변경이 미커밋이라 인용할 커밋이 없다는 판단도 git status와 일치."
+    },
+    {
+      "claim": "현재 상태로는 서버가 뜨지 않는다(package.json에서 winston 제거, logger.js는 winston require)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "package.json dependencies에 winston 없음(express/pg/pino만), src/logger.js는 require('winston'). 응답에서만 언급하고 ADR Risks/Implementation에 반영."
+    },
+    {
+      "claim": "docs/adr/ 밖 파일은 수정하지 않고 사용자에게 물어보기만 했다",
+      "type": "quality",
+      "verified": true,
+      "evidence": "fixture 대비 파일 비교(check_scope.py)에서 docs/adr/ 밖 변경 없음. 응답 말미에 'pino로 교체해드릴까요?'로 확인만 요청."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": [],
+    "note": "user_notes.md 및 metrics.json 없음."
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Review Trigger 섹션이 있고, 그 내용이 Alternatives의 Recheck if 항목들로만 구성된다(새 조건 추가 없음)",
+        "reason": "Recheck if가 1건뿐인 시나리오라 이 어서션은 '한 줄 복사'만 확인한다. 두 대안 모두 재검토 조건이 있는 케이스(또는 조건이 2건인 케이스)가 아니면 '항목들로만 구성' 규칙의 변별력이 약하다. 현재 출력은 Recheck if 문구를 그대로 복사하지 않고 살짝 바꿔 썼는데(‘다시 검토한다’→‘로거 선택을 다시 검토한다’) 이것이 허용인지도 어서션이 규정하지 않는다."
+      },
+      {
+        "reason": "어서션 11개 중 9개를 두 스킬 버전이 동일하게 통과했고, 두 출력의 차이(References 섹션 유무, Context 서술 밀도)는 어떤 어서션도 건드리지 않는다. 이 eval은 v11↔현재 스킬을 변별하지 못한다 — 두 버전의 실제 차이(Alternatives 되묻기 조건 명문화)를 시험하려면 '기각 사유가 없는 대안이 하나 섞여 있을 때 그 사유만 되묻는가' 같은 시나리오가 필요하다."
+      },
+      {
+        "reason": "'템플릿에 없는 섹션 헤더/필드가 없다'는 조건부 섹션의 생성 조건까지는 검사하지 않는다. old_skill 쪽은 References를 만들어 Documentation에 package.json/src/logger.js를 넣었고 new_skill은 만들지 않았는데, 둘 다 통과한다. 조건부 섹션(Evidence/Alternatives/Implementation/References/AI-ML)의 생성 여부가 템플릿 조건과 맞는지 확인하는 어서션이 있으면 더 변별력이 있다."
+      }
+    ],
+    "overall": "어서션은 대체로 구체적이고 검증 가능하지만(수치 정확성, Recheck if 미생성, 스코프·커밋 인용은 기계 검증까지 됨), 전체가 만점으로 통과해 두 스킬 버전을 변별하지 못했다. 조건부 섹션 생성 조건과 '되묻기' 동작을 겨냥한 어서션 추가를 권장한다."
+  }
+}

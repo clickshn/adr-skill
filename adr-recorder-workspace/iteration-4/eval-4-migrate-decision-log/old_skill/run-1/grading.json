@@ -1,0 +1,24 @@
+{
+  "expectations": [
+    {"text": "docs/adr/에 ADR-005 번호의 새 ADR 파일이 생성되었다", "passed": true, "evidence": "docs/adr/ADR-005-grpc-internal-communication.md"},
+    {"text": "Status가 Accepted이다(원본에 확정·시행 중으로 기록되어 있으므로)", "passed": true, "evidence": "Status: Accepted"},
+    {"text": "결정 로그의 p99 45ms와 근거 문서 최종값 52ms의 불일치가 ADR에 기록되어 있고, 이를 위한 별도 섹션을 새로 만들지 않고 기존 섹션 안에 녹였다", "passed": true, "evidence": "Evidence > Benchmark 줄 안에 '원본 D-007에는 p99 45ms로 적혀 있으나 ... 벤치 문서의 최종값은 52ms다'"},
+    {"text": "Alternatives에 GraphQL 페더레이션과 REST 유지+캐싱이 있고, GraphQL의 Recheck if에 '플랫폼팀 4명 이상' 조건이 있다", "passed": true, "evidence": "GraphQL Recheck if '플랫폼팀이 4명 이상으로 늘어날 때', REST 유지 + 응답 캐싱 존재"},
+    {"text": "Review Trigger 섹션이 있고 Alternatives의 Recheck if 내용과 일치한다", "passed": true, "evidence": "Review Trigger '플랫폼팀이 4명 이상으로 늘어나면 GraphQL 페더레이션 재검토'"},
+    {"text": "References 섹션의 Documentation 필드에 docs/decisions.md(D-007) 경로가 있고, 값 없는 PR/Issue 줄은 없다", "passed": true, "evidence": "References: Documentation 아래 하위 목록으로 '원본 결정 로그: `docs/decisions.md` D-007 (2026-09-11 이관)' 등, PR/Issue 줄 없음"},
+    {"text": "Confidence 규칙을 지켰다: Decision Source가 Human이면 Confidence가 없고, 그 외라면 실측 수치가 있으므로 High이다", "passed": true, "evidence": "Decision Source: Human, Confidence 없음"},
+    {"text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다", "passed": true, "evidence": "check_adr.py 모든 항목 []"},
+    {"text": "원본 결정 로그에 없는 정보(대안의 수치 근거 등)를 사용자에게 새로 되묻지 않았다", "passed": true, "evidence": "질문은 D-007 삭제/이관 표시 여부와 원본 45ms 정정 여부뿐"},
+    {"text": "Reversibility 섹션이 있고 Rollback 필드에 저장소에서 확인한 롤백 방법이 채워져 있다(원본 로그에 없더라도)", "passed": true, "evidence": "Rollback: 'checkout의 재고 조회 호출을 inventory REST+JSON 호출로 되돌린다. 전환된 구간은 ... RPC GetStock 1개' + 확인 불가 사항 명시"},
+    {"text": "docs/adr/ 밖의 파일(docs/decisions.md 포함)을 생성·수정·삭제하지 않았다(fixture 대비 파일 비교)", "passed": true, "evidence": "check_scope.py: outside_adr 모두 []"},
+    {"text": "응답에서 원본 결정 로그의 D-007을 지울지, 이관 표시만 남길지 사용자에게 물었다", "passed": true, "evidence": "response: '로그에서 D-007을 지울까요, 아니면 \"ADR-005로 이관\" 표시만 남길까요?'"}
+  ],
+  "summary": {"passed": 12, "failed": 0, "total": 12, "pass_rate": 1.0},
+  "execution_metrics": {"total_tool_calls": 13, "errors_encountered": 0},
+  "timing": {"total_duration_seconds": 183.6},
+  "claims": [
+    {"claim": "커밋 adb2e90, 31a2593은 파일 변경이 없고 실제 파일은 b1e5947에서 추가됨", "type": "factual", "verified": true, "evidence": "fixture는 초기 커밋에 파일을 모두 넣고 이후 커밋을 --allow-empty로 생성함"}
+  ],
+  "user_notes_summary": {"uncertainties": [], "needs_review": [], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "v3도 이번 실행은 원본 미수정 + 질문 — iteration-3 v2의 원본 삭제는 v2에서만 관찰됨. 범위 규칙은 v3/v4 1회 실행으로 비변별"}
+}

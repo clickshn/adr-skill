@@ -1,0 +1,670 @@
+{
+  "metadata": {
+    "skill_name": "adr-recorder",
+    "skill_path": "C:/adr-skill/skills/adr-recorder",
+    "executor_model": "claude-opus-5",
+    "analyzer_model": "claude-opus-5",
+    "timestamp": "2026-09-11T01:57:32Z",
+    "evals_run": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 192.7,
+        "tokens": 53939,
+        "tool_calls": 14,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/에 기존 명명 규칙을 따른 ADR-003 번호의 새 ADR 파일이 생성되었다",
+          "passed": true,
+          "evidence": "docs/adr/ADR-003-pino-logger.md, H1 'ADR-003'"
+        },
+        {
+          "text": "Status가 Proposed이다(새로 내리는 결정이므로)",
+          "passed": true,
+          "evidence": "Status: Proposed"
+        },
+        {
+          "text": "Decision Source가 Human이고 Confidence 필드가 없다",
+          "passed": true,
+          "evidence": "Decision Source: Human, confidence_present=false"
+        },
+        {
+          "text": "Evidence 섹션에 사용자가 준 수치(p99 38ms→21ms, 초당 8.2k→11.5k req)가 정확히 들어있다",
+          "passed": true,
+          "evidence": "Evidence > Benchmark: 'winston: p99 38ms / 8.2k req/s → pino: p99 21ms / 11.5k req/s'"
+        },
+        {
+          "text": "Alternatives에 winston과 bunyan이 각각 있고, bunyan의 기각 사유에 '마지막 릴리스 3년 전' 근거가 들어있다",
+          "passed": true,
+          "evidence": "### winston 유지 (현행), ### bunyan. bunyan Cons '마지막 릴리스가 3년 전이다'"
+        },
+        {
+          "text": "Review Trigger 섹션이 있고, 그 내용이 Alternatives의 Recheck if 항목들로만 구성된다(새 조건 추가 없음)",
+          "passed": true,
+          "evidence": "Review Trigger 'bunyan 유지보수가 재개되면(새 릴리스 등) 대안으로 다시 검토' = bunyan Recheck if"
+        },
+        {
+          "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+          "passed": true,
+          "evidence": "check_adr.py 비표준/빈 항목/placeholder 모두 []"
+        },
+        {
+          "text": "AI/ML Details 섹션이 없다(AI/ML 결정이 아니므로)",
+          "passed": true,
+          "evidence": "sections에 없음"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 40.0,
+        "tokens": 40196,
+        "tool_calls": 5,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/에 새 ADR 파일을 생성하지 않았다",
+          "passed": true,
+          "evidence": "transcript: Write는 bookkeeping(outputs/) 2건뿐, 저장소 파일 생성 없음"
+        },
+        {
+          "text": "최종 응답이 어떤 결정을 기록할지 사용자에게 되묻는 질문이다",
+          "passed": true,
+          "evidence": "response.md 3번째 줄 '어떤 결정을 ADR로 기록할까요?'. Kafka 전환 커밋은 후보로만 제시"
+        },
+        {
+          "text": "스킬 컨텍스트 명령(git diff, git log) 외의 저장소 탐색(파일 읽기·검색·목록 조회)을 하지 않았다",
+          "passed": true,
+          "evidence": "transcript: Read SKILL.md → git diff → git log → bookkeeping Write 2건. docs/adr 확인·Glob·Grep·Read 없음"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": 151.1,
+        "tokens": 49386,
+        "tool_calls": 13,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/에 기존 4자리 번호 규칙을 따른 0002 번호의 새 ADR 파일이 생성되었다",
+          "passed": true,
+          "evidence": "docs/adr/0002-move-session-store-to-redis.md, H1 'ADR-0002'. ls로 0001 확인 후 결정"
+        },
+        {
+          "text": "Status가 Proposed이다",
+          "passed": true,
+          "evidence": "Status: Proposed"
+        },
+        {
+          "text": "대화·저장소에 없는 수치(지연시간, 처리량, 비용 등)를 지어내 넣지 않았다",
+          "passed": true,
+          "evidence": "수치는 사용자가 준 '3대'와 redis==5.0.8, 커밋 해시뿐"
+        },
+        {
+          "text": "Evidence 섹션이 없다(실측 근거가 없으므로)",
+          "passed": true,
+          "evidence": "sections: Context, Decision, Rationale, Consequences, Implementation, Reversibility, References"
+        },
+        {
+          "text": "Alternatives 섹션과 Review Trigger 섹션이 모두 없다(사용자가 대안을 언급하지 않았으므로)",
+          "passed": true,
+          "evidence": "두 섹션 모두 없음"
+        },
+        {
+          "text": "파일 생성 후 사용자에게 기각한 대안과 그 근거를 알려달라고 되물었다",
+          "passed": true,
+          "evidence": "response 마지막 문단 '이 결정에서 기각한 대안과 근거를 알려주세요.'"
+        },
+        {
+          "text": "Implementation 섹션이 체크리스트 형태로 존재한다",
+          "passed": true,
+          "evidence": "## Implementation 아래 '- [ ]' 4개"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 4,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 154.3,
+        "tokens": 51837,
+        "tool_calls": 17,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/에 ADR-005 번호의 새 ADR 파일이 생성되었다",
+          "passed": true,
+          "evidence": "docs/adr/ADR-005-internal-grpc.md"
+        },
+        {
+          "text": "Status가 Accepted이다(원본에 확정·시행 중으로 기록되어 있으므로)",
+          "passed": true,
+          "evidence": "Status: Accepted"
+        },
+        {
+          "text": "결정 로그의 p99 45ms와 근거 문서 최종값 52ms의 불일치가 ADR에 기록되어 있고, 이를 위한 별도 섹션을 새로 만들지 않고 기존 섹션 안에 녹였다",
+          "passed": true,
+          "evidence": "Evidence > Benchmark 줄 안에 '원본 D-007에는 gRPC p99가 45ms로 적혀 있으나 ... 재측정 최종값은 52ms다'. nonstandard_h2 []"
+        },
+        {
+          "text": "Alternatives에 GraphQL 페더레이션과 REST 유지+캐싱이 있고, GraphQL의 Recheck if에 '플랫폼팀 4명 이상' 조건이 있다",
+          "passed": true,
+          "evidence": "GraphQL Recheck if: '플랫폼팀이 4명 이상으로 늘어날 때'; REST 유지 + 응답 캐싱 존재"
+        },
+        {
+          "text": "Review Trigger 섹션이 있고 Alternatives의 Recheck if 내용과 일치한다",
+          "passed": true,
+          "evidence": "Review Trigger '플랫폼팀이 4명 이상으로 늘어나면 GraphQL 페더레이션을 재검토한다.'"
+        },
+        {
+          "text": "References 섹션의 Documentation 필드에 docs/decisions.md(D-007) 경로가 있고, 값 없는 PR/Issue 줄은 없다",
+          "passed": true,
+          "evidence": "References: Documentation 한 줄만, '`docs/decisions.md` D-007 (2026-09-11 이관), ...'"
+        },
+        {
+          "text": "Confidence 규칙을 지켰다: Decision Source가 Human이면 Confidence가 없고, 그 외라면 실측 수치가 있으므로 High이다",
+          "passed": true,
+          "evidence": "Decision Source: Human, Confidence 없음"
+        },
+        {
+          "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+          "passed": true,
+          "evidence": "check_adr.py 모든 항목 []"
+        },
+        {
+          "text": "원본 결정 로그에 없는 정보(대안의 수치 근거 등)를 사용자에게 새로 되묻지 않았다",
+          "passed": true,
+          "evidence": "response에 대안 근거 질문 없음. '원본에 없는 내용은 추측해서 채우지 않았습니다'. 마지막 문장은 decisions.md 이관 표시 여부 제안일 뿐"
+        }
+      ],
+      "notes": [
+        "이관 시 Reversibility 섹션 생략 — v2 3단계 문구의 과잉 해석 가능성"
+      ]
+    },
+    {
+      "eval_id": 5,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": 147.9,
+        "tokens": 49079,
+        "tool_calls": 10,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/ 디렉터리를 새로 만들고 첫 번호(001 또는 0001)의 ADR 파일을 생성했다",
+          "passed": true,
+          "evidence": "docs/adr/001-signup-email-celery-queue.md, H1 'ADR-001'. ls와 git ls-files로 ADR 부재 확인 후 생성"
+        },
+        {
+          "text": "ADR 번호를 사용자에게 확인하느라 파일 생성을 미루지 않았다",
+          "passed": true,
+          "evidence": "파일 생성 완료, 번호 확인 질문 없음"
+        },
+        {
+          "text": "Status가 Proposed이다",
+          "passed": true,
+          "evidence": "Status: Proposed"
+        },
+        {
+          "text": "Alternatives에 RQ가 있고, 기각 사유에 'Redis를 새로 운영해야 함'이 들어있다",
+          "passed": true,
+          "evidence": "### RQ (Redis Queue) — Rejected because: 'Redis를 새로 도입·운영해야 한다'"
+        },
+        {
+          "text": "대화에 대안과 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+          "passed": true,
+          "evidence": "response는 Evidence용 실측 수치만 요청('수치가 있으면 알려주세요'), 대안 근거 질문 없음"
+        },
+        {
+          "text": "대화·저장소에 없는 수치를 지어내 넣지 않았고 Evidence 섹션이 없다",
+          "passed": true,
+          "evidence": "Evidence 섹션 없음, 수치 없음"
+        },
+        {
+          "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+          "passed": true,
+          "evidence": "check_adr.py 모든 항목 []"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 6,
+      "configuration": "new_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 69.4,
+        "tokens": 42173,
+        "tool_calls": 7,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "셸 명령(ls/dir 등)으로 docs/adr/ 목록을 직접 확인했다",
+          "passed": true,
+          "evidence": "transcript 4번: Bash `ls -la <REPO>/docs/adr/` → .gitkeep만 존재"
+        },
+        {
+          "text": "번호를 임의로 정해 docs/adr/에 ADR 파일을 생성하지 않았다",
+          "passed": true,
+          "evidence": "docs/adr/에는 .gitkeep만 남아 있음, outputs에 ADR 사본 없음"
+        },
+        {
+          "text": "사용자에게 ADR 번호(시작 번호나 기존 ADR 위치)를 확인하는 질문을 했다",
+          "passed": true,
+          "evidence": "response: '이 저장소의 첫 ADR로 `ADR-001`을 쓰면 될까요? 아니면 이어서 매길 기존 번호가 있나요?'"
+        }
+      ],
+      "notes": [
+        "규칙대로 번호를 되물었으나, .gitkeep만 있는 빈 ADR 디렉터리는 흔한 '아직 첫 ADR 전' 상태라 과한 확인일 수 있음"
+      ]
+    },
+    {
+      "eval_id": 1,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 151.5,
+        "tokens": 49781,
+        "tool_calls": 15,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/에 기존 명명 규칙을 따른 ADR-003 번호의 새 ADR 파일이 생성되었다",
+          "passed": true,
+          "evidence": "docs/adr/ADR-003-pino-logger.md, H1 'ADR-003'"
+        },
+        {
+          "text": "Status가 Proposed이다(새로 내리는 결정이므로)",
+          "passed": true,
+          "evidence": "Status: Proposed"
+        },
+        {
+          "text": "Decision Source가 Human이고 Confidence 필드가 없다",
+          "passed": true,
+          "evidence": "Decision Source: Human, confidence_present=false"
+        },
+        {
+          "text": "Evidence 섹션에 사용자가 준 수치(p99 38ms→21ms, 초당 8.2k→11.5k req)가 정확히 들어있다",
+          "passed": true,
+          "evidence": "Evidence > Benchmark: 'winston: p99 38ms / 8.2k req/s, pino: p99 21ms / 11.5k req/s'"
+        },
+        {
+          "text": "Alternatives에 winston과 bunyan이 각각 있고, bunyan의 기각 사유에 '마지막 릴리스 3년 전' 근거가 들어있다",
+          "passed": true,
+          "evidence": "### winston 유지, ### bunyan. bunyan Cons '마지막 릴리스가 3년 전이다'"
+        },
+        {
+          "text": "Review Trigger 섹션이 있고, 그 내용이 Alternatives의 Recheck if 항목들로만 구성된다(새 조건 추가 없음)",
+          "passed": true,
+          "evidence": "Review Trigger 'bunyan 유지보수가 다시 시작되면(새 릴리스가 나오면) 재검토' = bunyan Recheck if"
+        },
+        {
+          "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+          "passed": true,
+          "evidence": "check_adr.py 비표준/빈 항목/placeholder 모두 []"
+        },
+        {
+          "text": "AI/ML Details 섹션이 없다(AI/ML 결정이 아니므로)",
+          "passed": true,
+          "evidence": "sections에 없음"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 44.3,
+        "tokens": 40009,
+        "tool_calls": 5,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/에 새 ADR 파일을 생성하지 않았다",
+          "passed": true,
+          "evidence": "저장소 파일 생성/수정 없음"
+        },
+        {
+          "text": "최종 응답이 어떤 결정을 기록할지 사용자에게 되묻는 질문이다",
+          "passed": true,
+          "evidence": "response.md 첫 줄 '어떤 결정을 ADR로 기록할까요?'"
+        },
+        {
+          "text": "스킬 컨텍스트 명령(git diff, git log) 외의 저장소 탐색(파일 읽기·검색·목록 조회)을 하지 않았다",
+          "passed": true,
+          "evidence": "transcript: Read SKILL.md → git diff → git log → bookkeeping Write 2건"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": 143.9,
+        "tokens": 47780,
+        "tool_calls": 11,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/에 기존 4자리 번호 규칙을 따른 0002 번호의 새 ADR 파일이 생성되었다",
+          "passed": true,
+          "evidence": "docs/adr/0002-move-session-store-to-redis.md. transcript 4번 Glob은 이번에도 빈 결과였으나 5번 git ls-files로 0001을 발견해 교차 확인"
+        },
+        {
+          "text": "Status가 Proposed이다",
+          "passed": true,
+          "evidence": "Status: Proposed"
+        },
+        {
+          "text": "대화·저장소에 없는 수치(지연시간, 처리량, 비용 등)를 지어내 넣지 않았다",
+          "passed": true,
+          "evidence": "수치는 저장소 버전 정보와 사용자가 준 '3대'뿐"
+        },
+        {
+          "text": "Evidence 섹션이 없다(실측 근거가 없으므로)",
+          "passed": true,
+          "evidence": "Evidence 섹션 없음"
+        },
+        {
+          "text": "Alternatives 섹션과 Review Trigger 섹션이 모두 없다(사용자가 대안을 언급하지 않았으므로)",
+          "passed": true,
+          "evidence": "두 섹션 모두 없음"
+        },
+        {
+          "text": "파일 생성 후 사용자에게 기각한 대안과 그 근거를 알려달라고 되물었다",
+          "passed": true,
+          "evidence": "response 마지막 '이 결정에서 기각한 대안과 수치적 근거를 알려주세요.'"
+        },
+        {
+          "text": "Implementation 섹션이 체크리스트 형태로 존재한다",
+          "passed": true,
+          "evidence": "## Implementation 아래 '- [ ]' 4개"
+        }
+      ],
+      "notes": [
+        "Glob 'docs/adr/**'이 빈 결과 → git ls-files로 재확인"
+      ]
+    },
+    {
+      "eval_id": 4,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.89,
+        "passed": 8,
+        "failed": 1,
+        "total": 9,
+        "time_seconds": 168.0,
+        "tokens": 51850,
+        "tool_calls": 15,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/에 ADR-005 번호의 새 ADR 파일이 생성되었다",
+          "passed": true,
+          "evidence": "docs/adr/ADR-005-grpc-internal-communication.md"
+        },
+        {
+          "text": "Status가 Accepted이다(원본에 확정·시행 중으로 기록되어 있으므로)",
+          "passed": true,
+          "evidence": "Status: Accepted"
+        },
+        {
+          "text": "결정 로그의 p99 45ms와 근거 문서 최종값 52ms의 불일치가 ADR에 기록되어 있고, 이를 위한 별도 섹션을 새로 만들지 않고 기존 섹션 안에 녹였다",
+          "passed": true,
+          "evidence": "Evidence > Benchmark 줄 안에 '원본 D-007에 적힌 p99 45ms는 ... 1차 측정 값이며, 여기서는 재측정 최종값 52ms를 기재함'"
+        },
+        {
+          "text": "Alternatives에 GraphQL 페더레이션과 REST 유지+캐싱이 있고, GraphQL의 Recheck if에 '플랫폼팀 4명 이상' 조건이 있다",
+          "passed": true,
+          "evidence": "GraphQL Recheck if '플랫폼팀이 4명 이상으로 늘어날 때', REST 유지 + 응답 캐싱 존재"
+        },
+        {
+          "text": "Review Trigger 섹션이 있고 Alternatives의 Recheck if 내용과 일치한다",
+          "passed": true,
+          "evidence": "Review Trigger '플랫폼팀이 4명 이상으로 늘어나면 GraphQL 페더레이션을 재검토한다.'"
+        },
+        {
+          "text": "References 섹션의 Documentation 필드에 docs/decisions.md(D-007) 경로가 있고, 값 없는 PR/Issue 줄은 없다",
+          "passed": true,
+          "evidence": "References: Documentation 한 줄만, '`docs/decisions.md` (D-007 원본), ...'"
+        },
+        {
+          "text": "Confidence 규칙을 지켰다: Decision Source가 Human이면 Confidence가 없고, 그 외라면 실측 수치가 있으므로 High이다",
+          "passed": true,
+          "evidence": "Decision Source: Human, Confidence 없음"
+        },
+        {
+          "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+          "passed": true,
+          "evidence": "check_adr.py 모든 항목 []"
+        },
+        {
+          "text": "원본 결정 로그에 없는 정보(대안의 수치 근거 등)를 사용자에게 새로 되묻지 않았다",
+          "passed": false,
+          "evidence": "response 마지막: '이 결정에서 기각한 대안과 수치적 근거를 알려주세요. 특히 \"REST 유지 + 응답 캐싱\"은 ... 수치와, 어떤 조건이면 다시 검토할지'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 5,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.86,
+        "passed": 6,
+        "failed": 1,
+        "total": 7,
+        "time_seconds": 126.6,
+        "tokens": 46875,
+        "tool_calls": 10,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "docs/adr/ 디렉터리를 새로 만들고 첫 번호(001 또는 0001)의 ADR 파일을 생성했다",
+          "passed": true,
+          "evidence": "docs/adr/001-signup-verification-email-celery-queue.md, H1 'ADR-001'"
+        },
+        {
+          "text": "ADR 번호를 사용자에게 확인하느라 파일 생성을 미루지 않았다",
+          "passed": true,
+          "evidence": "파일 생성 완료"
+        },
+        {
+          "text": "Status가 Proposed이다",
+          "passed": true,
+          "evidence": "Status: Proposed"
+        },
+        {
+          "text": "Alternatives에 RQ가 있고, 기각 사유에 'Redis를 새로 운영해야 함'이 들어있다",
+          "passed": true,
+          "evidence": "### RQ (Redis Queue) — Rejected because: 'Redis를 새로 도입·운영해야 하는 부담 때문에 제외'"
+        },
+        {
+          "text": "대화에 대안과 기각 사유가 있으므로, 기각한 대안과 근거를 알려달라고 되묻지 않았다",
+          "passed": false,
+          "evidence": "response: '이 결정에서 기각한 대안과 수치적 근거를 알려주세요.' — v1 3단계가 '수치' 근거를 요구해 정성적 사유가 있어도 되물음"
+        },
+        {
+          "text": "대화·저장소에 없는 수치를 지어내 넣지 않았고 Evidence 섹션이 없다",
+          "passed": true,
+          "evidence": "Evidence 섹션 없음, 수치 없음"
+        },
+        {
+          "text": "템플릿에 없는 섹션 헤더/필드가 없고, 빈 필드·TODO·placeholder가 남아있지 않다",
+          "passed": true,
+          "evidence": "check_adr.py 모든 항목 []"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 6,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.33,
+        "passed": 1,
+        "failed": 2,
+        "total": 3,
+        "time_seconds": 157.0,
+        "tokens": 49848,
+        "tool_calls": 12,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "셸 명령(ls/dir 등)으로 docs/adr/ 목록을 직접 확인했다",
+          "passed": true,
+          "evidence": "transcript 6번: Bash `ls -la <REPO>\\docs\\adr` + `git ls-files docs` (4번 Glob은 빈 결과)"
+        },
+        {
+          "text": "번호를 임의로 정해 docs/adr/에 ADR 파일을 생성하지 않았다",
+          "passed": false,
+          "evidence": "docs/adr/001-api-auth-session-to-jwt.md 생성 — .gitkeep만 있어 ADR-001로 결정"
+        },
+        {
+          "text": "사용자에게 ADR 번호(시작 번호나 기존 ADR 위치)를 확인하는 질문을 했다",
+          "passed": false,
+          "evidence": "번호 확인 질문 없음. 대신 '기각한 대안과 수치적 근거를 알려주세요'로 마무리"
+        }
+      ],
+      "notes": [
+        "대안 사유(키 회전 관리)가 있는데도 수치 근거를 되물음 — v1 3단계 동작",
+        "Glob 빈 결과 → ls/git ls-files로 재확인"
+      ]
+    }
+  ],
+  "run_summary": {
+    "new_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 125.9,
+        "stddev": 58.239,
+        "min": 40.0,
+        "max": 192.7
+      },
+      "tokens": {
+        "mean": 47768.3333,
+        "stddev": 5433.4861,
+        "min": 40196,
+        "max": 53939
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.8467,
+        "stddev": 0.2606,
+        "min": 0.33,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 131.8833,
+        "stddev": 45.0849,
+        "min": 44.3,
+        "max": 168.0
+      },
+      "tokens": {
+        "mean": 47690.5,
+        "stddev": 4147.4071,
+        "min": 40009,
+        "max": 51850
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.15",
+      "time_seconds": "-6.0",
+      "tokens": "+78"
+    }
+  },
+  "notes": [
+    "비교 대상: new_skill = 사용자가 수정한 SKILL.md(v2), old_skill = iteration-1 시점 SKILL.md(v1). 구성당 1회 실행이라 분산은 측정되지 않음.",
+    "차이는 v2 변경이 겨냥한 eval 4·5·6에서만 발생. eval5: v1은 대화에 정성적 기각 사유가 있어도 '기각한 대안과 수치적 근거'를 되물음 → v2는 되묻지 않음. eval4: v1은 이관인데도 원본에 없는 수치·재검토 조건을 되물음 → v2는 되묻지 않음. eval6: v1은 .gitkeep만 있는 기존 디렉터리에서 ADR-001을 임의로 생성 → v2는 ls 확인 후 번호를 되물음.",
+    "비변별(양쪽 만점): eval1·2·3. eval3은 iteration-1에서 v1이 실패(Glob 빈 결과를 믿고 ADR-001 중복)했던 케이스로, 이번에는 v1도 Glob이 또 빈 결과였지만 git ls-files로 교차 확인해 통과 → v1의 번호 결정은 비결정적(2회 중 1회 성공). v2는 규칙대로 셸 ls로 직접 확인.",
+    "부작용 관찰: v2 eval4는 '원본에 없어서' Reversibility 섹션을 생략함(템플릿 주석은 '가능하면 항상'). v1 eval4는 저장소 정보로 Reversibility를 작성함. v2 3단계의 '원본에 없는 정보를 새로 캐묻지 않는다'가 '작성하지도 않는다'로 과잉 해석된 것으로 보임 — 현재 assertion으로는 잡히지 않음.",
+    "판단 필요: eval6 규칙(빈 기존 디렉터리면 번호 확인)은 규칙대로 동작했지만, .gitkeep만 있는 디렉터리는 흔한 '첫 ADR 전' 상태라 한 번의 왕복을 추가할 수 있음. v1 결과물(ADR-001 생성 + src/auth.js 불일치 발견)도 실무적으로는 유용했음.",
+    "비용: 두 버전이 거의 같음(시간·토큰 차이 5% 미만). v2 eval6은 파일 생성 전에 멈추므로 더 빠름."
+  ]
+}
