@@ -81,7 +81,7 @@ ln -s <repo-path>/skills/adr-recorder ~/.claude/skills/adr-recorder
 ## 검증
 
 `adr-recorder-workspace/`에는 SKILL.md를 14차례 반복 개선하며 나온 전체 평가 기록
-(iteration-1~13, skill-snapshot-v1~v13, 각 라운드별 실행 결과)이 그대로 남아있습니다.
+(iteration-1~13, 스킬 스냅샷 14개, 각 라운드별 실행 결과)이 그대로 남아있습니다.
 최종 결과만이 아니라 어떤 문제가 나왔고 어떻게 고쳤는지의 과정 전체를 추적할 수 있습니다.
 
 테스트 데이터는 `skills/adr-recorder/evals/`와 `adr-recorder-workspace/trigger-eval/`에 있고, 검증 도구(`check_adr.py`, `check_scope.py`, `trigger_eval_win.py`)는 레포 루트에 있습니다.
